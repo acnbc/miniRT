@@ -108,3 +108,23 @@
 2. Priorizar: Setup → Parsing → Matemática → Interseções → Iluminação → Ray Tracing → Interface
 3. Testar incrementalmente: após cada funcionalidade, testar antes de seguir
 4. Revisar código em conjunto: especialmente partes críticas como interseções e iluminação
+
+## Estrutura de pastas
+
+```
+miniRT/
+├── includes/          # Arquivos de cabeçalho (.h)
+├── src/              # Arquivos fonte (.c)
+│   ├── main.c
+│   ├── parsing/      # Parser do arquivo .rt
+│   ├── math/         # Operações matemáticas (vetores, etc)
+│   ├── objects/      # Objetos geométricos (esfera, plano, cilindro)
+│   ├── ray_tracing/  # Lógica de ray tracing
+│   ├── lighting/     # Sistema de iluminação
+│   └── mlx/          # Gerenciamento da MiniLibX
+├── libft/            # Libft (se formos usar)
+├── Makefile
+├── .gitignore
+├── .cursorrules
+└── BACKLOG.md
+```
