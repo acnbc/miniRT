@@ -120,7 +120,7 @@ $(NAME): $(OBJS)
 	@ clear
 	@ echo "$(GREEN)Compiled successfully!$(RESET)"
 
-$(DIR_OBJ)/%.o: %.c $(DIR_OBJ)
+$(DIR_OBJ)/%.o: %.c | $(DIR_OBJ)
 	@ echo "$(YELLOW)Compiling $<$(RESET)"
 	@ $(CC) -Wall -Wextra -Werror -g -c $< -o $@ $(ADD_FLAGS_COMPILE_OBJS)
 
