@@ -1,85 +1,63 @@
+CC = cc
+
 NAME = miniRT
 
-# Compilador e flags
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -lm
+DIR_INCLUDE = ./includes
 
-# Diretórios
-SRC_DIR = src
-INC_DIR = includes
-OBJ_DIR = obj
-LIBFT_DIR = libft
+DIR_LIB = ./libft
 
-# Bibliotecas
-LIBFT = $(LIBFT_DIR)/libft.a
-MINILIBX = -lmlx -lXext -lX11
+LIBFT = $(DIR_LIB)/libft.a
 
-# Se libft existir, incluir
-ifneq ($(wildcard $(LIBFT_DIR)/Makefile),)
-	LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
-	LIBFT_INC = -I$(LIBFT_DIR)
-endif
+DIR_OBJ = ./obj
 
-# Flags de inclusão
-INCLUDES = -I$(INC_DIR) $(LIBFT_INC)
+DIR = $(DIR_OBJ) \
+	$(DIR_OBJ)/src
 
-# Fontes (adicione seus arquivos .c aqui)
-SRCS = \
-	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/parsing/ \
-	$(SRC_DIR)/math/ \
-	$(SRC_DIR)/objects/ \
-	$(SRC_DIR)/ray_tracing/ \
-	$(SRC_DIR)/lighting/ \
-	$(SRC_DIR)/mlx/
+SRC = 	src/main.c
 
-# Objetos
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
-# Regras principais
+ADD_FLAGS_COMPILE_PROGRAM = -lmlx -lXext -lX11 -lm
+
+ADD_FLAGS_COMPILE_OBJS = 
+
+BLINKING = \033[5m
+RESET = \033[0m
+GREEN = \033[0;32m
+RED = \033[0;31m
+YELLOW = \033[1;33m
+
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_FLAGS) $(MINILIBX) $(LDFLAGS)
-	@echo "✓ $(NAME) compilado com sucesso!"
+$(NAME): $(OBJS)
+	@ make -C $(DIR_LIB)
+	@ $(CC) -Wall -Wextra -Werror -g $(OBJS) $(LIBFT) -o $(NAME) $(ADD_FLAGS_COMPILE_PROGRAM)
+	@ clear
+	@ echo "$(GREEN)Compiled successfully!$(RESET)"
 
-# Compilar libft se existir
-$(LIBFT):
-	@if [ -f $(LIBFT_DIR)/Makefile ]; then \
-		$(MAKE) -C $(LIBFT_DIR); \
-	fi
+$(DIR_OBJ)/%.o: %.c $(DIR_OBJ)
+	@ echo "$(YELLOW)Compiling $<$(RESET)"
+	@ $(CC) -Wall -Wextra -Werror -g -c $< -o $@ $(ADD_FLAGS_COMPILE_OBJS)
 
-# Compilar objetos
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(DIR_OBJ):
+	@ mkdir -p $(DIR)
+	@ echo "$(YELLOW)Object directories created!$(RESET)"
 
-# Criar diretório de objetos
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
-# Limpar objetos
 clean:
-	@rm -rf $(OBJ_DIR)
-	@if [ -f $(LIBFT_DIR)/Makefile ]; then \
-		$(MAKE) -C $(LIBFT_DIR) clean; \
-	fi
-	@echo "✓ Objetos removidos"
+	@ rm -rf $(DIR_OBJ)
+	@ make clean -C $(DIR_LIB)
+	@ clear
+	@ echo "$(RED)Object files removed!$(RESET)"
 
-# Limpar tudo
-fclean: clean
-	@rm -f $(NAME)
-	@if [ -f $(LIBFT_DIR)/Makefile ]; then \
-		$(MAKE) -C $(LIBFT_DIR) fclean; \
-	fi
-	@echo "✓ $(NAME) e objetos removidos"
+fclean:
+	@ rm -rf $(DIR_OBJ) $(NAME)
+	@ make fclean -C $(DIR_LIB)
+	@ clear
+	@ echo "$(RED)Object files and $(NAME) removed!$(RESET)"
 
-# Recompilar
 re: fclean all
 
-# Bônus (adicione arquivos _bonus.c aqui quando necessário)
-bonus: all
+run: all clean
+	./$(NAME)
 
-# Phony targets
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re run $(NAME)
