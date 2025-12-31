@@ -10,7 +10,7 @@ LIBFT = $(DIR_LIB)/libft.a
 
 DIR_LIBX = ./minilibx
 
-MINILIBX = $(DIR_LIBX)/libmlx_Linux.a
+MINILIBX = $(DIR_LIBX)/libmlx.a
 
 DIR_OBJ = ./obj
 
@@ -68,7 +68,6 @@ run: all clean
 	./$(NAME)
 
 update:
-	@ bash create_makefile.sh -y
-	@ echo "$(GREEN)Makefile updated successfully!$(RESET)"
+	@ ( bash create_makefile.sh -y 2>/dev/null && echo "$(GREEN)Makefile updated successfully!$(RESET)" ) || echo "$(RED)Failed to update Makefile. $2$(RESET)"
 
 .PHONY: all clean fclean re run update $(NAME)

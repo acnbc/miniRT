@@ -44,7 +44,7 @@ if ([ "$_UPDATE" == "N" ] && [ "$_UPDATE" == "n" ]) || [ $MAKE_EXISTIS -eq 0 ]; 
 	read -p "Include minilibx? (y/n): " _INCLUDE_MINILIBX
 	if [ "${_INCLUDE_MINILIBX,,}" == "y" ]; then
 		read -p "Enter the minilibx directory (default: minilibx/): " _DIR_LIBX
-		read -p "Enter the minilibx file (default: libmlx_Linux.a): " _MINILIBX
+		read -p "Enter the minilibx file (default: libmlx.a): " _MINILIBX
 	fi
 
 	read -p "Enter the object files directory (default: obj/): " _DIR_OBJ
@@ -86,7 +86,7 @@ if [ "${_INCLUDE_MINILIBX,,}" == "y" ] && [ -z "$_DIR_LIBX" ]; then
 fi
 
 if [ "${_INCLUDE_MINILIBX,,}" == "y" ] && [ -z "$_MINILIBX" ]; then
-	_MINILIBX="libmlx_Linux.a"
+	_MINILIBX="libmlx.a"
 fi
 
 if [ -z "$_DIR_OBJ" ]; then
@@ -207,8 +207,7 @@ run: all clean
 	./$(NAME)
 
 update:
-	@ bash create_makefile.sh -y
-	@ echo "$(GREEN)Makefile updated successfully!$(RESET)"
+	@ ( bash create_makefile.sh -y 2>/dev/null && echo "$(GREEN)Makefile updated successfully!$(RESET)" ) || echo "$(RED)Failed to update Makefile. $2$(RESET)"
 
 .PHONY: all clean fclean re run update $(NAME)
 ' >> Makefile
