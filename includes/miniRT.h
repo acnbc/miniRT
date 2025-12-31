@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/29 23:53:33 by jessica          ###   ########.fr       */
+/*   Updated: 2025/12/31 13:46:12 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 # include "types.h"
+# include "../minilibx/mlx.h"
+# include "../minilibx/mlx_int.h"
 
 // adicionar aqui as funcoes que forem criadas
 
