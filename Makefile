@@ -8,6 +8,10 @@ DIR_LIB = ./libft
 
 LIBFT = $(DIR_LIB)/libft.a
 
+DIR_LIBX = ./minilibx
+
+MINILIBX = $(DIR_LIBX)/libmlx_Linux.a
+
 DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
@@ -31,7 +35,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ make -C $(DIR_LIB)
-	@ $(CC) -Wall -Wextra -Werror -g $(OBJS) $(LIBFT) -o $(NAME) $(ADD_FLAGS_COMPILE_PROGRAM)
+	@ make -C $(DIR_LIBX)
+	@ $(CC) -Wall -Wextra -Werror -g $(OBJS) $(LIBFT) $(MINILIBX) -o $(NAME) $(ADD_FLAGS_COMPILE_PROGRAM)
 	@ clear
 	@ echo "$(GREEN)Compiled successfully!$(RESET)"
 
@@ -46,12 +51,14 @@ $(DIR_OBJ):
 clean:
 	@ rm -rf $(DIR_OBJ)
 	@ make clean -C $(DIR_LIB)
+	@ make clean -C $(DIR_LIBX)
 	@ clear
 	@ echo "$(RED)Object files removed!$(RESET)"
 
 fclean:
 	@ rm -rf $(DIR_OBJ) $(NAME)
 	@ make fclean -C $(DIR_LIB)
+	@ make clean -C $(DIR_LIBX)
 	@ clear
 	@ echo "$(RED)Object files and $(NAME) removed!$(RESET)"
 
@@ -60,4 +67,8 @@ re: fclean all
 run: all clean
 	./$(NAME)
 
-.PHONY: all clean fclean re run $(NAME)
+update:
+	@ bash create_makefile.sh -y
+	@ echo "$(GREEN)Makefile updated successfully!$(RESET)"
+
+.PHONY: all clean fclean re run update $(NAME)
