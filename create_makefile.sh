@@ -207,7 +207,8 @@ run: all clean
 	./$(NAME)
 
 update:
-	bash create_makefile.sh -y
+	@ bash create_makefile.sh -y
+	@ echo "$(GREEN)Makefile updated successfully!$(RESET)"
 
 .PHONY: all clean fclean re run update $(NAME)
 ' >> Makefile
