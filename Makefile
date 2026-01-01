@@ -21,7 +21,7 @@ SRC = 	src/main.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
-ADD_FLAGS_COMPILE_PROGRAM = -lmlx -lXext -lX11 -lm
+ADD_FLAGS_COMPILE_PROGRAM = -L./$(DIR_LIBX) -lmlx -lXext -lX11 -lm
 
 ADD_FLAGS_COMPILE_OBJS = 
 
