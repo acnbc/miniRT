@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/31 13:46:12 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/09 16:44:33 by jesda-si          #+#    #+#             */
+/*   Updated: 2024/10/18 17:25:56 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <stdbool.h>
-# include "../libft/libft.h"
-# include "types.h"
-# include "../minilibx/mlx.h"
-# include "../minilibx/mlx_int.h"
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*p;
 
-// adicionar aqui as funcoes que forem criadas
-
-#endif
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	p = ft_lstlast(*lst);
+	p->next = new;
+}

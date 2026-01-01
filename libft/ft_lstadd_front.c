@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/30 00:00:40 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/07 17:46:33 by jesda-si          #+#    #+#             */
+/*   Updated: 2024/10/09 16:37:03 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	return (0);
+	t_list	*p;
+
+	p = *lst;
+	if (!p)
+	{
+		*lst = new;
+		return ;
+	}
+	new->next = (t_list *)*lst;
+	*lst = new;
 }

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/30 00:00:40 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/16 19:46:29 by jesda-si          #+#    #+#             */
+/*   Updated: 2024/10/19 12:10:33 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "ft_printf.h"
 
-int	main(void)
+int	print_char(va_list *args)
 {
-	return (0);
+	unsigned char	c;
+
+	c = (unsigned char)va_arg(*args, int);
+	ft_putchar_fd(c, 1);
+	return (1);
 }

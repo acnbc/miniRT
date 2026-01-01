@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mviana-v <mviana-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/30 00:00:40 by jessica          ###   ########.fr       */
+/*   Created: 2024/09/29 19:32:58 by jesda-si          #+#    #+#             */
+/*   Updated: 2025/04/18 00:38:03 by mviana-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
-
-int	main(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	return (0);
+	unsigned int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

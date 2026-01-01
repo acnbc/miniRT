@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/30 00:00:40 by jessica          ###   ########.fr       */
+/*   Created: 2024/12/02 17:42:19 by jesda-si          #+#    #+#             */
+/*   Updated: 2024/12/02 17:42:21 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstswap(t_list **lst)
 {
-	return (0);
+	t_list	*temp;
+
+	temp = (*lst)->next;
+	(*lst)->next = temp->next;
+	temp->next = *lst;
+	(*lst) = temp;
 }

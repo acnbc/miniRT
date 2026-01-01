@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   malloc_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/30 00:00:40 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/18 16:13:26 by jessica           #+#    #+#             */
+/*   Updated: 2025/08/24 18:51:21 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "ft_sprintf.h"
 
-int	main(void)
+char	*malloc_nbr(va_list *args)
 {
-	return (0);
+	int		nbr;
+	char	*str;
+
+	nbr = (int)va_arg(*args, int);
+	str = ft_itoa(nbr);
+	return (str);
 }

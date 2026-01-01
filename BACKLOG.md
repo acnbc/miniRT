@@ -1,13 +1,13 @@
 ## Backlog do Projeto miniRT
 
 ### Fase 1: Setup e Estrutura Base
-- [ ] Criar estrutura de diretórios do projeto
-- [ ] Configurar Makefile com flags `-Wall -Wextra -Werror`
-- [ ] Adicionar regras: `all`, `clean`, `fclean`, `re`
-- [ ] Integrar libft (se for usar)
-- [ ] Configurar MiniLibX (sistema ou fontes)
-- [ ] Criar estrutura básica de arquivos `.c` e `.h`
-- [ ] Implementar função `main()` básica
+- [x] Criar estrutura de diretórios do projeto
+- [x] Configurar Makefile com flags `-Wall -Wextra -Werror`
+- [x] Adicionar regras: `all`, `clean`, `fclean`, `re`
+- [x] Integrar libft (se for usar)
+- [x] Configurar MiniLibX (sistema ou fontes)
+- [x] Criar estrutura básica de arquivos `.c` e `.h`
+- [x] Implementar função `main()` básica
 
 ### Fase 2: Parsing do Arquivo .rt
 - [ ] Ler e validar argumentos (arquivo `.rt`)
@@ -113,16 +113,16 @@
 
 ```
 miniRT/
-├── includes/          # Arquivos de cabeçalho (.h)
+├── includes/         # Arquivos de cabeçalho (.h)
 ├── src/              # Arquivos fonte (.c)
 │   ├── main.c
 │   ├── parsing/      # Parser do arquivo .rt
 │   ├── math/         # Operações matemáticas (vetores, etc)
-│   ├── objects/      # Objetos geométricos (esfera, plano, cilindro)
+│   ├── obj/          # Objetos geométricos (esfera, plano, cilindro)
 │   ├── ray_tracing/  # Lógica de ray tracing
 │   ├── lighting/     # Sistema de iluminação
-│   └── mlx/          # Gerenciamento da MiniLibX
-├── libft/            # Libft (se formos usar)
+├── libft/            # Libft
+├── minilibx/         # Gerenciamento da MiniLibX
 ├── Makefile
 ├── .gitignore
 ├── .cursorrules

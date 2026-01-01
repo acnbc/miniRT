@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_dbl_lstsize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/31 13:46:12 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/09 14:36:05 by jesda-si          #+#    #+#             */
+/*   Updated: 2025/02/04 17:57:23 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <stdbool.h>
-# include "../libft/libft.h"
-# include "types.h"
-# include "../minilibx/mlx.h"
-# include "../minilibx/mlx_int.h"
+int	ft_dbl_lstsize(t_dbl_list *lst)
+{
+	t_dbl_list	*p;
+	int			i;
 
-// adicionar aqui as funcoes que forem criadas
-
-#endif
+	i = 0;
+	p = lst;
+	while (p)
+	{
+		p = (t_dbl_list *)(*p).next;
+		i++;
+	}
+	return (i);
+}

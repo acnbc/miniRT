@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_dbl_lstnew.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/31 13:46:12 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/07 17:30:01 by jesda-si          #+#    #+#             */
+/*   Updated: 2025/02/04 17:56:55 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <stdbool.h>
-# include "../libft/libft.h"
-# include "types.h"
-# include "../minilibx/mlx.h"
-# include "../minilibx/mlx_int.h"
+t_dbl_list	*ft_dbl_lstnew(void *content)
+{
+	t_dbl_list	*lst;
 
-// adicionar aqui as funcoes que forem criadas
-
-#endif
+	lst = (t_dbl_list *)ft_calloc(sizeof(t_dbl_list), 1);
+	if (!lst)
+		return (NULL);
+	lst->content = content;
+	lst->index = NULL;
+	lst->next = NULL;
+	lst->prev = NULL;
+	return (lst);
+}

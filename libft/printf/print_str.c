@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/30 00:00:40 by jessica          ###   ########.fr       */
+/*   Created: 2024/10/16 19:49:37 by jesda-si          #+#    #+#             */
+/*   Updated: 2024/10/19 19:00:32 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "ft_printf.h"
 
-int	main(void)
+int	print_str(va_list *args)
 {
-	return (0);
+	char	*str;
+
+	str = va_arg(*args, char *);
+	if (!str)
+		str = "(null)";
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }
