@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   math.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/02 11:24:03 by anogueir         ###   ########.fr       */
+/*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
+/*   Updated: 2026/01/02 12:14:27 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MATH_H
+# define MATH_H
+# include <math.h>
+# define EPSILON 0.00001
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include "../libft/libft.h"
-# include "types.h"
-# include "../minilibx/mlx.h"
-# include "../minilibx/mlx_int.h"
-# include "math.h"
-
-// adicionar aqui as funcoes que forem criadas
+t_tuple add_tuples(t_tuple a, t_tuple b);
 
 #endif
