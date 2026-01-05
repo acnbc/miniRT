@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/02 13:29:28 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/05 16:37:03 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ typedef struct s_rgb
 	unsigned char	g;
 	unsigned char	b;
 }	t_rgb;
+
+typedef struct	s_matrix
+{
+	double	m[16];
+	int		i;
+	int		j;
+}				t_matrix;
+
+typedef	struct	s_id_matrix
+{
+	static int	id_m[] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
+	int			i;
+	int			j;
+}
 
 typedef enum e_id
 {

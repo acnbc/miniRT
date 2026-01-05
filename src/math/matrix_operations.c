@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/05 16:19:55 by anogueir         ###   ########.fr       */
+/*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
+/*   Updated: 2026/01/05 16:39:52 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
-void    print_tuples(t_tuple tuple)
+bool    matrix_comparison(t_matrix a, t_matrix b)
 {
-    printf("Tuple:\n\tx = %.2f\n\ty = %.2f\n\tz = %.2f\n", tuple.x, tuple.y, tuple.z);
-    if (tuple.is_point)
-        printf("The tuple is a point\n");
-    else
-        printf("The tuple is a vector\n");
+    // TO DO
 }
 
-void    print_matrix(t_matrix m)
+t_matrix    matrix_multiplication(t_matrix a, t_matrix b)
 {
-    
+    // TO DO
+}
+
+t_matrix    matrix_transposition(t_matrix m)
+{
+    // TO DO
 }
