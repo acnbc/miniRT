@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/02 11:24:03 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/05 12:40:21 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@
 # include "math.h"
 
 // adicionar aqui as funcoes que forem criadas
+
+
+/*------------- APAGAR ------------------*/
+# include "tests.h"
 
 #endif

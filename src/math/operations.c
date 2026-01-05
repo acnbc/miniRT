@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:10:31 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/02 13:31:27 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/05 13:38:13 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_tuple add_tuples(t_tuple a, t_tuple b)
     result.x = a.x + b.x;
     result.y = a.y + b.y;
     result.z = a.z + b.z;
-    result.is_point = a.is_point & b.is_point;
+    result.is_point = a.is_point + b.is_point;
     return (result);
 }
 
@@ -40,7 +40,7 @@ t_tuple negate_tuple(t_tuple tuple)
 
     result.x = -(tuple.x);
     result.y = -(tuple.y);
-    result.z = -(t_tuple.z);
+    result.z = -(tuple.z);
     result.is_point = tuple.is_point;
     return (result);
 }
@@ -67,14 +67,14 @@ t_tuple scalar_division(t_tuple tuple, double scalar)
     return (result);
 }
 
-double vector_magnitude(t_tuple t_tuple)
+double vector_magnitude(t_tuple tuple)
 {
     double  magnitude;
     double  temp;
 
-    temp = (tuple.x ** 2) + (tuple.y ** 2) + (tuple.z ** 2);
+    temp = pow(tuple.x, 2) + pow(tuple.y, 2) + pow(tuple.z, 2);
     magnitude = sqrt(temp);
-    result (magnitude);
+    return (magnitude);
 }
 
 t_tuple vector_normalization(t_tuple vector)
@@ -84,8 +84,8 @@ t_tuple vector_normalization(t_tuple vector)
 
     magnitude = vector_magnitude(vector);
     normalized.x = vector.x / magnitude;
-    normalized.x = vector.y / magnitude;
-    normalized.x = vector.z / magnitude;
+    normalized.y = vector.y / magnitude;
+    normalized.z = vector.z / magnitude;
     normalized.is_point = vector.is_point;
     return (normalized);
 }
