@@ -207,3 +207,39 @@ void    test_transposition(void)
         printf("\n✗ Transposição incorreta!\n");
     }
 }
+
+void    test_mult_matrix_id(void)
+{
+    t_matrix	matrix_a = {
+    	.m =
+    	{
+    		1, 2, 3, 4,
+    		5, 6, 7, 8,
+    		9, 8, 7, 6,
+    		5, 4, 3, 2
+    	}
+    };
+
+    t_matrix	matrix_b = {
+    	.t = {1, 2, 3, 1}
+    };
+
+    t_matrix    *id = create_identity_matrix();
+
+    printf("Matriz identidade:\n");
+    print_matrix(id);
+    printf("Matriz a:\n");
+    print_matrix(&matrix_a); 
+    printf("Matriz b:\n");
+    print_one_col_matrix(&matrix_b);
+
+    t_matrix *result = matrix_multiplication(&matrix_a, id);
+    if (matrix_comparison(result, &matrix_a)) {
+        printf("\n✓ Multiplicação por matriz identidade correta!\n");
+    } else {
+        printf("\n✗ Multiplicação por matriz identidade incorreta!\n");
+    }
+    result = matrix_multiplication(id, &matrix_b);
+    printf("Multiplicação de matriz de uma coluna:\n");
+    print_one_col_matrix(result);    
+}

@@ -34,6 +34,28 @@ t_tuple create_vector(double x, double y, double z)
     return (vector);
 }
 
+t_matrix    *create_identity_matrix(void)
+{
+    t_matrix    *identity;
+    int         row;
+    int         col;
+
+    identity = (t_matrix *)safe_malloc(sizeof(t_matrix));
+    row = -1;
+    while (++row < 4)
+    {
+        col = -1;
+        while (++col < 4)
+        {
+            if (row == col)
+                mat_set(identity, row, col, 1.0);
+            else
+                mat_set(identity, row, col, 0.0);
+        }
+    }
+    return (identity);
+}
+
 bool    is_equal(double a, double b)
 {
     if (fabs(a - b) < EPSILON)

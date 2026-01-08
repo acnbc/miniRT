@@ -36,5 +36,6 @@ t_matrix    *matrix_multiplication(t_matrix *a, t_matrix *b);
 t_matrix    *matrix_tuple_multiplication(t_matrix *a, t_matrix *b);
 bool    matrix_comparison(t_matrix *a, t_matrix *b);
 t_matrix    *matrix_transposition(t_matrix *m);
+t_matrix    *create_identity_matrix(void);
 
 #endif

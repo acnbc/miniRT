@@ -17,5 +17,6 @@ int	main(void)
 	test_matrix_comparison();
 	test_matrix_multiplication();
 	test_transposition();
+	test_mult_matrix_id();
 	return (0);
 }

@@ -19,4 +19,5 @@ void    print_one_col_matrix(t_matrix *matrix);
 void    test_matrix_comparison(void);
 void    test_matrix_multiplication(void);
 void    test_transposition(void);
+void    test_mult_matrix_id(void);
 #endif
