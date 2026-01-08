@@ -23,8 +23,9 @@
 # include "../minilibx/mlx_int.h"
 # include "math.h"
 
-// adicionar aqui as funcoes que forem criadas
 
+// adicionar aqui as funcoes que forem criadas
+void	*safe_malloc(size_t size);
 
 /*------------- APAGAR ------------------*/
 # include "tests.h"

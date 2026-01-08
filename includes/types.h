@@ -29,19 +29,11 @@ typedef struct s_rgb
 	unsigned char	b;
 }	t_rgb;
 
-typedef struct	s_matrix
+typedef union	u_matrix
 {
+	double	t[4];
 	double	m[16];
-	int		i;
-	int		j;
 }				t_matrix;
-
-typedef	struct	s_id_matrix
-{
-	static int	id_m[] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
-	int			i;
-	int			j;
-}
 
 typedef enum e_id
 {

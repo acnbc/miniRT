@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/05 13:38:05 by anogueir         ###   ########.fr       */
+/*   Created: 2026/01/08 15:05:57 by anogueir          #+#    #+#             */
+/*   Updated: 2026/01/08 15:06:00 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
-int	main(void)
+void	*safe_malloc(size_t size)
 {
-	test_matrix_comparison();
-	test_matrix_multiplication();
-	test_transposition();
-	return (0);
+	void	*ptr;
+
+	ptr = ft_calloc(1, size);
+	if (ptr == NULL)
+	{
+		// free function;
+		exit (1);
+	}
+	return (ptr);
 }
