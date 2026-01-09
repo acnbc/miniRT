@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/29 23:54:24 by jessica          ###   ########.fr       */
+/*   Updated: 2026/01/02 13:29:28 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
+# include <stdbool.h>
 
 typedef struct s_tuple
 {
 	double	x;
 	double	y;
 	double	z;
-	bool	is_vector;
+	bool	is_point;
 }	t_tuple;
 
 typedef struct s_rgb

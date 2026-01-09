@@ -31,12 +31,12 @@
 - [ ] Liberar memória corretamente em caso de erro
 
 ### Fase 3: Matemática e Estruturas de Dados
-- [ ] Criar estruturas para vetores 3D
-- [ ] Implementar operações básicas de vetores (soma, subtração, produto escalar, produto vetorial)
-- [ ] Implementar normalização de vetores
+- [x] Criar estruturas para vetores 3D
+- [x] Implementar operações básicas de vetores (soma, subtração, produto escalar, produto vetorial)
+- [x] Implementar normalização de vetores
 - [ ] Criar estruturas para raios (origem, direção)
-- [ ] Criar estruturas para objetos (esfera, plano, cilindro)
-- [ ] Criar estruturas para câmera e luz
+- [x] Criar estruturas para objetos (esfera, plano, cilindro)
+- [x] Criar estruturas para câmera e luz
 
 ### Fase 4: Cálculo de Interseções
 - [ ] Implementar interseção raio-esfera
