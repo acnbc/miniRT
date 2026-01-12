@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:55:07 by jesda-si          #+#    #+#             */
-/*   Updated: 2025/09/16 22:50:19 by jesda-si         ###   ########.fr       */
+/*   Updated: 2026/01/12 09:26:59 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ static void	malloc_format(const char *str, char ***array_args, va_list *args)
 	ptr = ft_strchr(str, '%');
 	while (ptr)
 	{
-		if (ptr + 1 && !ft_strchr("cspdiuxX%", *(ptr + 1)))
+		/*if (ptr + 1 && !ft_strchr("cspdiuxX%", *(ptr + 1)))
 		{
 			free_array_args(array_args);
 			return ;
-		}
+		}*/
 		if (*(ptr + 1) == '%')
 		{
 			ptr = ft_strchr(ptr + 2, '%');

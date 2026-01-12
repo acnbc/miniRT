@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/05 11:39:40 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:24:57 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MATH_H
 # include <math.h>
 # define EPSILON 0.00001
-# define MATRIX_DIM 16
+
 
 t_tuple add_tuples(t_tuple a, t_tuple b);
 t_tuple subtract_tuple(t_tuple a, t_tuple b);
@@ -30,12 +30,16 @@ t_tuple create_point(double x, double y, double z);
 t_tuple create_vector(double x, double y, double z);
 bool    is_equal(double a, double b);
 
-double	mat_get(const t_matrix *m, int row, int col);
+double	mat_get(t_matrix *m, int row, int col);
 void	mat_set(t_matrix *m, int row, int col, double value);
 t_matrix    *matrix_multiplication(t_matrix *a, t_matrix *b);
 t_matrix    *matrix_tuple_multiplication(t_matrix *a, t_matrix *b);
 bool    matrix_comparison(t_matrix *a, t_matrix *b);
 t_matrix    *matrix_transposition(t_matrix *m);
-t_matrix    *create_identity_matrix(void);
+t_matrix    *create_identity_matrix(int dim);
+double  determinant(t_matrix *a);
+double  *get_matrix(t_matrix *m);
+t_matrix    *creat_new_matrix(int rows, int cols);
+t_matrix    *submatrix(t_matrix *m, int row, int col);
 
 #endif

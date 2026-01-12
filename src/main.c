@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/05 13:38:05 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:27:24 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@ int	main(void)
 	test_matrix_multiplication();
 	test_transposition();
 	test_mult_matrix_id();
+	test_determinant();
+	test_submatrix();
 	return (0);
 }

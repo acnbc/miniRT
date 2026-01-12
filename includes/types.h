@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/05 16:37:03 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:10:17 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,17 @@ typedef struct s_rgb
 	unsigned char	b;
 }	t_rgb;
 
-typedef union	u_matrix
+typedef struct	s_matrix
 {
-	double	t[4];
-	double	m[16];
+	union
+	{
+		double	m_2x2[4];
+		double	m_4x1[4];
+		double	m_3x3[9];
+		double	m_4x4[16];
+	};
+	int	rows;
+	int	cols;
 }				t_matrix;
 
 typedef enum e_id

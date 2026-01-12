@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:03:49 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/02 13:04:10 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:11:26 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ t_tuple create_vector(double x, double y, double z)
     return (vector);
 }
 
-t_matrix    *create_identity_matrix(void)
+t_matrix    *create_identity_matrix(int dim)
 {
     t_matrix    *identity;
     int         row;
     int         col;
 
-    identity = (t_matrix *)safe_malloc(sizeof(t_matrix));
+    identity = creat_new_matrix(dim, dim);
     row = -1;
-    while (++row < 4)
+    while (++row < dim)
     {
         col = -1;
-        while (++col < 4)
+        while (++col < dim)
         {
             if (row == col)
                 mat_set(identity, row, col, 1.0);
