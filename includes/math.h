@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 13:24:57 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:50:52 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@ t_matrix    *matrix_tuple_multiplication(t_matrix *a, t_matrix *b);
 bool    matrix_comparison(t_matrix *a, t_matrix *b);
 t_matrix    *matrix_transposition(t_matrix *m);
 t_matrix    *create_identity_matrix(int dim);
-double  determinant(t_matrix *a);
+double  get_2x2_determinant(t_matrix *a);
 double  *get_matrix(t_matrix *m);
 t_matrix    *creat_new_matrix(int rows, int cols);
-t_matrix    *submatrix(t_matrix *m, int row, int col);
+t_matrix    *get_submatrix(t_matrix *m, int row, int col);
+double  get_minor(t_matrix *m, int row, int col);
+double  get_cofactor(t_matrix *m, int row, int col);
+double matrix_determinant(t_matrix *m);
+bool    is_invertible(t_matrix *m);
+t_matrix    *inverse_matrix(t_matrix *m);
 
 #endif

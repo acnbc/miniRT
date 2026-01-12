@@ -33,6 +33,7 @@
 ### Fase 3: Matemática e Estruturas de Dados
 - [x] Criar estruturas para vetores 3D
 - [x] Implementar operações básicas de vetores (soma, subtração, produto escalar, produto vetorial)
+- [ ] Implementar operações básicas de matrizes (comparação, multiplicalção, transposição, determinante)
 - [x] Implementar normalização de vetores
 - [ ] Criar estruturas para raios (origem, direção)
 - [x] Criar estruturas para objetos (esfera, plano, cilindro)

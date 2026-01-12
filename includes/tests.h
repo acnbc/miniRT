@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 13:25:13 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:50:09 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,8 @@ void    test_transposition(void);
 void    test_mult_matrix_id(void);
 void    test_determinant(void);
 void    test_submatrix(void);
+void    test_minor(void);
+void    test_final_determinant(void);
+void    test_is_invertible(void);
+void test_inverse_matrix_basic(void);
 #endif

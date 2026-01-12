@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 13:39:32 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:05:29 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ double  *get_matrix(t_matrix *m)
         ptr = m->m_3x3;
     else if (m->rows == 2)
         ptr = m->m_2x2;
+    else
+    {
+        if (m->rows * m->cols <= 16)
+            return m->m_4x4;
+        else
+            return NULL;
+    }
     return (ptr);
 }
 
@@ -32,7 +39,7 @@ double  mat_get(t_matrix *m, int row, int col)
     double  *ptr;
 
     ptr = get_matrix(m);
-    return (ptr[row * m->rows + col]);
+    return (ptr[row * m->cols + col]);
 }
 
 void    mat_set(t_matrix *m, int row, int col, double value)
@@ -40,16 +47,20 @@ void    mat_set(t_matrix *m, int row, int col, double value)
     double  *ptr;
 
     ptr = get_matrix(m);
-    ptr[row * m->rows + col] = value;
+    ptr[row * m->cols + col] = value;
 }
 
 t_matrix    *creat_new_matrix(int rows, int cols)
 {
     t_matrix    *new;
+    int         i;
 
     new = (t_matrix *)safe_malloc(sizeof(t_matrix));
     new->rows = rows;
     new->cols = cols;
+    i = -1;
+    while (++i < 16)
+        new->m_4x4[i] = 0.0;
     return (new);
 }
 
@@ -83,11 +94,11 @@ t_matrix    *matrix_multiplication(t_matrix *a, t_matrix *b)
     int         k;
     double      sum;
 
-    if ((a->rows != b->rows) || (a->cols != b->cols))
+    if (a->cols != b->rows)
         return (NULL);
     row = -1;
     col = -1;
-    product = creat_new_matrix(a->rows, a->cols);
+    product = creat_new_matrix(a->rows, b->cols);
     while (++row < a->rows)
     {
         col = -1;
@@ -95,7 +106,7 @@ t_matrix    *matrix_multiplication(t_matrix *a, t_matrix *b)
         {
             sum = 0;
             k = -1;
-            while (++k < a->cols)
+            while (++k < b->cols)
                 sum += mat_get(a, row, k) * mat_get(b, k, col);
             mat_set(product, row, col, sum);
         }
@@ -150,18 +161,17 @@ t_matrix    *matrix_transposition(t_matrix *m)
     return (transposed);
 }
 
-double  determinant(t_matrix *a)
+double  get_2x2_determinant(t_matrix *a)
 {
     double  ac;
     double  bd;
-
+    
     ac = mat_get(a, 0, 0) * mat_get(a, 1, 1);
     bd = mat_get(a, 0, 1) * mat_get(a, 1, 0);
-    printf("ac %.2f\nbd = %.2f\n", ac, bd);
-    return ((ac - bd));
+    return (ac - bd);
 }
 
-t_matrix    *submatrix(t_matrix *m, int row, int col)
+t_matrix    *get_submatrix(t_matrix *m, int row, int col)
 {
     int         i;
     int         j;
@@ -187,4 +197,76 @@ t_matrix    *submatrix(t_matrix *m, int row, int col)
         k++;
     }
     return (sub);
+}
+
+double  get_minor(t_matrix *m, int row, int col)
+{
+    t_matrix    *sub;
+    double      minor;
+
+    sub = get_submatrix(m, row, col);
+    if (sub->rows == 2 && sub->cols == 2)
+        minor = get_2x2_determinant(sub);
+    else
+        minor = matrix_determinant(sub);
+    return (minor);
+}
+
+double  get_cofactor(t_matrix *m, int row, int col)
+{
+    double  cofactor;
+    double  minor;
+
+    minor = get_minor(m, row, col);
+    if ((row + col) % 2 == 0)
+        cofactor = minor;
+    else
+        cofactor = -minor;
+    return (cofactor);
+}
+
+double matrix_determinant(t_matrix *m)
+{
+    double det;
+    int i;
+    
+    if (m->rows == 2 && m->cols == 2)
+        return (get_2x2_determinant(m));
+    det = 0.0;
+    i = -1;
+    while (++i < m->cols)
+        det += mat_get(m, 0, i) * get_cofactor(m, 0, i);
+    return (det);
+}
+
+bool    is_invertible(t_matrix *m)
+{
+    if (fabs(matrix_determinant(m)) < EPSILON)
+        return (false);
+    return (true);
+}
+
+t_matrix    *inverse_matrix(t_matrix *m)
+{
+    t_matrix    *inverted;
+    int         row;
+    int         col;
+    double      det;
+    double      c;
+    
+    if (!is_invertible(m))
+        return (NULL);
+    inverted = creat_new_matrix(m->rows, m->cols);
+    det =  matrix_determinant(m);
+    row = -1;
+    while (++row < m->rows)
+    {
+        col = -1;
+        while (++col < m->cols)
+        {
+            c = get_cofactor(m, col, row);
+            mat_set(inverted, row, col, c / det);
+        }
+    }
+    return (inverted);
 }
