@@ -14,13 +14,13 @@
 
 void	*safe_malloc(size_t size)
 {
-	void	*ptr;
+	void *ptr;
 
 	ptr = ft_calloc(1, size);
 	if (ptr == NULL)
 	{
 		// free function;
-		exit (1);
+		exit(1);
 	}
 	return (ptr);
 }

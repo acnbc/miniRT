@@ -13,21 +13,20 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
 # include "../libft/libft.h"
-# include "types.h"
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 # include "math.h"
-
-
-// adicionar aqui as funcoes que forem criadas
-void	*safe_malloc(size_t size);
+# include "types.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 /*------------- APAGAR ------------------*/
 # include "tests.h"
+
+// adicionar aqui as funcoes que forem criadas
+void	*safe_malloc(size_t size);
 
 #endif

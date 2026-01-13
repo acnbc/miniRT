@@ -12,53 +12,31 @@
 
 #include "../../includes/miniRT.h"
 
-t_tuple create_point(double x, double y, double z)
+t_tuple	create_point(double x, double y, double z)
 {
-    t_tuple point;
+	t_tuple	point;
 
-    point.x = x;
-    point.y = y;
-    point.z = z;
-    point.is_point = true;
-    return (point);
+	point.x = x;
+	point.y = y;
+	point.z = z;
+	point.is_point = true;
+	return (point);
 }
 
-t_tuple create_vector(double x, double y, double z)
+t_tuple	create_vector(double x, double y, double z)
 {
-    t_tuple vector;
+	t_tuple	vector;
 
-    vector.x = x;
-    vector.y = y;
-    vector.z = z;
-    vector.is_point = false;
-    return (vector);
+	vector.x = x;
+	vector.y = y;
+	vector.z = z;
+	vector.is_point = false;
+	return (vector);
 }
 
-t_matrix    *create_identity_matrix(int dim)
+bool	is_equal(double a, double b)
 {
-    t_matrix    *identity;
-    int         row;
-    int         col;
-
-    identity = creat_new_matrix(dim, dim);
-    row = -1;
-    while (++row < dim)
-    {
-        col = -1;
-        while (++col < dim)
-        {
-            if (row == col)
-                mat_set(identity, row, col, 1.0);
-            else
-                mat_set(identity, row, col, 0.0);
-        }
-    }
-    return (identity);
-}
-
-bool    is_equal(double a, double b)
-{
-    if (fabs(a - b) < EPSILON)
-        return (true);
-    return (false);
+	if (fabs(a - b) < EPSILON)
+		return (true);
+	return (false);
 }

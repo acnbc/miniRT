@@ -15,7 +15,7 @@
 int	main(void)
 {
 	// test_matrix_comparison();
-	// test_matrix_multiplication();
+	 test_matrix_multiplication();
 	// test_transposition();
 	// test_mult_matrix_id();
 	// test_determinant();
@@ -23,6 +23,7 @@ int	main(void)
 	// test_minor();
 	// test_final_determinant();
 	// test_is_invertible();
-	test_inverse_matrix_basic();
+	// test_inverse_matrix_basic();
+	// test_muilt_inverse_product();
 	return (0);
 }
