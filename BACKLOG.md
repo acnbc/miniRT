@@ -33,13 +33,21 @@
 ### Fase 3: Matemática e Estruturas de Dados
 - [x] Criar estruturas para vetores 3D
 - [x] Implementar operações básicas de vetores (soma, subtração, produto escalar, produto vetorial)
-- [ ] Implementar operações básicas de matrizes (comparação, multiplicalção, transposição, determinante)
+- [x] Implementar operações básicas de matrizes (comparação, multiplicalção, transposição, determinante)
 - [x] Implementar normalização de vetores
-- [ ] Criar estruturas para raios (origem, direção)
+- [ ] Criar estruturas para raios (origem, direção) (vou implementar essa estrutura na fase 5)
 - [x] Criar estruturas para objetos (esfera, plano, cilindro)
 - [x] Criar estruturas para câmera e luz
 
-### Fase 4: Cálculo de Interseções
+### Fase 4: Transformação de Matrizes
+- [ ] Implementar matrizes de translação para pontos e objetos
+- [ ] Implementar matrizes de escala para pontos, vetores e objetos
+- [ ] Implementar matrizes de rotação (eixos X, Y, Z)
+- [ ] Implementar matriz de shear (cisalhamento)
+- [ ] Implementar composição/encadeamento de transformações (produto de matrizes)
+- [ ] Aplicar transformações de matriz à câmera e aos objetos da cena
+
+### Fase 5: Cálculo de Interseções
 - [ ] Implementar interseção raio-esfera
   - [ ] Tratar todos os casos (sem interseção, uma, duas)
   - [ ] Tratar interior da esfera
@@ -54,7 +62,7 @@
 - [ ] Implementar função para encontrar interseção mais próxima
 - [ ] Calcular normal no ponto de interseção para cada objeto
 
-### Fase 5: Sistema de Iluminação
+### Fase 6: Sistema de Iluminação
 - [ ] Implementar iluminação ambiente
 - [ ] Implementar iluminação difusa
 - [ ] Implementar cálculo de sombras duras
@@ -62,14 +70,14 @@
 - [ ] Combinar iluminação ambiente + difusa
 - [ ] Garantir que objetos nunca fiquem completamente escuros
 
-### Fase 6: Ray Tracing Core
+### Fase 7: Ray Tracing Core
 - [ ] Implementar função principal de ray tracing
 - [ ] Calcular raio primário para cada pixel
 - [ ] Encontrar interseção mais próxima
 - [ ] Calcular cor do pixel baseado na iluminação
 - [ ] Renderizar imagem completa
 
-### Fase 7: MiniLibX e Interface
+### Fase 8: MiniLibX e Interface
 - [ ] Inicializar conexão com MiniLibX
 - [ ] Criar janela
 - [ ] Criar imagem (usar `images` é recomendado)
@@ -80,12 +88,12 @@
 - [ ] Gerenciar eventos da janela (minimizar, alternar, etc.)
 - [ ] Limpar recursos ao sair
 
-### Fase 8: Transformações (se necessário)
+### Fase 9: Transformações (se necessário)
 - [ ] Implementar translação de objetos
 - [ ] Implementar rotação de objetos (exceto esferas e luzes)
 - [ ] Implementar redimensionamento (diâmetro esfera, dimensões cilindro)
 
-### Fase 9: Validação e Testes
+### Fase 10: Validação e Testes
 - [ ] Criar cenas de teste básicas
 - [ ] Testar cada objeto isoladamente
 - [ ] Testar múltiplos objetos na mesma cena
@@ -96,7 +104,7 @@
 - [ ] Testar com valgrind
 - [ ] Verificar norma da 42
 
-### Fase 10: Refinamento
+### Fase 11: Refinamento
 - [ ] Revisar código para seguir norma da 42
 - [ ] Otimizar se necessário
 - [ ] Documentar funções complexas
