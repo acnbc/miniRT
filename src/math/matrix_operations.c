@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 18:05:29 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/14 09:05:58 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,13 @@ t_matrix	*matrix_tuple_multiplication(t_matrix *a, t_matrix *b)
 	if (b->cols != 1)
 		return (NULL);
 	if (a->cols != b->rows)
-		return (NULL);	
+		return (NULL);
 	result = creat_new_matrix(a->rows, b->cols);
 	ptr_a = get_matrix(a);
 	ptr_b = get_matrix(b);
-	ptr = get_matrix(result);
 	row = -1;
 	while (++row < a->rows)
 	{
-		sum = 0;
 		k = -1;
 		while (++k < a->cols)
 			result->m_4x1[row] += ptr_a[row * a->rows + k] * ptr_b[k];

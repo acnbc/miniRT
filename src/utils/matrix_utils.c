@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:46:43 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/14 09:15:50 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	mat_set(t_matrix *m, int row, int col, double value)
 
 t_matrix	*creat_new_matrix(int rows, int cols)
 {
-	t_matrix *new;
-	int i;
+	t_matrix	*new;
+	int			i;
 
 	new = (t_matrix *)safe_malloc(sizeof(t_matrix));
 	new->rows = rows;

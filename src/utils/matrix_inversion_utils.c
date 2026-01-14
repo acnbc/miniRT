@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_inversion_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:51:00 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:51:02 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/14 09:29:29 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ bool	is_invertible(t_matrix *m)
 
 t_matrix	*get_submatrix(t_matrix *m, int row, int col)
 {
-	int i;
-	int j;
-	int k;
-	int l;
-	t_matrix *sub;
+	int			i;
+	int			j;
+	int			k;
+	int			l;
+	t_matrix	*sub;
 
 	i = -1;
 	k = 0;

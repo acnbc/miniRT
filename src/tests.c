@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 17:49:56 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/01/14 09:31:43 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void    test_matrix_multiplication(void)
     printf("Matriz esperada:\n");
     print_matrix(&matrix_r);
     if (matrix_comparison(result, &matrix_r)) {
-        printf("\n✓ Multiplicaçã correta!\n");
+        printf("\n✓ Multiplicação correta!\n");
     } else {
         printf("\n✗ multiplicação incorreta!\n");
     }
@@ -426,7 +426,7 @@ void test_final_determinant(void)
     printf("  Esperado:  %f\n", expected2);
     printf("  Resultado: %s\n\n", fabs(det2 - expected2) < EPSILON ? "✓ OK" : "✗ FALHOU");
     
-    //free_matrix(m2x2);
+    free_matrix(m2x2);
     
     // ============================================
     // Teste 2: Matriz 3x3 (determinante zero)
@@ -440,7 +440,7 @@ void test_final_determinant(void)
     printf("  Esperado:  0.0\n");
     printf("  Resultado: %s\n\n", fabs(det3) < EPSILON ? "✓ OK" : "✗ FALHOU");
     
-    //free_matrix(m3x3);
+    free_matrix(m3x3);
     
     // ============================================
     // Teste 3: Matriz 3x3 (não singular)
@@ -455,7 +455,7 @@ void test_final_determinant(void)
     printf("  Esperado:  %f\n", expected3b);
     printf("  Resultado: %s\n\n", fabs(det3b - expected3b) < EPSILON ? "✓ OK" : "✗ FALHOU");
     
-    //free_matrix(m3x3b);
+    free_matrix(m3x3b);
     
     // ============================================
     // Teste 4: Matriz 4x4 (do livro The Ray Tracer Challenge)
@@ -475,7 +475,7 @@ void test_final_determinant(void)
     printf("  Esperado:  %f\n", expected4);
     printf("  Resultado: %s\n\n", fabs(det4 - expected4) < EPSILON ? "✓ OK" : "✗ FALHOU");
     
-    //free_matrix(m4x4);
+    free_matrix(m4x4);
     
     // ============================================
     // Teste 5: Matriz identidade 4x4
@@ -488,7 +488,7 @@ void test_final_determinant(void)
     printf("  Esperado:  1.0\n");
     printf("  Resultado: %s\n\n", fabs(det_id - 1.0) < EPSILON ? "✓ OK" : "✗ FALHOU");
     
-    //free_matrix(identity);
+    free_matrix(identity);
     
     // ============================================
     // Teste 6: Matriz 4x4 com translação (deve ter det = 1)
@@ -504,7 +504,7 @@ void test_final_determinant(void)
     printf("  Esperado:  1.0 (matriz de translação preserva volume)\n");
     printf("  Resultado: %s\n\n", fabs(det_trans - 1.0) < EPSILON ? "✓ OK" : "✗ FALHOU");
     
-    //free_matrix(translation);
+    free_matrix(translation);
     
     printf("=== FIM DOS TESTES ===\n");
 }
