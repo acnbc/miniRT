@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/14 09:30:22 by anogueir         ###   ########.fr       */
+/*   Created: 2026/01/08 15:05:57 by anogueir          #+#    #+#             */
+/*   Updated: 2026/01/14 09:28:07 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
-int	main(void)
+void	free_matrix(t_matrix *matrix)
 {
-	test_matrix_comparison();
-	test_matrix_multiplication();
-	test_transposition();
-	test_mult_matrix_id();
-	test_determinant();
-	test_submatrix();
-	test_minor();
-	test_final_determinant();
-	test_is_invertible();
-	test_inverse_matrix_basic();
-	test_muilt_inverse_product();
-	return (0);
+	if (matrix == NULL)
+		return ;
+	free(matrix);
+}
+
+void	*safe_malloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = ft_calloc(1, size);
+	if (ptr == NULL)
+		exit(1);
+	return (ptr);
 }
