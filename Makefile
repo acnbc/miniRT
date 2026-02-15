@@ -18,6 +18,7 @@ DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
 	$(DIR_OBJ)/src/object \
 SRC = 	src/main.c \
+	src/object/sgl_object.c \
 	src/object/utils_object.c \
 	src/object/lst_object.c \
 	src/object/object_type.c \

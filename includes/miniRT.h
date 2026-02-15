@@ -24,6 +24,9 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 
+t_amb_light		*create_amb_light(char **infos);
+t_camera		*create_camera(char **infos);
+t_light			*create_light(char **infos);
 
 t_id			get_id(char *str);
 t_tuple			*get_coord(char *str, bool vector);
