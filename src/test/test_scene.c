@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 06:01:59 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 06:14:35 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:57:46 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ static void	print_tuple(char *label, t_tuple *t)
 
 	if (!t)
 		return ;
-	str = "Point";
-	if (t->is_vector)
-		str = "Vector";
+	str = "Vector";
+	if (t->is_point)
+		str = "Point";
 	printf("	%s: [%.2f, %.2f, %.2f] (%s)\n",
 		label, t->x, t->y, t->z, str);
 }

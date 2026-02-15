@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:41:45 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:56:15 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../../../includes/miniRT.h"
 
 t_object	*lst_new_object(char **infos, t_id id)
 {

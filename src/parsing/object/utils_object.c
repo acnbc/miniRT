@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:46:05 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:57:29 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../../../includes/miniRT.h"
 
 static char	**split_arg(char *str);
 static bool	valid_tuple(t_tuple *tuple);
@@ -32,6 +32,7 @@ t_id	get_id(char *str)
 	else if (!ft_strncmp(str, "cy", 2))
 		return (cy);
 	exit_error("invalid identifier", false, NULL);
+	return (-1);
 }
 
 t_tuple	*get_coord(char *str, bool vector)
@@ -102,7 +103,7 @@ static char	**split_arg(char *str)
 		exit_error("malloc error", false, NULL);
 	if (ft_split_len(arr) != 3)
 	{
-		ft_split_free(arr);
+		ft_split_free(&arr);
 		exit_error("invalid arguments", false, NULL);
 	}
 	return (arr);

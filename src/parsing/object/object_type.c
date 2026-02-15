@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 01:40:17 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:42:31 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:56:21 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../../../includes/miniRT.h"
 
 static t_sphere		*object_type_sphere(char **infos);
 static t_plane		*object_type_plane(char **infos);

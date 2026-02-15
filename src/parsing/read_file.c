@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:36:45 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:41:20 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:56:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
 static int	open_file(char *file);
 static bool	add_object(char *line, t_scene *scene);

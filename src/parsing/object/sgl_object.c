@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 17:53:27 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:43:25 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:56:09 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../../../includes/miniRT.h"
 
 t_amb_light	*create_amb_light(char **infos)
 {
