@@ -17,6 +17,7 @@ DIR_OBJ = ./obj
 DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
 	$(DIR_OBJ)/src/object \
+	$(DIR_OBJ)/src/test \
 	$(DIR_OBJ)/images
 
 SRC = 	src/main.c \
@@ -25,6 +26,7 @@ SRC = 	src/main.c \
 	src/object/lst_object.c \
 	src/object/object_type.c \
 	src/read_file.c \
+	src/test/test_scene.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
