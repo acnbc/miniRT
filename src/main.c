@@ -6,13 +6,14 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 06:15:39 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:27:29 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-void	print_scene(t_scene *scene);
+static void	tester(t_scene *scene);
+void		print_scene(t_scene *scene);
 
 int	main(int argc, char **argv)
 {
@@ -23,9 +24,25 @@ int	main(int argc, char **argv)
 	scene = read_image(argv[1]);
 	if (!scene)
 		return (1);
-	print_scene(scene);
+	tester(scene);
 	free_scene(&scene);
 	return (0);
+}
+
+static void	tester(t_scene *scene)
+{
+	print_scene(scene);
+	test_matrix_comparison();
+	test_matrix_multiplication();
+	test_transposition();
+	test_mult_matrix_id();
+	test_determinant();
+	test_submatrix();
+	test_minor();
+	test_final_determinant();
+	test_is_invertible();
+	test_inverse_matrix_basic();
+	test_muilt_inverse_product();
 }
 
 void	print_error(char *error, bool clean)

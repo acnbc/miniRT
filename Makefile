@@ -16,17 +16,29 @@ DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
-	$(DIR_OBJ)/src/object \
+	$(DIR_OBJ)/src/parsing \
+	$(DIR_OBJ)/src/parsing/object \
 	$(DIR_OBJ)/src/test \
+	$(DIR_OBJ)/src/math \
+	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/images
 
-SRC = 	src/main.c \
-	src/object/sgl_object.c \
-	src/object/utils_object.c \
-	src/object/lst_object.c \
-	src/object/object_type.c \
-	src/read_file.c \
-	src/test/test_scene.c
+SRC = 	src/tests.c \
+	src/main.c \
+	src/parsing/object/sgl_object.c \
+	src/parsing/object/utils_object.c \
+	src/parsing/object/lst_object.c \
+	src/parsing/object/object_type.c \
+	src/parsing/read_file.c \
+	src/test/test_scene.c \
+	src/math/matrix_operations.c \
+	src/math/operations_part_2.c \
+	src/math/operations_part_1.c \
+	src/math/matrix_inversion_operations.c \
+	src/utils/matrix_utils.c \
+	src/utils/math_utils.c \
+	src/utils/matrix_inversion_utils.c \
+	src/utils/utils.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

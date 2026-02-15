@@ -6,23 +6,25 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 03:49:15 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:23:38 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <stdbool.h>
 # include "../libft/libft.h"
-# include "types.h"
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
+# include "types.h"
+# include "math.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
+
+/*------------- APAGAR ------------------*/
+# include "tests.h"
 
 t_scene			*read_image(char *file);
 
@@ -43,5 +45,8 @@ void			lst_add_back_object(t_object **lst, t_object *new);
 t_object		*lst_back_object(t_object *lst);
 void			lst_clear_object(t_object **lst);
 
+// adicionar aqui as funcoes que forem criadas
+void	        *safe_malloc(size_t size);
+void	        free_matrix(t_matrix *matrix);
 
 #endif

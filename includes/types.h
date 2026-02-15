@@ -6,27 +6,41 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 03:52:08 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:25:19 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
+# include <stdbool.h>
 
 typedef struct s_tuple
 {
-	double	x;
-	double	y;
-	double	z;
-	bool	is_vector;
-}	t_tuple;
+	double			x;
+	double			y;
+	double			z;
+	bool			is_point;
+}					t_tuple;
 
 typedef struct s_rgb
 {
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}	t_rgb;
+}					t_rgb;
+
+typedef struct s_matrix
+{
+	union
+	{
+		double		m_2x2[4];
+		double		m_4x1[4];
+		double		m_3x3[9];
+		double		m_4x4[16];
+	};
+	int				rows;
+	int				cols;
+}					t_matrix;
 
 typedef enum e_id
 {
@@ -36,7 +50,7 @@ typedef enum e_id
 	sp,
 	pl,
 	cy
-}	t_id;
+}					t_id;
 
 typedef struct s_amb_light
 {
@@ -62,8 +76,8 @@ typedef struct s_light
 
 typedef struct s_sphere
 {
-	double	diameter;
-}	t_sphere;
+	double			diameter;
+}					t_sphere;
 
 typedef struct s_plane
 {
@@ -91,7 +105,7 @@ typedef struct s_object
 	t_rgb			*colors;
 	t_object_type	*object;
 	struct s_object	*next;
-}	t_object;
+}					t_object;
 
 typedef struct s_scene
 {
