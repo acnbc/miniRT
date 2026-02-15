@@ -23,14 +23,15 @@ DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/images
 
-SRC = 	src/tests.c \
-	src/main.c \
+SRC = 	src/main.c \
 	src/parsing/object/sgl_object.c \
 	src/parsing/object/utils_object.c \
 	src/parsing/object/lst_object.c \
 	src/parsing/object/object_type.c \
 	src/parsing/read_file.c \
 	src/test/test_scene.c \
+	src/test/main.c \
+	src/test/test_math.c \
 	src/math/matrix_operations.c \
 	src/math/operations_part_2.c \
 	src/math/operations_part_1.c \

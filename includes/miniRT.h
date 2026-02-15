@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:47:56 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 08:00:27 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_amb_light		*create_amb_light(char **infos);
 t_camera		*create_camera(char **infos);
 t_light			*create_light(char **infos);
 
-void			exit_error(char *error, bool clean, t_scene *_scene);
+void			exit_error(char *error, bool clean, t_scene **_scene);
 void			free_scene(t_scene **scene);
 
 t_id			get_id(char *str);

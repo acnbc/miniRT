@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 17:50:09 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/02/15 07:54:51 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTS_H
 # define TESTS_H
+
+/* FUNÇÃO PRINCIPAL DE TESTE */
+void	tester(t_scene *scene);
 
 void	print_tuples(t_tuple tuple);
 void	print_matrix(t_matrix *matrix);
@@ -28,5 +31,7 @@ void	test_final_determinant(void);
 void	test_is_invertible(void);
 void	test_inverse_matrix_basic(void);
 void	test_muilt_inverse_product(void);
+
+void	print_scene(t_scene *scene);
 
 #endif

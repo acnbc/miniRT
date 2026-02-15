@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:57 by anogueir          #+#    #+#             */
-/*   Updated: 2026/02/15 07:47:00 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 08:00:01 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	*safe_malloc(size_t size)
 	return (ptr);
 }
 
-void	exit_error(char *error, bool clean, t_scene *_scene)
+void	exit_error(char *error, bool clean, t_scene **_scene)
 {
-	static t_scene	*scene;
+	static t_scene	**scene;
 
 	if (_scene)
 	{
@@ -45,5 +45,7 @@ void	exit_error(char *error, bool clean, t_scene *_scene)
 		if (clean)
 			free(error);
 	}
+	free_scene(scene);
+	*scene = NULL;
 	exit(1);
 }
