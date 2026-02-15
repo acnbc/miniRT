@@ -89,6 +89,9 @@ SRC = 	ft_substr.c \
 	ft_dbl_lstclear.c \
 	ft_bzero.c \
 	ft_dbl_lstmap.c \
+	ft_split_len.c \
+	ft_atod.c \
+	ft_atof.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

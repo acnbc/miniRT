@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:24:34 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/01/03 16:31:47 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 06:19:04 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	ft_atod(const char *nptr)
 {
 	int		i;
 	double	nb;
-	int		neg;
+	double	neg;
 
 	neg = 1;
 	nb = 0;
@@ -37,7 +37,7 @@ double	ft_atod(const char *nptr)
 		nb = (nb * 10) + (nptr[i] - '0');
 		i++;
 	}
-	if (nptr)
+	if (nptr && nptr[i])
 		nb += fraction(&nptr[i]);
 	return (nb * neg);
 }

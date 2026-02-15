@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:08:16 by jesda-si          #+#    #+#             */
-/*   Updated: 2024/11/08 20:08:36 by jesda-si         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:37:55 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ char	*ft_subline(char *s, int line)
 	char	*str;
 	size_t	len;
 
-	len = 1;
-	if (line)
-		len += ft_linelen(s, 1);
-	else
-		len += ft_linelen(s, 0);
+	len = ft_linelen(s, line) + 1;
 	if (len == 1)
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * len);

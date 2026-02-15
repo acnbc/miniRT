@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 18:11:53 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/01/01 17:14:49 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 02:00:30 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void		*ft_calloc(size_t nmemb, size_t size);
 long		ft_atol(const char *nptr);
 size_t		ft_strcspn(const char *s, const char *reject);
 void		ft_split_free(char ***split);
+int			ft_split_len(char **split);
 double		ft_atod(const char *nptr);
 float		ft_atof(const char *nptr);
 

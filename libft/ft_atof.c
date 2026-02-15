@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:24:34 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/01/03 16:27:48 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 06:19:36 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ float	ft_atof(const char *nptr)
 {
 	int		i;
 	float	nb;
-	int		neg;
+	float	neg;
 
-	neg = 1;
+	neg = 1.0;
 	nb = 0;
 	i = 0;
 	while (nptr && ft_isspace(nptr[i]))
@@ -37,7 +37,7 @@ float	ft_atof(const char *nptr)
 		nb = (nb * 10) + (nptr[i] - '0');
 		i++;
 	}
-	if (nptr)
+	if (nptr && nptr[i])
 		nb += fraction(&nptr[i]);
 	return (nb * neg);
 }

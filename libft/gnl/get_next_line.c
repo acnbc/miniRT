@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesda-si <jesda-si@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 20:07:56 by jesda-si          #+#    #+#             */
-/*   Updated: 2024/11/08 20:08:10 by jesda-si         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:47:26 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ char	*div_buffer(char **buffer)
 {
 	char	*cpy;
 	char	*line;
+	char	*new_line;
 
 	cpy = NULL;
 	line = NULL;
-	if (ft_strchr((char const *)*buffer, '\n'))
+	new_line = ft_strchr((char const *)*buffer, '\n');
+	if (new_line && *new_line && new_line[1])
 	{
 		line = ft_subline(*buffer, 1);
-		cpy = ft_subline(ft_strchr((char const *)*buffer, '\n') + 1, 0);
+		cpy = ft_subline(&new_line[1], 0);
 		*buffer = free_str(*buffer);
 		*buffer = cpy;
 	}

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_split_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 17:11:29 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 03:59:38 by jessica          ###   ########.fr       */
+/*   Created: 2025/09/16 19:45:28 by jesda-si          #+#    #+#             */
+/*   Updated: 2026/02/15 02:00:00 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+int	ft_split_len(char **split)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
+	int	len;
+
+	len = 0;
+	while (split && split[len])
+		len++;
+	return (len);
 }
