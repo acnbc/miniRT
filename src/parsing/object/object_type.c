@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 01:40:17 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 06:53:00 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:42:31 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ t_object_type	*get_object_type(t_id id, char **infos)
 
 	type = ft_calloc(1, sizeof(t_object_type));
 	if (!type)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	type->sphere = NULL;
 	type->plane = NULL;
 	type->cylinder = NULL;
@@ -48,16 +45,10 @@ static t_sphere	*object_type_sphere(char **infos)
 	t_sphere	*sphere;
 
 	if (!infos || !*infos)
-	{
-		print_error("invalid arguments", false);
-		return (NULL);
-	}
+		exit_error("invalid arguments", false, NULL);
 	sphere = (t_sphere *)ft_calloc(1, sizeof(t_sphere));
 	if (!sphere)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	sphere->diameter = ft_atod(infos[0]);
 	return (sphere);
 }
@@ -67,22 +58,13 @@ static t_plane	*object_type_plane(char **infos)
 	t_plane	*plane;
 
 	if (!infos || !*infos)
-	{
-		print_error("invalid arguments", false);
-		return (NULL);
-	}
+		exit_error("invalid arguments", false, NULL);
 	plane = (t_plane *)ft_calloc(1, sizeof(t_plane));
 	if (!plane)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	plane->normalized_vector = get_coord(infos[0], true);
 	if (!plane->normalized_vector)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	return (plane);
 }
 
@@ -91,22 +73,13 @@ static t_cylinder	*object_type_cylinder(char **infos)
 	t_cylinder	*cylinder;
 
 	if (ft_split_len(infos) < 3)
-	{
-		print_error("invalid arguments", false);
-		return (NULL);
-	}
+		exit_error("invalid arguments", false, NULL);
 	cylinder = (t_cylinder *)ft_calloc(1, sizeof(t_cylinder));
 	if (!cylinder)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	cylinder->normalized_vector = get_coord(infos[0], true);
 	if (!cylinder->normalized_vector)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	cylinder->diameter = ft_atoi(infos[1]);
 	cylinder->height = ft_atoi(infos[2]);
 	return (cylinder);

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:36:45 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 06:26:23 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:41:20 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,10 @@ static int	open_file(char *file)
 		return (-1);
 	len = ft_strlen(file);
 	if (len < 3 || ft_strncmp(&file[len - 3], ".rt", 4))
-	{
-		print_error(ft_sprintf("file with invalid format: %s", file), true);
-		return (-1);
-	}
+		exit_error(ft_sprintf("invalid format file: %s", file), true, NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		print_error(ft_sprintf("error reading file: %s", file), true);
+		exit_error(ft_sprintf("error reading file: %s", file), true, NULL);
 	return (fd);
 }
 
@@ -78,7 +75,7 @@ static bool	add_object(char *line, t_scene *scene)
 		return (true);
 	infos = ft_split(line, ' ');
 	if (!infos)
-		return (print_error("malloc error", false), true);
+		exit_error("malloc error", false, NULL);
 	if (id == sp || id == pl || id == cy)
 	{
 		node = lst_new_object(infos, id);
@@ -97,7 +94,7 @@ static bool	add_slg_object(t_scene *scene, char **infos, t_id id)
 	if (id == A)
 	{
 		if (scene->amb_light)
-			return (print_error("single element duplicated", false), true);
+			exit_error("single element duplicated", false, NULL);
 		scene->amb_light = create_amb_light(&infos[1]);
 		if (!scene->amb_light)
 			return (true);
@@ -105,7 +102,7 @@ static bool	add_slg_object(t_scene *scene, char **infos, t_id id)
 	if (id == C)
 	{
 		if (scene->camera)
-			return (print_error("single element duplicated", false), true);
+			exit_error("single element duplicated", false, NULL);
 		scene->camera = create_camera(&infos[1]);
 		if (!scene->camera)
 			return (true);
@@ -113,7 +110,7 @@ static bool	add_slg_object(t_scene *scene, char **infos, t_id id)
 	if (id == L)
 	{
 		if (scene->light)
-			return (print_error("single element duplicated", false), true);
+			exit_error("single element duplicated", false, NULL);
 		scene->light = create_light(&infos[1]);
 		if (!scene->light)
 			return (true);

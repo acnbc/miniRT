@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 05:51:53 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:41:45 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,10 @@ t_object	*lst_new_object(char **infos, t_id id)
 	t_object	*new;
 
 	if (ft_split_len(infos) < 4)
-	{
-		print_error("invalid arguments", false);
-		return (NULL);
-	}
+		exit_error("invalid arguments", false, NULL);
 	new = (t_object *)ft_calloc(1, sizeof(t_object));
 	if (!new)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	new->id = id;
 	new->coord = get_coord(infos[1], false);
 	new->object = get_object_type(new->id, &infos[2]);

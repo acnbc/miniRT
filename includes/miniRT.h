@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:23:38 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:47:56 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_amb_light		*create_amb_light(char **infos);
 t_camera		*create_camera(char **infos);
 t_light			*create_light(char **infos);
 
-void			print_error(char *error, bool clean);
+void			exit_error(char *error, bool clean, t_scene *_scene);
 void			free_scene(t_scene **scene);
 
 t_id			get_id(char *str);
@@ -45,7 +45,6 @@ void			lst_add_back_object(t_object **lst, t_object *new);
 t_object		*lst_back_object(t_object *lst);
 void			lst_clear_object(t_object **lst);
 
-// adicionar aqui as funcoes que forem criadas
 void	        *safe_malloc(size_t size);
 void	        free_matrix(t_matrix *matrix);
 

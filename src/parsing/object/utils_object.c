@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:01:14 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:46:05 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ t_id	get_id(char *str)
 		return (pl);
 	else if (!ft_strncmp(str, "cy", 2))
 		return (cy);
-	print_error("invalid identifier", false);
-	return (-1);
+	exit_error("invalid identifier", false, NULL);
 }
 
 t_tuple	*get_coord(char *str, bool vector)
@@ -47,13 +46,12 @@ t_tuple	*get_coord(char *str, bool vector)
 	if (!coord)
 	{
 		ft_split_free(&arr);
-		print_error("malloc error", false);
-		return (NULL);
+		exit_error("malloc error", false, NULL);
 	}
 	coord->x = ft_atod(arr[0]);
 	coord->y = ft_atod(arr[1]);
 	coord->z = ft_atod(arr[2]);
-	coord->is_vector = vector;
+	coord->is_point = !vector;
 	if (!valid_tuple(coord))
 	{
 		free(coord);
@@ -65,7 +63,7 @@ t_tuple	*get_coord(char *str, bool vector)
 
 static bool	valid_tuple(t_tuple *tuple)
 {
-	if (!tuple->is_vector)
+	if (tuple->is_point)
 		return (true);
 	if ((tuple->x < -1 || tuple->x > 1)
 		|| (tuple->y < -1 || tuple->y > 1)
@@ -86,8 +84,7 @@ t_rgb	*get_coolors(char *str)
 	if (!colors)
 	{
 		ft_split_free(&arr);
-		print_error("malloc error", false);
-		return (NULL);
+		exit_error("malloc error", false, NULL);
 	}
 	colors->r = (unsigned char)ft_atoi(arr[0]);
 	colors->g = (unsigned char)ft_atoi(arr[1]);
@@ -102,14 +99,11 @@ static char	**split_arg(char *str)
 
 	arr = ft_split(str, ',');
 	if (!arr)
-	{
-		print_error("malloc error", false);
-		return (NULL);
-	}
+		exit_error("malloc error", false, NULL);
 	if (ft_split_len(arr) != 3)
 	{
-		print_error("invalid arguments", false);
-		return (NULL);
+		ft_split_free(arr);
+		exit_error("invalid arguments", false, NULL);
 	}
 	return (arr);
 }

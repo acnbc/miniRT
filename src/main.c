@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:27:29 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 07:36:49 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,6 @@ static void	tester(t_scene *scene)
 	test_is_invertible();
 	test_inverse_matrix_basic();
 	test_muilt_inverse_product();
-}
-
-void	print_error(char *error, bool clean)
-{
-	ft_putendl_fd("Error", 2);
-	if (!error)
-		return ;
-	ft_putendl_fd(error, 2);
-	if (clean)
-		free(error);
 }
 
 void	free_scene(t_scene **scene)
