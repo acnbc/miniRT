@@ -15,9 +15,12 @@ MINILIBX = $(DIR_LIBX)/libmlx.a
 DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
-	$(DIR_OBJ)/src
-
-SRC = 	src/main.c
+	$(DIR_OBJ)/src \
+	$(DIR_OBJ)/src/object \
+SRC = 	src/main.c \
+	src/object/utils_object.c \
+	src/object/lst_object.c \
+	src/object/object_type.c \
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

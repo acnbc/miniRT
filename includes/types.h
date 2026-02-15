@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/01 18:02:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 03:52:08 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ typedef struct s_cylinder
 
 typedef union u_object_type
 {
-	t_sphere	sphere;
-	t_plane		plane;
-	t_cylinder	cylinder;
+	t_sphere	*sphere;
+	t_plane		*plane;
+	t_cylinder	*cylinder;
 }	t_object_type;
 
 typedef struct s_object

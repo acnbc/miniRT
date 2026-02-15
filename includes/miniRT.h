@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2025/12/31 13:46:12 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/15 03:49:15 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 
-// adicionar aqui as funcoes que forem criadas
+
+t_id			get_id(char *str);
+t_tuple			*get_coord(char *str, bool vector);
+t_object_type	*get_object_type(t_id id, char **line);
+t_rgb			*get_coolors(char *str);
+
+t_object		*lst_new_object(char **infos, t_id id);
+void			lst_add_back_object(t_object **lst, t_object *new);
+t_object		*lst_back_object(t_object *lst);
+void			lst_clear_object(t_object **lst);
+
 
 #endif
