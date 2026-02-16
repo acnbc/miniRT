@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:59:17 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 19:55:45 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	main(int argc, char **argv)
 		return (1);
 	exit_error(NULL, false, &scene);
 	tester(scene);
-	free_scene(&scene);
+	create_window(scene, argv[1]);
+	create_image(scene->window);
+	init_hooks(scene);
 	return (0);
 }
 
@@ -42,6 +44,8 @@ void	free_scene(t_scene **scene)
 	if ((*scene)->amb_light)
 		free((*scene)->amb_light->colors);
 	free((*scene)->amb_light);
+	if ((*scene)->window)
+		free_window(&(*scene)->window);
 	free(*scene);
 	*scene = NULL;
 }
