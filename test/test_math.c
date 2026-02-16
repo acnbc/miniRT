@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/02/15 07:57:55 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 20:22:41 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../includes/miniRT.h"
 
 void    print_tuples(t_tuple tuple)
 {

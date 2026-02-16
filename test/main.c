@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 07:53:08 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:54:17 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 20:22:35 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../includes/miniRT.h"
 
 void	tester(t_scene *scene)
 {

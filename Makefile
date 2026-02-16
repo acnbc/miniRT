@@ -18,10 +18,10 @@ DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
 	$(DIR_OBJ)/src/parsing \
 	$(DIR_OBJ)/src/parsing/object \
-	$(DIR_OBJ)/src/test \
 	$(DIR_OBJ)/src/math \
 	$(DIR_OBJ)/src/utils \
-	$(DIR_OBJ)/images
+	$(DIR_OBJ)/images \
+	$(DIR_OBJ)/test
 
 SRC = 	src/main.c \
 	src/parsing/object/sgl_object.c \
@@ -29,9 +29,6 @@ SRC = 	src/main.c \
 	src/parsing/object/lst_object.c \
 	src/parsing/object/object_type.c \
 	src/parsing/read_file.c \
-	src/test/test_scene.c \
-	src/test/main.c \
-	src/test/test_math.c \
 	src/math/matrix_operations.c \
 	src/math/operations_part_2.c \
 	src/math/operations_part_1.c \
@@ -39,7 +36,10 @@ SRC = 	src/main.c \
 	src/utils/matrix_utils.c \
 	src/utils/math_utils.c \
 	src/utils/matrix_inversion_utils.c \
-	src/utils/utils.c
+	src/utils/utils.c \
+	test/test_scene.c \
+	test/main.c \
+	test/test_math.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
