@@ -78,15 +78,15 @@
 - [ ] Renderizar imagem completa
 
 ### Fase 8: MiniLibX e Interface
-- [ ] Inicializar conexão com MiniLibX
-- [ ] Criar janela
-- [ ] Criar imagem (usar `images` é recomendado)
+- [x] Inicializar conexão com MiniLibX
+- [x] Criar janela
+- [x] Criar imagem (usar `images` é recomendado)
 - [ ] Renderizar cena na imagem
-- [ ] Exibir imagem na janela
-- [ ] Implementar hook para tecla ESC (fechar programa)
-- [ ] Implementar hook para botão X (fechar programa)
+- [x] Exibir imagem na janela
+- [x] Implementar hook para tecla ESC (fechar programa)
+- [x] Implementar hook para botão X (fechar programa)
 - [ ] Gerenciar eventos da janela (minimizar, alternar, etc.)
-- [ ] Limpar recursos ao sair
+- [x] Limpar recursos ao sair
 
 ### Fase 9: Transformações (se necessário)
 - [ ] Implementar translação de objetos
@@ -130,6 +130,8 @@ miniRT/
 │   ├── obj/          # Objetos geométricos (esfera, plano, cilindro)
 │   ├── ray_tracing/  # Lógica de ray tracing
 │   ├── lighting/     # Sistema de iluminação
+│   ├── interface/    # Operações com MiniLibX
+│   └── test/         # Testes dos objetos e operações
 ├── libft/            # Libft
 ├── minilibx/         # Gerenciamento da MiniLibX
 ├── Makefile
