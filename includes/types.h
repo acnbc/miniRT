@@ -6,13 +6,32 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:48:57 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 19:02:12 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdbool.h>
+
+typedef struct s_image
+{
+	void	*ptr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	char	*addr;
+}	t_image;
+
+typedef struct s_window
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		size_x;
+	int		size_y;
+	char	*title;
+	t_image	*img;
+}	t_window;
 
 typedef struct s_tuple
 {
@@ -109,6 +128,7 @@ typedef struct s_object
 
 typedef struct s_scene
 {
+	t_window	*window;
 	t_amb_light	*amb_light;
 	t_camera	*camera;
 	t_light		*light;

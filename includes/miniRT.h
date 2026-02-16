@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 08:00:27 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 19:43:34 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <X11/keysymdef.h>
+# include <X11/X.h>
 
 /*------------- APAGAR ------------------*/
 # include "tests.h"
 
 t_scene			*read_image(char *file);
+void			init_hooks(t_scene *scene);
 
 t_amb_light		*create_amb_light(char **infos);
 t_camera		*create_camera(char **infos);
@@ -45,7 +48,12 @@ void			lst_add_back_object(t_object **lst, t_object *new);
 t_object		*lst_back_object(t_object *lst);
 void			lst_clear_object(t_object **lst);
 
-void	        *safe_malloc(size_t size);
-void	        free_matrix(t_matrix *matrix);
+void			*safe_malloc(size_t size);
+void			free_matrix(t_matrix *matrix);
+
+void			create_window(t_scene *scene, char *file);
+void			create_image(t_window *win);
+void			free_window(t_window **win);
+void			free_image(t_image **img, void *mlx_ptr);
 
 #endif
