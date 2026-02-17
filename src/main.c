@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 19:55:45 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 20:55:16 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char **argv)
 	if (!scene)
 		return (1);
 	exit_error(NULL, false, &scene);
-	tester(scene);
 	create_window(scene, argv[1]);
 	create_image(scene->window);
+	tester(scene);
 	init_hooks(scene);
 	return (0);
 }

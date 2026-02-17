@@ -43,7 +43,8 @@ SRC = 	src/inteface/hooks.c \
 	src/utils/utils.c \
 	test/test_scene.c \
 	test/main.c \
-	test/test_math.c
+	test/test_math.c \
+	test/test_interface.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

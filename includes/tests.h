@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/02/15 07:54:51 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 20:48:28 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void	test_inverse_matrix_basic(void);
 void	test_muilt_inverse_product(void);
 
 void	print_scene(t_scene *scene);
+
+void	draw_test_square(t_scene *scene);
 
 #endif
