@@ -31,6 +31,8 @@ int	main(int argc, char **argv)
 
 void	free_scene(t_scene **scene)
 {
+	if (!scene || !*scene)
+		return ;
 	lst_clear_object(&(*scene)->objects);
 	if ((*scene)->light)
 		free((*scene)->light->light_point);

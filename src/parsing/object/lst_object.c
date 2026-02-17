@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:56:15 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 20:54:57 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	lst_clear_object(t_object **lst)
 {
 	t_object	*next;
 
+	if (!lst || !*lst)
+		return ;
 	while (*lst)
 	{
 		next = (*lst)->next;
