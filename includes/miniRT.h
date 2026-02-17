@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 19:43:34 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 21:11:01 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ void			create_window(t_scene *scene, char *file);
 void			create_image(t_window *win);
 void			free_window(t_window **win);
 void			free_image(t_image **img, void *mlx_ptr);
+
+unsigned int	conver_color(void *mlx_ptr, t_rgb *rgb, unsigned char opacity);
+void			pixel_put(t_window *win, int x, int y, unsigned int color);
 
 #endif

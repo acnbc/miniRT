@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 14:06:18 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 19:53:47 by jessica          ###   ########.fr       */
+/*   Updated: 2026/02/16 20:58:58 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ void	create_image(t_window *win)
 	{
 		free_image(&win->img, win->mlx_ptr);
 		exit_error("mlx get data addr error", false, NULL);
-	}
-	if (mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
-			win->img->ptr, 0, 0) == -1)
-	{
-		free_image(&win->img, win->mlx_ptr);
-		exit_error("mlx put image to window error", false, NULL);
 	}
 }
 
