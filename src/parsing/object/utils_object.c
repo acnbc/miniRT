@@ -19,17 +19,17 @@ t_id	get_id(char *str)
 {
 	while (str && *str && *str == ' ')
 		str++;
-	if (!ft_strncmp(str, "A", 1))
+	if (!ft_strncmp(str, "A", 2))
 		return (A);
-	else if (!ft_strncmp(str, "C", 1))
+	else if (!ft_strncmp(str, "C", 2))
 		return (C);
-	else if (!ft_strncmp(str, "L", 1))
+	else if (!ft_strncmp(str, "L", 2))
 		return (L);
-	else if (!ft_strncmp(str, "sp", 2))
+	else if (!ft_strncmp(str, "sp", 3))
 		return (sp);
-	else if (!ft_strncmp(str, "pl", 2))
+	else if (!ft_strncmp(str, "pl", 3))
 		return (pl);
-	else if (!ft_strncmp(str, "cy", 2))
+	else if (!ft_strncmp(str, "cy", 3))
 		return (cy);
 	exit_error("invalid identifier", false, NULL);
 	return (-1);
