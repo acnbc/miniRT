@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 08:00:27 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/12 00:33:25 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			lst_add_back_object(t_object **lst, t_object *new);
 t_object		*lst_back_object(t_object *lst);
 void			lst_clear_object(t_object **lst);
 
-void	        *safe_malloc(size_t size);
-void	        free_matrix(t_matrix *matrix);
+void			*safe_malloc(size_t size);
+void			free_matrix(t_matrix *matrix);
 
 #endif

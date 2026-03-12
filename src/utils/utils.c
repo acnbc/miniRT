@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:57 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/11 23:29:41 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/12 00:32:23 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	exit_error(char *error, bool clean, t_scene **_scene)
 		free(str);
 		if (clean)
 			free(error);
-	} else {
+	}
+	else
+	{
 		ft_putendl_fd("Error\n", 2);
 	}
 	free_scene(scene);
