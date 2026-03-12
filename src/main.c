@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:59:17 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/11 23:14:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	main(int argc, char **argv)
 
 void	free_scene(t_scene **scene)
 {
+	if (!scene || !*scene)
+		return ;
+
 	lst_clear_object(&(*scene)->objects);
 	if ((*scene)->light)
 		free((*scene)->light->light_point);
