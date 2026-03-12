@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:57:29 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/12 00:29:56 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,29 @@ t_rgb	*get_coolors(char *str)
 {
 	char	**arr;
 	t_rgb	*colors;
+	int		nbr[3];
+	int		i;
 
 	arr = split_arg(str);
 	if (!arr)
 		return (NULL);
+	i = -1;
+	while (++i < 3)
+	{
+		nbr[i] = ft_atoi(arr[i]);
+		if (nbr[i] < 0 || nbr[i] > 255)
+		{
+			ft_split_free(&arr);
+			exit_error("invalid arguments", false, NULL);
+		}
+	}
+	ft_split_free(&arr);
 	colors = ft_calloc(1, sizeof(t_rgb));
 	if (!colors)
-	{
-		ft_split_free(&arr);
 		exit_error("malloc error", false, NULL);
-	}
-	colors->r = (unsigned char)ft_atoi(arr[0]);
-	colors->g = (unsigned char)ft_atoi(arr[1]);
-	colors->b = (unsigned char)ft_atoi(arr[2]);
-	ft_split_free(&arr);
+	colors->r = (unsigned char)nbr[0];
+	colors->g = (unsigned char)nbr[1];
+	colors->b = (unsigned char)nbr[2];
 	return (colors);
 }
 
