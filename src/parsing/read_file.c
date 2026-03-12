@@ -6,14 +6,14 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:36:45 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:56:32 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/12 00:28:47 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
 static int	open_file(char *file);
-static bool	add_object(char *line, t_scene *scene);
+static void	add_object(char **line, t_scene *scene);
 static bool	add_slg_object(t_scene *scene, char **infos, t_id id);
 static bool	empty_line(char *line);
 
@@ -34,12 +34,7 @@ t_scene	*read_image(char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (add_object(line, scene))
-		{
-			free_scene(&scene);
-			free(line);
-			break ;
-		}
+		add_object(&line, scene);
 	}
 	close(fd);
 	return (scene);
@@ -61,32 +56,33 @@ static int	open_file(char *file)
 	return (fd);
 }
 
-static bool	add_object(char *line, t_scene *scene)
+static void	add_object(char **line, t_scene *scene)
 {
 	t_id		id;
 	t_object	*node;
-	bool		error;
 	char		**infos;
 
-	if (empty_line(line))
-		return (false);
-	id = get_id(line);
-	if (id == (t_id)-1)
-		return (true);
-	infos = ft_split(line, ' ');
+	if (empty_line(*line))
+		return ;
+	infos = ft_split(*line, ' ');
+	free(*line);
+	*line = NULL;
 	if (!infos)
-		exit_error("malloc error", false, NULL);
+		return ;
+	id = get_id(infos[0]);
+	if (id == (t_id)-1)
+	{
+		ft_split_free(&infos);
+		return ;
+	}
 	if (id == sp || id == pl || id == cy)
 	{
 		node = lst_new_object(infos, id);
-		if (node)
-			lst_add_back_object(&scene->objects, node);
-		error = node == NULL;
+		lst_add_back_object(&scene->objects, node);
 	}
 	else
-		error = add_slg_object(scene, infos, id);
+		add_slg_object(scene, infos, id);
 	ft_split_free(&infos);
-	return (error);
 }
 
 static bool	add_slg_object(t_scene *scene, char **infos, t_id id)

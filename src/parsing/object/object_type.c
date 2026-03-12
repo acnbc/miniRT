@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 01:40:17 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:56:21 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/11 23:41:45 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ static t_plane	*object_type_plane(char **infos)
 		exit_error("malloc error", false, NULL);
 	plane->normalized_vector = get_coord(infos[0], true);
 	if (!plane->normalized_vector)
+	{
+		free(plane);
 		exit_error("malloc error", false, NULL);
+	}
 	return (plane);
 }
 
@@ -79,7 +82,10 @@ static t_cylinder	*object_type_cylinder(char **infos)
 		exit_error("malloc error", false, NULL);
 	cylinder->normalized_vector = get_coord(infos[0], true);
 	if (!cylinder->normalized_vector)
+	{
+		free(cylinder);
 		exit_error("malloc error", false, NULL);
+	}
 	cylinder->diameter = ft_atoi(infos[1]);
 	cylinder->height = ft_atoi(infos[2]);
 	return (cylinder);
