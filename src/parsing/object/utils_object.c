@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/12 00:29:56 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/12 00:44:09 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static bool	valid_tuple(t_tuple *tuple)
 	if ((tuple->x < -1 || tuple->x > 1)
 		|| (tuple->y < -1 || tuple->y > 1)
 		|| (tuple->z < -1 || tuple->z > 1))
+		return (false);
+	if (!tuple->x && !tuple->y && !tuple->z)
 		return (false);
 	return (true);
 }
