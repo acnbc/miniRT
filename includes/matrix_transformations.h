@@ -13,7 +13,7 @@
 #ifndef MATRIX_TRANSFORMATIONS_H
 # define MATRIX_TRANSFORMATIONS_H
 
-t_matrix	*translation(double x, double y, double z);
+t_matrix	*translation(t_matrix *offset);
 
 
 #endif

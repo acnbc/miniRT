@@ -20,7 +20,7 @@ t_matrix	*create_identity_matrix(int dim)
 
 	if (dim < 2)
 		return (NULL);
-	identity = createnew_matrix(dim, dim);
+	identity = creat_new_matrix(dim, dim);
 	row = -1;
 	while (++row < dim)
 	{
@@ -74,7 +74,7 @@ void	mat_set(t_matrix *m, int row, int col, double value)
 	ptr[row * m->cols + col] = value;
 }
 
-t_matrix	*createnew_matrix(int rows, int cols)
+t_matrix	*creat_new_matrix(int rows, int cols)
 {
 	t_matrix	*new;
 	int			i;

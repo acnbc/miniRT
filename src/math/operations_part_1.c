@@ -12,57 +12,77 @@
 
 #include "../../includes/miniRT.h"
 
-t_tuple	add_tuples(t_tuple a, t_tuple b)
+static t_matrix	*alloc_4x1(void)
 {
-	t_tuple	result;
+	return (creat_new_matrix(4, 1));
+}
 
-	result.x = a.x + b.x;
-	result.y = a.y + b.y;
-	result.z = a.z + b.z;
-	result.is_point = a.is_point + b.is_point;
+t_matrix	*add_tuples(t_matrix *a, t_matrix *b)
+{
+	t_matrix	*result;
+
+	result = alloc_4x1();
+	if (!result)
+		return (NULL);
+	result->m_4x1[0] = a->m_4x1[0] + b->m_4x1[0];
+	result->m_4x1[1] = a->m_4x1[1] + b->m_4x1[1];
+	result->m_4x1[2] = a->m_4x1[2] + b->m_4x1[2];
+	result->m_4x1[3] = a->m_4x1[3] + b->m_4x1[3];
 	return (result);
 }
 
-t_tuple	subtract_tuple(t_tuple a, t_tuple b)
+t_matrix	*subtract_tuple(t_matrix *a, t_matrix *b)
 {
-	t_tuple	result;
+	t_matrix	*result;
 
-	result.x = a.x - b.x;
-	result.y = a.y - b.y;
-	result.z = a.z - b.z;
-	result.is_point = a.is_point & b.is_point;
+	result = alloc_4x1();
+	if (!result)
+		return (NULL);
+	result->m_4x1[0] = a->m_4x1[0] - b->m_4x1[0];
+	result->m_4x1[1] = a->m_4x1[1] - b->m_4x1[1];
+	result->m_4x1[2] = a->m_4x1[2] - b->m_4x1[2];
+	result->m_4x1[3] = a->m_4x1[3] - b->m_4x1[3];
 	return (result);
 }
 
-t_tuple	negate_tuple(t_tuple tuple)
+t_matrix	*negate_tuple(t_matrix *tuple)
 {
-	t_tuple	result;
+	t_matrix	*result;
 
-	result.x = -(tuple.x);
-	result.y = -(tuple.y);
-	result.z = -(tuple.z);
-	result.is_point = tuple.is_point;
+	result = alloc_4x1();
+	if (!result)
+		return (NULL);
+	result->m_4x1[0] = -(tuple->m_4x1[0]);
+	result->m_4x1[1] = -(tuple->m_4x1[1]);
+	result->m_4x1[2] = -(tuple->m_4x1[2]);
+	result->m_4x1[3] = tuple->m_4x1[3];
 	return (result);
 }
 
-t_tuple	scalar_multiplication(t_tuple tuple, double scalar)
+t_matrix	*scalar_multiplication(t_matrix *tuple, double scalar)
 {
-	t_tuple	result;
+	t_matrix	*result;
 
-	result.x = tuple.x * scalar;
-	result.y = tuple.y * scalar;
-	result.z = tuple.z * scalar;
-	result.is_point = tuple.is_point;
+	result = alloc_4x1();
+	if (!result)
+		return (NULL);
+	result->m_4x1[0] = tuple->m_4x1[0] * scalar;
+	result->m_4x1[1] = tuple->m_4x1[1] * scalar;
+	result->m_4x1[2] = tuple->m_4x1[2] * scalar;
+	result->m_4x1[3] = tuple->m_4x1[3];
 	return (result);
 }
 
-t_tuple	scalar_division(t_tuple tuple, double scalar)
+t_matrix	*scalar_division(t_matrix *tuple, double scalar)
 {
-	t_tuple	result;
+	t_matrix	*result;
 
-	result.x = tuple.x / scalar;
-	result.y = tuple.y / scalar;
-	result.z = tuple.z / scalar;
-	result.is_point = tuple.is_point;
+	result = alloc_4x1();
+	if (!result)
+		return (NULL);
+	result->m_4x1[0] = tuple->m_4x1[0] / scalar;
+	result->m_4x1[1] = tuple->m_4x1[1] / scalar;
+	result->m_4x1[2] = tuple->m_4x1[2] / scalar;
+	result->m_4x1[3] = tuple->m_4x1[3];
 	return (result);
 }

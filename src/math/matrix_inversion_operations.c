@@ -72,7 +72,7 @@ t_matrix	*inverse_matrix(t_matrix *m)
 
 	if (!is_invertible(m))
 		return (NULL);
-	inverted = createnew_matrix(m->rows, m->cols);
+	inverted = creat_new_matrix(m->rows, m->cols);
 	det = matrix_determinant(m);
 	row = -1;
 	while (++row < m->rows)

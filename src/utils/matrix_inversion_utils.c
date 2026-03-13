@@ -29,7 +29,7 @@ t_matrix	*get_submatrix(t_matrix *m, int row, int col)
 
 	i = -1;
 	k = 0;
-	sub = createnew_matrix(m->rows - 1, m->cols - 1);
+	sub = creat_new_matrix(m->rows - 1, m->cols - 1);
 	while (++i < m->rows)
 	{
 		if (i == row)

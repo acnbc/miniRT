@@ -45,7 +45,7 @@ t_matrix	*matrix_multiplication(t_matrix *a, t_matrix *b)
 		return (NULL);
 	row = -1;
 	col = -1;
-	product = createnew_matrix(a->rows, b->cols);
+	product = creat_new_matrix(a->rows, b->cols);
 	while (++row < a->rows)
 	{
 		col = -1;
@@ -73,7 +73,7 @@ t_matrix	*matrix_tuple_multiplication(t_matrix *a, t_matrix *b)
 		return (NULL);
 	if (a->cols != b->rows)
 		return (NULL);
-	result = createnew_matrix(a->rows, b->cols);
+	result = creat_new_matrix(a->rows, b->cols);
 	ptr_a = get_matrix(a);
 	ptr_b = get_matrix(b);
 	row = -1;
@@ -94,7 +94,7 @@ t_matrix	*matrix_transposition(t_matrix *m)
 	int			row;
 	int			col;
 
-	transposed = createnew_matrix(m->rows, m->cols);
+	transposed = creat_new_matrix(m->rows, m->cols);
 	ptr = get_matrix(m);
 	ptr_tr = get_matrix(transposed);
 	row = -1;
