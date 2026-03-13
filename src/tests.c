@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/14 09:31:43 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/13 14:52:23 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,7 +401,7 @@ void    test_minor(void)
 // ============================================
 static t_matrix* create_test_matrix(int rows, int cols, double *values)
 {
-    t_matrix *m = creat_new_matrix(rows, cols);
+    t_matrix *m = createnew_matrix(rows, cols);
     for (int i = 0; i < rows * cols; i++) {
         m->m_4x4[i] = values[i];  // Usamos m_4x4 pois é o maior array
     }
@@ -691,4 +691,62 @@ void    test_muilt_inverse_product(void)
     else
         printf("Reversão da multiplicação incorreta\n");
 
+}
+
+void	test_transformations(void)
+{
+	t_matrix	*transform;
+	t_matrix	*result;
+
+	transform = translation(5, - 3, 2);
+	
+	t_matrix	point_m = {
+		.m_4x1 = {-3.0, 4.0, 5.0, 1.0},
+		.rows = 4,
+		.cols = 1,
+	};
+	
+	t_matrix expected = {
+		.m_4x1 = {2.0, 1.0, 7.0, 1.0},
+		.rows = 4,
+		.cols = 1,
+	};
+	
+	printf("\n=== Translação: multiplicação por matriz de translação ===\n");
+
+		
+	result = matrix_tuple_multiplication(transform, &point_m);
+
+	if (matrix_comparison(result, &expected))
+		printf("Translação correta\n");
+	else
+		printf("Translação incorreta\n");
+
+	free_matrix(result);
+	
+	t_matrix	*inversa = inverse_matrix(transform);
+	
+	t_matrix	point_mi = {
+		.m_4x1 = {-3.0, 4.0, 5.0, 1.0},
+		.rows = 4,
+		.cols = 1,
+	};
+	
+	t_matrix expectedi = {
+		.m_4x1 = {-8.0, 7.0, 3.0, 1.0},
+		.rows = 4,
+		.cols = 1,
+	};
+	
+	printf("\n=== Translação: multiplicação por inversa da matriz de translação ===\n");
+	
+	result = matrix_tuple_multiplication(inversa, &point_mi);
+	
+	if (matrix_comparison(result, &expectedi))
+		printf("Translação correta\n");
+	else
+		printf("Translação incorreta\n");
+	
+	free_matrix(result);
+	free_matrix(transform);
 }

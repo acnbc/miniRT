@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/14 09:05:58 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_matrix	*matrix_multiplication(t_matrix *a, t_matrix *b)
 		return (NULL);
 	row = -1;
 	col = -1;
-	product = creat_new_matrix(a->rows, b->cols);
+	product = createnew_matrix(a->rows, b->cols);
 	while (++row < a->rows)
 	{
 		col = -1;
@@ -73,7 +73,7 @@ t_matrix	*matrix_tuple_multiplication(t_matrix *a, t_matrix *b)
 		return (NULL);
 	if (a->cols != b->rows)
 		return (NULL);
-	result = creat_new_matrix(a->rows, b->cols);
+	result = createnew_matrix(a->rows, b->cols);
 	ptr_a = get_matrix(a);
 	ptr_b = get_matrix(b);
 	row = -1;
@@ -94,7 +94,7 @@ t_matrix	*matrix_transposition(t_matrix *m)
 	int			row;
 	int			col;
 
-	transposed = creat_new_matrix(m->rows, m->cols);
+	transposed = createnew_matrix(m->rows, m->cols);
 	ptr = get_matrix(m);
 	ptr_tr = get_matrix(transposed);
 	row = -1;

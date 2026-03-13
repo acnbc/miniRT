@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_inversion_operations.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:48:59 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:49:02 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_matrix	*inverse_matrix(t_matrix *m)
 
 	if (!is_invertible(m))
 		return (NULL);
-	inverted = creat_new_matrix(m->rows, m->cols);
+	inverted = createnew_matrix(m->rows, m->cols);
 	det = matrix_determinant(m);
 	row = -1;
 	while (++row < m->rows)

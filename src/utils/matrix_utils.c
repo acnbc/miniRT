@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/14 09:15:50 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_matrix	*create_identity_matrix(int dim)
 
 	if (dim < 2)
 		return (NULL);
-	identity = creat_new_matrix(dim, dim);
+	identity = createnew_matrix(dim, dim);
 	row = -1;
 	while (++row < dim)
 	{
@@ -74,7 +74,7 @@ void	mat_set(t_matrix *m, int row, int col, double value)
 	ptr[row * m->cols + col] = value;
 }
 
-t_matrix	*creat_new_matrix(int rows, int cols)
+t_matrix	*createnew_matrix(int rows, int cols)
 {
 	t_matrix	*new;
 	int			i;
@@ -83,7 +83,7 @@ t_matrix	*creat_new_matrix(int rows, int cols)
 	new->rows = rows;
 	new->cols = cols;
 	i = -1;
-	while (++i < 16)
+	while (++i < rows * cols)
 		new->m_4x4[i] = 0.0;
 	return (new);
 }
