@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix_transformations.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/13 15:33:01 by anogueir         ###   ########.fr       */
+/*   Created: 2026/03/13 12:35:52 by anogueir          #+#    #+#             */
+/*   Updated: 2026/03/13 14:34:22 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#ifndef MATRIX_TRANSFORMATIONS_H
+# define MATRIX_TRANSFORMATIONS_H
 
-int	main(void)
-{
-	test_matrix_comparison();
-	test_matrix_multiplication();
-	test_transposition();
-	test_mult_matrix_id();
-	test_determinant();
-	test_submatrix();
-	test_minor();
-	test_final_determinant();
-	test_is_invertible();
-	test_inverse_matrix_basic();
-	test_muilt_inverse_product();
-	test_transformations();
-	return (0);
-}
+t_matrix	*translation(t_matrix *offset);
+
+
+#endif
