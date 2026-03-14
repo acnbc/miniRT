@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/01/12 12:10:17 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/14 18:43:33 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_light
 typedef struct s_sphere
 {
 	double			diameter;
+	int				id;
 }					t_sphere;
 
 typedef struct s_plane
@@ -114,5 +115,18 @@ typedef struct s_scene
 	t_light			light;
 	t_object		*objects;
 }					t_scene;
+
+
+
+//ray_sphere_intersection
+
+typedef struct s_ray
+{
+	t_matrix			origin;
+	t_matrix			direction;
+}				t_ray;
+
+
+
 
 #endif
