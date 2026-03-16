@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 14:20:40 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:10:08 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -808,6 +808,9 @@ void	test_rotation(void)
 	t_matrix	*full_quarter;
 	t_matrix	*half_result;
 	t_matrix	*full_result;
+	t_matrix	*inverted;
+	t_matrix	*result_inverted;
+	t_matrix	*expected_inverted;
 
 	point = create_point(0, 1, 0);
 	expected_half = create_point(0, M_SQRT2/2, M_SQRT2/2);
@@ -815,9 +818,14 @@ void	test_rotation(void)
 	
 	half_quarter = x_axis_rotation(M_PI_4);
 	full_quarter = x_axis_rotation(M_PI_2);
-
+	
+	inverted = inverse_matrix(half_quarter);
+	expected_inverted = create_point(0, M_SQRT2/2, -M_SQRT2/2);
+	
 	half_result = matrix_tuple_multiplication(half_quarter, point);
 	full_result = matrix_tuple_multiplication(full_quarter, point);
+	result_inverted = matrix_tuple_multiplication(inverted, point);
+	
 
 	printf("\n=== Rotação no eixo x: half quarter ===\n");
 	
@@ -826,6 +834,13 @@ void	test_rotation(void)
 	else
 		printf("Rotação incorreta\n");
 
+	printf("\n=== Rotação no eixo x: invertida ===\n");
+	
+	if (matrix_comparison(result_inverted, expected_inverted))
+			printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
 	printf("\n=== Rotação no eixo x: half quarter ===\n");
 	
 	if (matrix_comparison(full_result, expected_full))
@@ -840,4 +855,128 @@ void	test_rotation(void)
 	free_matrix(expected_full);
 	free_matrix(full_result);
 	free_matrix(half_result);
+	free_matrix(inverted);
+	free_matrix(result_inverted);
+	free_matrix(expected_inverted);
 }
+
+void	test_rotation_y_axis(void)
+{
+	t_matrix	*point;
+	t_matrix	*expected_half;
+	t_matrix	*expected_full;
+	t_matrix	*half_quarter;
+	t_matrix	*full_quarter;
+	t_matrix	*half_result;
+	t_matrix	*full_result;
+	t_matrix	*inverted;
+	t_matrix	*result_inverted;
+	t_matrix	*expected_inverted;
+
+	point = create_point(0, 0, 1);
+	expected_half = create_point(M_SQRT2/2, 0, M_SQRT2/2);
+	expected_full = create_point(1, 0, 0);
+	
+	half_quarter = y_axis_rotation(M_PI_4);
+	full_quarter = y_axis_rotation(M_PI_2);
+	
+	inverted = inverse_matrix(half_quarter);
+	expected_inverted = create_point(M_SQRT2/2, 0, -M_SQRT2/2);
+	
+	half_result = matrix_tuple_multiplication(half_quarter, point);
+	full_result = matrix_tuple_multiplication(full_quarter, point);
+	result_inverted = matrix_tuple_multiplication(inverted, point);
+	
+	printf("\n=== Rotação no eixo Y: half quarter ===\n");
+	
+	if (matrix_comparison(half_result, expected_half))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
+	printf("\n=== Rotação no eixo Y: invertida ===\n");
+	
+	if (matrix_comparison(result_inverted, expected_inverted))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
+	printf("\n=== Rotação no eixo Y: full quarter ===\n");
+	
+	if (matrix_comparison(full_result, expected_full))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
+	free_matrix(point);
+	free_matrix(half_quarter);
+	free_matrix(full_quarter);
+	free_matrix(expected_half);
+	free_matrix(expected_full);
+	free_matrix(half_result);
+	free_matrix(full_result);
+	free_matrix(inverted);
+	free_matrix(result_inverted);
+	free_matrix(expected_inverted);
+}
+
+void	test_rotation_z_axis(void)
+{
+	t_matrix	*point;
+	t_matrix	*expected_half;
+	t_matrix	*expected_full;
+	t_matrix	*half_quarter;
+	t_matrix	*full_quarter;
+	t_matrix	*half_result;
+	t_matrix	*full_result;
+	t_matrix	*inverted;
+	t_matrix	*result_inverted;
+	t_matrix	*expected_inverted;
+
+	point = create_point(0, 1, 0);
+	expected_half = create_point(-M_SQRT2/2, M_SQRT2/2, 0);
+	expected_full = create_point(-1, 0, 0);
+	
+	half_quarter = z_axis_rotation(M_PI_4);
+	full_quarter = z_axis_rotation(M_PI_2);
+	
+	inverted = inverse_matrix(half_quarter);
+	expected_inverted = create_point(M_SQRT2/2, M_SQRT2/2, 0);
+	
+	half_result = matrix_tuple_multiplication(half_quarter, point);
+	full_result = matrix_tuple_multiplication(full_quarter, point);
+	result_inverted = matrix_tuple_multiplication(inverted, point);
+	
+	printf("\n=== Rotação no eixo Z: half quarter ===\n");
+	
+	if (matrix_comparison(half_result, expected_half))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
+	printf("\n=== Rotação no eixo Z: invertida ===\n");
+	
+	if (matrix_comparison(result_inverted, expected_inverted))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
+	printf("\n=== Rotação no eixo Z: full quarter ===\n");
+	
+	if (matrix_comparison(full_result, expected_full))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	
+	free_matrix(point);
+	free_matrix(half_quarter);
+	free_matrix(full_quarter);
+	free_matrix(expected_half);
+	free_matrix(expected_full);
+	free_matrix(half_result);
+	free_matrix(full_result);
+	free_matrix(inverted);
+	free_matrix(result_inverted);
+	free_matrix(expected_inverted);
+}
+

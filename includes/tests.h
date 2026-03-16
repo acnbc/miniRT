@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 14:18:03 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:07:46 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	test_muilt_inverse_product(void);
 void	test_translation(void);
 void	test_scaling(void);
 void	test_rotation(void);
+void	test_rotation_y_axis(void);
+void	test_rotation_z_axis(void);
 
 #endif
