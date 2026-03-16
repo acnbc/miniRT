@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:35:52 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:34:22 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:19:37 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MATRIX_TRANSFORMATIONS_H
 
 t_matrix	*translation(t_matrix *offset);
+t_matrix	*scaling(t_matrix *offset);
 
 
 #endif

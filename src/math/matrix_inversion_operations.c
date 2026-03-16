@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:48:59 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:33:44 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ double	get_minor(t_matrix *m, int row, int col)
 		minor = get_2x2_determinant(sub);
 	else
 		minor = matrix_determinant(sub);
+	free_matrix(sub);
 	return (minor);
 }
 

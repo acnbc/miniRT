@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 15:32:31 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:40:52 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -684,7 +684,7 @@ void    test_muilt_inverse_product(void)
 
 }
 
-void	test_transformations(void)
+void	test_translation(void)
 {
 	t_matrix	*transform;
 	t_matrix	*result;
@@ -730,4 +730,71 @@ void	test_transformations(void)
 	free_matrix(point_mi);
 	free_matrix(expected);
 	free_matrix(expectedi);
+}
+
+void	test_scaling(void)
+{
+	t_matrix	*transform;
+	t_matrix	*result;
+	t_matrix	*expected;
+	t_matrix	*point;
+	t_matrix	*offset;
+	t_matrix	*vector;
+	t_matrix	*inversa;
+	
+	expected = create_point(-8, 18, 32);
+	offset = create_point(2, 3, 4);
+	transform = scaling(offset);
+	point = create_point(-4, 6, 8);
+	result = matrix_tuple_multiplication(transform, point);
+	
+	printf("\n=== Scaling: point ===\n");
+	
+	if (matrix_comparison(result, expected))
+		printf("Scaling com ponto correta\n");
+	else
+		printf("Scaling com ponto incorreta\n");
+	
+	free_matrix(transform);
+	free_matrix(result);
+	free_matrix(expected);
+	free_matrix(offset);
+	
+	expected = create_vector(-8, 18, 32);
+	offset = create_vector(2, 3, 4);
+	transform = scaling(offset);
+	vector = create_vector(-4, 6, 8);
+	result = matrix_tuple_multiplication(transform, vector);
+	
+	printf("\n=== Scaling: vector ===\n");
+	
+	if (matrix_comparison(result, expected))
+		printf("Scaling com vector correta\n");
+	else
+		printf("Scaling com vector incorreta\n");
+	
+	free_matrix(transform);
+	free_matrix(result);
+	free_matrix(expected);
+	
+	expected = create_vector(-2, 2, 2);
+	transform = scaling(offset);
+	inversa = inverse_matrix(transform);
+	result = matrix_tuple_multiplication(inversa, vector);
+	
+	printf("\n=== Scaling: vector ===\n");
+	
+	if (matrix_comparison(result, expected))
+		printf("Scaling com inversa e vector correta\n");
+	else
+		printf("Scaling com inversa vector incorreta\n");
+
+	free_matrix(transform);
+	free_matrix(result);
+	free_matrix(expected);
+	free_matrix(inversa);
+	free_matrix(point);
+	free_matrix(vector);
+	free_matrix(offset);
+
 }
