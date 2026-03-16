@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 16:10:08 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 17:01:42 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void    test_matrix_multiplication(void)
     } else {
         printf("\n✗ multiplicação incorreta!\n");
     }
+	free_matrix(result);
     printf("Matriz e:\n");
     print_one_col_matrix(&matrix_e);
     printf("Matriz f:\n");
@@ -182,6 +183,7 @@ void    test_matrix_multiplication(void)
     print_one_col_matrix(result);
     printf("Esperado:\n");
     print_one_col_matrix(&matrix_re);
+	free_matrix(result);
 }
 
 void    test_transposition(void)
@@ -225,6 +227,8 @@ void    test_transposition(void)
     } else {
         printf("\n✗ Transposição incorreta!\n");
     }
+
+	free_matrix(result);
 }
 
 void    test_mult_matrix_id(void)
@@ -262,9 +266,12 @@ void    test_mult_matrix_id(void)
     } else {
         printf("\n✗ Multiplicação por matriz identidade incorreta!\n");
     }
+	free_matrix(result);
     result = matrix_tuple_multiplication(id, &matrix_b);
     printf("Multiplicação de matriz de uma coluna:\n");
-    print_one_col_matrix(result);    
+    print_one_col_matrix(result);  
+	free_matrix(result);
+	free_matrix(id);
 }
 
 void    test_determinant(void)
@@ -356,9 +363,12 @@ void    test_submatrix(void)
     print_matrix(&sub_b);
     
     if (matrix_comparison(result_b, &sub_b))
-        printf("Correct submatrix\n");
+		printf("Correct submatrix\n");
     else
-        printf("Incorrect submatrix\n");
+		printf("Incorrect submatrix\n");
+
+	free_matrix(result_a);
+	free_matrix(result_b);
 }
 
 void    test_minor(void)
@@ -617,23 +627,27 @@ void    test_inverse_matrix_basic(void)
     result = inverse_matrix(&a);
 
     if (matrix_comparison(result, &b))
-        printf("Matriz inversa gerada corretamente\n");
+		printf("Matriz inversa gerada corretamente\n");
     else
-        printf("Matriz inversa gerada incorretamente\n");
+		printf("Matriz inversa gerada incorretamente\n");
+	
+	free_matrix(result);
 
     result = inverse_matrix(&c);
 
     if (matrix_comparison(result, &d))
-        printf("Matriz inversa gerada corretamente\n");
+		printf("Matriz inversa gerada corretamente\n");
     else
-        printf("Matriz inversa gerada incorretamente\n");
+		printf("Matriz inversa gerada incorretamente\n");
+	free_matrix(result);
 
     result = inverse_matrix(&e);
 
     if (matrix_comparison(result, &f))
-        printf("Matriz inversa gerada corretamente\n");
+		printf("Matriz inversa gerada corretamente\n");
     else
-        printf("Matriz inversa gerada incorretamente\n");
+		printf("Matriz inversa gerada incorretamente\n");
+	free_matrix(result);
 }
 
 void    test_muilt_inverse_product(void)
@@ -670,18 +684,21 @@ void    test_muilt_inverse_product(void)
     t_matrix    *result_final;
 
     result = matrix_multiplication(&a, &b);
-
-    print_matrix(result);
+	
+	
 
     revert = inverse_matrix(&b);
-
-    result_final = matrix_multiplication(result, revert);
+	
+	result_final = matrix_multiplication(result, revert);
 
     if (matrix_comparison(result_final, &a))
-        printf("Reversão da multiplicação correta\n");
+		printf("Reversão da multiplicação correta\n");
     else
-        printf("Reversão da multiplicação incorreta\n");
+		printf("Reversão da multiplicação incorreta\n");
 
+	free_matrix(result);	
+	free_matrix(revert);
+	free_matrix(result_final);
 }
 
 void	test_translation(void)
@@ -730,6 +747,8 @@ void	test_translation(void)
 	free_matrix(point_mi);
 	free_matrix(expected);
 	free_matrix(expectedi);
+	free_matrix(offset);
+	free_matrix(inversa);
 }
 
 void	test_scaling(void)
@@ -881,7 +900,7 @@ void	test_rotation_y_axis(void)
 	full_quarter = y_axis_rotation(M_PI_2);
 	
 	inverted = inverse_matrix(half_quarter);
-	expected_inverted = create_point(M_SQRT2/2, 0, -M_SQRT2/2);
+	expected_inverted = create_point(-M_SQRT2/2, 0, M_SQRT2/2);
 	
 	half_result = matrix_tuple_multiplication(half_quarter, point);
 	full_result = matrix_tuple_multiplication(full_quarter, point);

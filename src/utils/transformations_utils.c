@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:29:32 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 16:31:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:35:19 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ t_matrix	*combine_transformations(t_matrix *transposed,
 
 	temp = matrix_multiplication(rot, scale);
 	final_transform = matrix_multiplication(trans, temp);
-
-	free(temp); 
-	
+	free(temp);
 	return (final_transform);
 }

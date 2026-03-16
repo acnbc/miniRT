@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:41:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 16:30:25 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:34:29 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_matrix	*x_axis_rotation(double rotation_value)
 	mat_set(transform, 1, 2, -sin(rotation_value));
 	mat_set(transform, 2, 1, sin(rotation_value));
 	mat_set(transform, 2, 2, cos(rotation_value));
-
 	return (transform);
 }
 
@@ -61,7 +60,6 @@ t_matrix	*y_axis_rotation(double rotation_value)
 	mat_set(transform, 0, 2, sin(rotation_value));
 	mat_set(transform, 2, 0, -sin(rotation_value));
 	mat_set(transform, 2, 2, cos(rotation_value));
-
 	return (transform);
 }
 
@@ -74,6 +72,5 @@ t_matrix	*z_axis_rotation(double rotation_value)
 	mat_set(transform, 0, 1, -sin(rotation_value));
 	mat_set(transform, 1, 0, sin(rotation_value));
 	mat_set(transform, 1, 1, cos(rotation_value));
-
 	return (transform);
 }

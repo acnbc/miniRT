@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:35:52 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 16:32:08 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:36:26 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_matrix	*x_axis_rotation(double rotation_value);
 t_matrix	*y_axis_rotation(double rotation_value);
 t_matrix	*z_axis_rotation(double rotation_value);
 t_matrix	*combine_transformations(t_matrix *transposed,
-	t_matrix *rotated, t_matrix *scaled);
-
+				t_matrix *rotated, t_matrix *scaled);
 
 #endif
