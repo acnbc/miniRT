@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/16 13:23:04 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:18:17 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(void)
 	// test_inverse_matrix_basic();
 	// test_muilt_inverse_product();
 	// test_translation();
-	test_scaling();
+	// test_scaling();
+	test_rotation();
 	return (0);
 }

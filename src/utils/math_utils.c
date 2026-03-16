@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:03:49 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 15:04:47 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:05:13 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_matrix	*create_point(double x, double y, double z)
 {
 	t_matrix	*point;
 
-	point = creat_new_matrix(4, 1);
+	point = create_new_matrix(4, 1);
 	point->m_4x1[0] = x;
 	point->m_4x1[1] = y;
 	point->m_4x1[2] = z;
@@ -28,7 +28,7 @@ t_matrix	*create_vector(double x, double y, double z)
 {
 	t_matrix	*vector;
 
-	vector = creat_new_matrix(4, 1);
+	vector = create_new_matrix(4, 1);
 	vector->m_4x1[0] = x;
 	vector->m_4x1[1] = y;
 	vector->m_4x1[2] = z;

@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:51:00 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:05:13 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_matrix	*get_submatrix(t_matrix *m, int row, int col)
 
 	i = -1;
 	k = 0;
-	sub = creat_new_matrix(m->rows - 1, m->cols - 1);
+	sub = create_new_matrix(m->rows - 1, m->cols - 1);
 	while (++i < m->rows)
 	{
 		if (i == row)

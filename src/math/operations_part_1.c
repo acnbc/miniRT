@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_part_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:47 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:56:52 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:05:13 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_matrix	*alloc_4x1(void)
 {
-	return (creat_new_matrix(4, 1));
+	return (create_new_matrix(4, 1));
 }
 
 t_matrix	*add_tuples(t_matrix *a, t_matrix *b)

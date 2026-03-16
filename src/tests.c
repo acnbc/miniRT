@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 13:40:52 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:20:40 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,7 +392,7 @@ void    test_minor(void)
 // ============================================
 static t_matrix* create_test_matrix(int rows, int cols, double *values)
 {
-    t_matrix *m = creat_new_matrix(rows, cols);
+    t_matrix *m = create_new_matrix(rows, cols);
     for (int i = 0; i < rows * cols; i++) {
         m->m_4x4[i] = values[i];  // Usamos m_4x4 pois é o maior array
     }
@@ -797,4 +797,47 @@ void	test_scaling(void)
 	free_matrix(vector);
 	free_matrix(offset);
 
+}
+
+void	test_rotation(void)
+{
+	t_matrix	*point;
+	t_matrix	*expected_half;
+	t_matrix	*expected_full;
+	t_matrix	*half_quarter;
+	t_matrix	*full_quarter;
+	t_matrix	*half_result;
+	t_matrix	*full_result;
+
+	point = create_point(0, 1, 0);
+	expected_half = create_point(0, M_SQRT2/2, M_SQRT2/2);
+	expected_full = create_point(0, 0, 1);
+	
+	half_quarter = x_axis_rotation(M_PI_4);
+	full_quarter = x_axis_rotation(M_PI_2);
+
+	half_result = matrix_tuple_multiplication(half_quarter, point);
+	full_result = matrix_tuple_multiplication(full_quarter, point);
+
+	printf("\n=== Rotação no eixo x: half quarter ===\n");
+	
+	if (matrix_comparison(half_result, expected_half))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+
+	printf("\n=== Rotação no eixo x: half quarter ===\n");
+	
+	if (matrix_comparison(full_result, expected_full))
+		printf("\nRotação correta\n");
+	else
+		printf("\nRotação incorreta\n");
+
+	free_matrix(point);
+	free_matrix(half_quarter);
+	free_matrix(full_quarter);
+	free_matrix(expected_half);
+	free_matrix(expected_full);
+	free_matrix(full_result);
+	free_matrix(half_result);
 }

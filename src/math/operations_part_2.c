@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_part_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:07 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:56:10 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:05:13 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_matrix	*vector_normalization(t_matrix *vector)
 	magnitude = vector_magnitude(vector);
 	if (magnitude == 0.0)
 		return (NULL);
-	normalized = creat_new_matrix(4, 1);
+	normalized = create_new_matrix(4, 1);
 	if (!normalized)
 		return (NULL);
 	normalized->m_4x1[0] = vector->m_4x1[0] / magnitude;
@@ -51,7 +51,7 @@ t_matrix	*cross_product(t_matrix *a, t_matrix *b)
 {
 	t_matrix	*vector;
 
-	vector = creat_new_matrix(4, 1);
+	vector = create_new_matrix(4, 1);
 	if (!vector)
 		return (NULL);
 	vector->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
