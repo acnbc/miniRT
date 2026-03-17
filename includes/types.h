@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:48:57 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/16 21:55:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_matrix
 
 typedef enum e_id
 {
+	Invalid = -1,
 	A,
 	C,
 	L,

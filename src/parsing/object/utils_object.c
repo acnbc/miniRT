@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/12 00:44:09 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/16 21:55:35 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ t_id	get_id(char *str)
 		return (pl);
 	else if (!ft_strncmp(str, "cy", 3))
 		return (cy);
-	exit_error("invalid identifier", false, NULL);
-	return (-1);
+	return (Invalid);
 }
 
 t_tuple	*get_coord(char *str, bool vector)

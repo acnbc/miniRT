@@ -70,7 +70,7 @@ static void	add_object(char **line, t_scene *scene)
 	if (!infos)
 		return ;
 	id = get_id(infos[0]);
-	if (id == (t_id)-1)
+	if (id == Invalid)
 	{
 		ft_split_free(&infos);
 		return ;
