@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/12 00:33:25 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 03:00:23 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,22 @@
 /*------------- APAGAR ------------------*/
 # include "tests.h"
 
-t_scene			*read_image(char *file);
+void			read_image(t_scene **scene, char *file);
 
-t_amb_light		*create_amb_light(char **infos);
-t_camera		*create_camera(char **infos);
-t_light			*create_light(char **infos);
+void			create_amb_light(t_scene *scene, char ***infos, int index);
+void			create_camera(t_scene *scene, char ***infos, int index);
+void			create_light(t_scene *scene, char ***infos, int index);
 
 void			exit_error(char *error, bool clean, t_scene **_scene);
 void			free_scene(t_scene **scene);
 
 t_id			get_id(char *str);
-t_tuple			*get_coord(char *str, bool vector);
-t_object_type	*get_object_type(t_id id, char **line);
-t_rgb			*get_coolors(char *str, int i);
+t_tuple			get_coord(char **infos, int index, bool vector);
+void			get_object_type(t_object *object, char **infos, int index);
+bool			get_coolors(t_rgb *colors, char **infos, int index);
+bool			valid_tuple(t_tuple tuple);
 
-t_object		*lst_new_object(char **infos, t_id id);
+t_object		*lst_new_object(char ***infos, t_id id);
 void			lst_add_back_object(t_object **lst, t_object *new);
 t_object		*lst_back_object(t_object *lst);
 void			lst_clear_object(t_object **lst);

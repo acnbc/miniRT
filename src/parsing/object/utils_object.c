@@ -6,14 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/16 21:55:35 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 01:44:21 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/miniRT.h"
-
-static char	**split_arg(char *str);
-static bool	valid_tuple(t_tuple *tuple);
 
 t_id	get_id(char *str)
 {
@@ -34,86 +31,65 @@ t_id	get_id(char *str)
 	return (Invalid);
 }
 
-t_tuple	*get_coord(char *str, bool vector)
+t_tuple	get_coord(char **infos, int index, bool vector)
 {
-	t_tuple	*coord;
+	t_tuple	coord;
 	char	**arr;
 
-	arr = split_arg(str);
-	if (!arr)
-		return (NULL);
-	coord = ft_calloc(1, sizeof(t_tuple));
-	if (!coord)
+	coord.x = 0;
+	coord.y = 0;
+	coord.z = 0;
+	coord.is_point = false;
+	arr = ft_split(infos[index], ',');
+	if (ft_split_len(arr) != 3)
 	{
 		ft_split_free(&arr);
-		exit_error("malloc error", false, NULL);
+		return (coord);
 	}
-	coord->x = ft_atod(arr[0]);
-	coord->y = ft_atod(arr[1]);
-	coord->z = ft_atod(arr[2]);
-	coord->is_point = !vector;
-	if (!valid_tuple(coord))
-	{
-		free(coord);
-		coord = NULL;
-	}
+	coord.x = ft_atod(arr[0]);
+	coord.y = ft_atod(arr[1]);
+	coord.z = ft_atod(arr[2]);
+	coord.is_point = !vector;
 	ft_split_free(&arr);
 	return (coord);
 }
 
-static bool	valid_tuple(t_tuple *tuple)
+bool	valid_tuple(t_tuple tuple)
 {
-	if (tuple->is_point)
+	if (tuple.is_point)
 		return (true);
-	if ((tuple->x < -1 || tuple->x > 1)
-		|| (tuple->y < -1 || tuple->y > 1)
-		|| (tuple->z < -1 || tuple->z > 1))
+	if ((tuple.x < -1 || tuple.x > 1)
+		|| (tuple.y < -1 || tuple.y > 1)
+		|| (tuple.z < -1 || tuple.z > 1))
 		return (false);
-	if (!tuple->x && !tuple->y && !tuple->z)
+	if (!tuple.x && !tuple.y && !tuple.z)
 		return (false);
 	return (true);
 }
 
-t_rgb	*get_coolors(char *str, int i)
+bool	get_coolors(t_rgb *colors, char **infos, int index)
 {
 	char	**arr;
-	t_rgb	*colors;
 	int		nbr[3];
+	int		i;
 
-	arr = split_arg(str);
-	if (!arr)
-		return (NULL);
-	while (i < 3)
+	if (!colors)
+		return (true);
+	arr = ft_split(infos[index], ',');
+	i = 0;
+	while (arr && arr[i] && i < 3)
 	{
 		nbr[i] = ft_atoi(arr[i]);
 		if (nbr[i] < 0 || nbr[i] > 255)
 		{
 			ft_split_free(&arr);
-			exit_error("invalid arguments", false, NULL);
+			return (true);
 		}
 		i++;
 	}
 	ft_split_free(&arr);
-	colors = ft_calloc(1, sizeof(t_rgb));
-	if (!colors)
-		exit_error("malloc error", false, NULL);
 	colors->r = (unsigned char)nbr[0];
 	colors->g = (unsigned char)nbr[1];
 	colors->b = (unsigned char)nbr[2];
-	return (colors);
-}
-
-static char	**split_arg(char *str)
-{
-	char	**arr;
-
-	arr = ft_split(str, ',');
-	if (!arr)
-		exit_error("malloc error", false, NULL);
-	if (ft_split_len(arr) != 3)
-	{
-		ft_split_free(&arr);
-		exit_error("invalid arguments", false, NULL);
-	}
-	return (arr);
+	return (i != 3);
 }

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/02/15 07:57:55 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 01:42:50 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ void    test_matrix_multiplication(void)
     } else {
         printf("\n✗ multiplicação incorreta!\n");
     }
+    free_matrix(result);
     printf("Matriz e:\n");
     print_one_col_matrix(&matrix_e);
     printf("Matriz f:\n");
@@ -191,6 +192,7 @@ void    test_matrix_multiplication(void)
     print_one_col_matrix(result);
     printf("Esperado:\n");
     print_one_col_matrix(&matrix_re);
+    free_matrix(result);
 }
 
 void    test_transposition(void)
@@ -234,6 +236,7 @@ void    test_transposition(void)
     } else {
         printf("\n✗ Transposição incorreta!\n");
     }
+    free_matrix(result);
 }
 
 void    test_mult_matrix_id(void)
@@ -271,9 +274,12 @@ void    test_mult_matrix_id(void)
     } else {
         printf("\n✗ Multiplicação por matriz identidade incorreta!\n");
     }
+    free_matrix(result);
     result = matrix_tuple_multiplication(id, &matrix_b);
     printf("Multiplicação de matriz de uma coluna:\n");
-    print_one_col_matrix(result);    
+    print_one_col_matrix(result);
+    free_matrix(result);
+    free_matrix(id);
 }
 
 void    test_determinant(void)
@@ -356,6 +362,7 @@ void    test_submatrix(void)
         printf("Correct submatrix\n");
     else
         printf("Incorrect submatrix\n");
+    free_matrix(result_a);
 
     result_b = get_submatrix(&b, 2, 1);
 
@@ -368,6 +375,7 @@ void    test_submatrix(void)
         printf("Correct submatrix\n");
     else
         printf("Incorrect submatrix\n");
+    free_matrix(result_b);
 }
 
 void    test_minor(void)
@@ -629,6 +637,7 @@ void    test_inverse_matrix_basic(void)
         printf("Matriz inversa gerada corretamente\n");
     else
         printf("Matriz inversa gerada incorretamente\n");
+    free_matrix(result);
 
     result = inverse_matrix(&c);
 
@@ -636,6 +645,7 @@ void    test_inverse_matrix_basic(void)
         printf("Matriz inversa gerada corretamente\n");
     else
         printf("Matriz inversa gerada incorretamente\n");
+    free_matrix(result);
 
     result = inverse_matrix(&e);
 
@@ -643,6 +653,7 @@ void    test_inverse_matrix_basic(void)
         printf("Matriz inversa gerada corretamente\n");
     else
         printf("Matriz inversa gerada incorretamente\n");
+    free_matrix(result);
 }
 
 void    test_muilt_inverse_product(void)
@@ -690,5 +701,7 @@ void    test_muilt_inverse_product(void)
         printf("Reversão da multiplicação correta\n");
     else
         printf("Reversão da multiplicação incorreta\n");
-
+    free_matrix(result);
+    free_matrix(revert);
+    free_matrix(result_final);
 }

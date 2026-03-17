@@ -6,80 +6,102 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 17:53:27 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:56:09 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 03:01:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/miniRT.h"
 
-t_amb_light	*create_amb_light(char **infos)
+void	create_amb_light(t_scene *scene, char ***infos, int index)
 {
-	t_amb_light	*amb_light;
+	bool	error;
 
-	if (ft_split_len(infos) < 2)
+	if (ft_split_len(&(*infos)[index]) < 2)
+	{
+		ft_split_free(infos);
 		exit_error("invalid arguments", false, NULL);
-	amb_light = (t_amb_light *)malloc(sizeof(t_amb_light));
-	if (!amb_light)
-		exit_error("malloc error", false, NULL);
-	amb_light->id = A;
-	amb_light->light_ratio = ft_atod(infos[0]);
-	if (amb_light->light_ratio < 0 || amb_light->light_ratio > 1)
+	}
+	scene->amb_light = (t_amb_light *)ft_calloc(1, sizeof(t_amb_light));
+	if (!scene->amb_light)
 	{
-		free(amb_light);
+		ft_split_free(infos);
 		exit_error("malloc error", false, NULL);
 	}
-	amb_light->colors = get_coolors(infos[1], 0);
-	if (!amb_light->colors)
+	scene->amb_light->id = A;
+	scene->amb_light->light_ratio = ft_atod((*infos)[index]);
+	if (scene->amb_light->light_ratio < 0 || scene->amb_light->light_ratio > 1)
 	{
-		free(amb_light);
-		exit_error("malloc error", false, NULL);
+		ft_split_free(infos);
+		exit_error("out of range", false, NULL);
 	}
-	return (amb_light);
+	error = get_coolors(&scene->amb_light->colors, *infos, index + 1);
+	if (!error)
+		return ;
+	ft_split_free(infos);
+	exit_error("malloc error", false, NULL);
 }
 
-t_camera	*create_camera(char **infos)
+void	create_camera(t_scene *scene, char ***infos, int index)
 {
-	t_camera	*camera;
-
-	if (ft_split_len(infos) < 3)
-		exit_error("invalid arguments", false, NULL);
-	camera = (t_camera *)malloc(sizeof(t_camera));
-	if (!camera)
-		exit_error("malloc error", false, NULL);
-	camera->id = C;
-	camera->view_point = get_coord(infos[0], false);
-	if (!camera->view_point)
-		exit_error("malloc error", false, NULL);
-	camera->orientation_vector = get_coord(infos[1], true);
-	if (!camera->orientation_vector)
-		exit_error("malloc error", false, NULL);
-	camera->field_of_view = ft_atoi(infos[2]);
-	if (camera->field_of_view < 0 || camera->field_of_view > 180)
-		exit_error("malloc error", false, NULL);
-	return (camera);
-}
-
-t_light	*create_light(char **infos)
-{
-	t_light	*light;
-
-	if (ft_split_len(infos) < 2)
-		exit_error("invalid arguments", false, NULL);
-	light = (t_light *)malloc(sizeof(t_light));
-	if (!light)
-		exit_error("malloc error", false, NULL);
-	light->id = L;
-	light->light_point = get_coord(infos[0], false);
-	if (!light->light_point)
-		exit_error("malloc error", false, NULL);
-	light->brightness = ft_atod(infos[1]);
-	if (light->brightness < 0 || light->brightness > 1)
-		exit_error("invalid arguments", false, NULL);
-	light->colors = get_coolors(infos[2], 0);
-	if (!light->colors)
+	if (ft_split_len(&(*infos)[index]) < 3)
 	{
-		free(light);
+		ft_split_free(infos);
+		exit_error("invalid arguments", false, NULL);
+	}
+	scene->camera = (t_camera *)ft_calloc(1, sizeof(t_camera));
+	if (!scene->camera)
+	{
+		ft_split_free(infos);
 		exit_error("malloc error", false, NULL);
 	}
-	return (light);
+	scene->camera->id = C;
+	scene->camera->view_point = get_coord(*infos, index, false);
+	scene->camera->orientation_vector = get_coord(*infos, index + 1, true);
+	if (!valid_tuple(scene->camera->view_point) || !valid_tuple(scene->camera->orientation_vector))
+	{
+		ft_split_free(infos);
+		exit_error("invalid arguments", false, NULL);
+	}
+	scene->camera->field_of_view = ft_atoi((*infos)[index + 2]);
+	if (scene->camera->field_of_view < 0 || scene->camera->field_of_view > 180)
+	{
+		ft_split_free(infos);
+		exit_error("out of range", false, NULL);
+	}
+}
+
+void	create_light(t_scene *scene, char ***infos, int index)
+{
+	bool	error;
+
+	if (ft_split_len(&(*infos)[index]) < 2)
+	{
+		ft_split_free(infos);
+		exit_error("invalid arguments", false, NULL);
+	}
+	scene->light = (t_light *)ft_calloc(1, sizeof(t_light));
+	if (!scene->light)
+	{
+		ft_split_free(infos);
+		exit_error("malloc error", false, NULL);
+	}
+	scene->light->id = L;
+	scene->light->light_point = get_coord(*infos, index, false);
+	if (!valid_tuple(scene->light->light_point))
+	{
+		ft_split_free(infos);
+		exit_error("invalid input", false, NULL);
+	}
+	scene->light->brightness = ft_atod((*infos)[index + 1]);
+	if (scene->light->brightness < 0 || scene->light->brightness > 1)
+	{
+		ft_split_free(infos);
+		exit_error("out of range", false, NULL);
+	}
+	error = get_coolors(&scene->light->colors, *infos, index + 2);
+	if (error)
+	{
+		ft_split_free(infos);
+		exit_error("invalid input", false, NULL);
+	}
 }

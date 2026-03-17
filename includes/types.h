@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/16 21:55:32 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 02:45:26 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,23 @@ typedef struct s_amb_light
 {
 	t_id	id;
 	double	light_ratio;
-	t_rgb	*colors;
+	t_rgb	colors;
 }	t_amb_light;
 
 typedef struct s_camera
 {
 	t_id	id;
-	t_tuple	*view_point;
-	t_tuple	*orientation_vector;
+	t_tuple	view_point;
+	t_tuple	orientation_vector;
 	double	field_of_view;
 }	t_camera;
 
 typedef struct s_light
 {
 	t_id	id;
-	t_tuple	*light_point;
+	t_tuple	light_point;
 	double	brightness;
-	t_rgb	*colors;
+	t_rgb	colors;
 }	t_light;
 
 typedef struct s_sphere
@@ -83,12 +83,12 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_tuple	*normalized_vector;
+	t_tuple	normalized_vector;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_tuple	*normalized_vector;
+	t_tuple	normalized_vector;
 	double	diameter;
 	double	height;
 }	t_cylinder;
@@ -103,9 +103,9 @@ typedef union u_object_type
 typedef struct s_object
 {
 	t_id			id;
-	t_tuple			*coord;
-	t_rgb			*colors;
-	t_object_type	*object;
+	t_tuple			coord;
+	t_rgb			colors;
+	t_object_type	object;
 	struct s_object	*next;
 }	t_object;
 
@@ -115,6 +115,7 @@ typedef struct s_scene
 	t_camera	*camera;
 	t_light		*light;
 	t_object	*objects;
+	int			fd;
 }	t_scene;
 
 #endif

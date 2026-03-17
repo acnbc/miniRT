@@ -6,87 +6,99 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 01:40:17 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/11 23:41:45 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 01:30:38 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/miniRT.h"
 
-static t_sphere		*object_type_sphere(char **infos);
-static t_plane		*object_type_plane(char **infos);
-static t_cylinder	*object_type_cylinder(char **infos);
+static void	object_type_sphere(t_object *object, char **infos, int index);
+static void	object_type_plane(t_object *object, char **infos, int index);
+static void	object_type_cylinder(t_object *object, char **infos, int index);
 
-t_object_type	*get_object_type(t_id id, char **infos)
+void	get_object_type(t_object *object, char **infos, int index)
 {
-	t_object_type	*type;
-
-	type = ft_calloc(1, sizeof(t_object_type));
-	if (!type)
-		exit_error("malloc error", false, NULL);
-	type->sphere = NULL;
-	type->plane = NULL;
-	type->cylinder = NULL;
-	if (id == sp)
-		type->sphere = object_type_sphere(infos);
-	else if (id == pl)
-		type->plane = object_type_plane(infos);
-	else if (id == cy)
-		type->cylinder = object_type_cylinder(infos);
-	if (!type->sphere && !type->plane && !type->cylinder)
-	{
-		free(type);
-		return (NULL);
-	}
-	return (type);
+	if (object->id == sp)
+		object_type_sphere(object, infos, index);
+	if (object->id == pl)
+		object_type_plane(object, infos, index);
+	if (object->id == cy)
+		object_type_cylinder(object, infos, index);
 }
 
-static t_sphere	*object_type_sphere(char **infos)
+static void	object_type_sphere(t_object *object, char **infos, int index)
 {
 	t_sphere	*sphere;
 
 	if (!infos || !*infos)
+	{
+		free(object);
+		ft_split_free(&infos);
 		exit_error("invalid arguments", false, NULL);
-	sphere = (t_sphere *)ft_calloc(1, sizeof(t_sphere));
+	}
+	object->object.sphere = (t_sphere *)ft_calloc(1, sizeof(t_sphere));
+	sphere = object->object.sphere;
 	if (!sphere)
+	{
+		free(object);
+		ft_split_free(&infos);
 		exit_error("malloc error", false, NULL);
-	sphere->diameter = ft_atod(infos[0]);
-	return (sphere);
+	}
+	sphere->diameter = ft_atod(infos[index]);
 }
 
-static t_plane	*object_type_plane(char **infos)
+static void	object_type_plane(t_object *object, char **infos, int index)
 {
 	t_plane	*plane;
 
 	if (!infos || !*infos)
-		exit_error("invalid arguments", false, NULL);
-	plane = (t_plane *)ft_calloc(1, sizeof(t_plane));
-	if (!plane)
-		exit_error("malloc error", false, NULL);
-	plane->normalized_vector = get_coord(infos[0], true);
-	if (!plane->normalized_vector)
 	{
-		free(plane);
+		free(object);
+		ft_split_free(&infos);
+		exit_error("invalid arguments", false, NULL);
+	}
+	object->object.plane = (t_plane *)ft_calloc(1, sizeof(t_plane));
+	plane = object->object.plane;
+	if (!plane)
+	{
+		free(object);
+		ft_split_free(&infos);
 		exit_error("malloc error", false, NULL);
 	}
-	return (plane);
+	plane->normalized_vector = get_coord(infos, index, true);
+	if (!valid_tuple(plane->normalized_vector))
+	{
+		free(object);
+		ft_split_free(&infos);
+		exit_error("invalid arguments", false, NULL);
+	}
 }
 
-static t_cylinder	*object_type_cylinder(char **infos)
+static void	object_type_cylinder(t_object *object, char **infos, int index)
 {
 	t_cylinder	*cylinder;
 
-	if (ft_split_len(infos) < 3)
-		exit_error("invalid arguments", false, NULL);
-	cylinder = (t_cylinder *)ft_calloc(1, sizeof(t_cylinder));
-	if (!cylinder)
-		exit_error("malloc error", false, NULL);
-	cylinder->normalized_vector = get_coord(infos[0], true);
-	if (!cylinder->normalized_vector)
+	if (ft_split_len(&infos[index]) < 3)
 	{
-		free(cylinder);
+		free(object);
+		ft_split_free(&infos);
+		exit_error("invalid arguments", false, NULL);
+	}
+	object->object.cylinder = (t_cylinder *)ft_calloc(1, sizeof(t_cylinder));
+	cylinder = object->object.cylinder;
+	if (!cylinder)
+	{
+		free(object);
+		ft_split_free(&infos);
 		exit_error("malloc error", false, NULL);
 	}
-	cylinder->diameter = ft_atoi(infos[1]);
-	cylinder->height = ft_atoi(infos[2]);
-	return (cylinder);
+	cylinder->normalized_vector = get_coord(infos, index, true);
+	if (!valid_tuple(cylinder->normalized_vector))
+	{
+		free(object);
+		ft_split_free(&infos);
+		exit_error("invalid arguments", false, NULL);
+	}
+	cylinder->diameter = ft_atoi(infos[index + 1]);
+	cylinder->height = ft_atoi(infos[index + 2]);
 }

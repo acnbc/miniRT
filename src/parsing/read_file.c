@@ -6,38 +6,49 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:36:45 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/12 00:28:47 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 02:57:30 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
 static int	open_file(char *file);
-static void	add_object(char **line, t_scene *scene);
-static bool	add_slg_object(t_scene *scene, char **infos, t_id id);
+static void	add_object(char ***infos, t_scene *scene);
+static void	add_slg_object(t_scene *scene, char ***infos, t_id id);
 static bool	empty_line(char *line);
 
-t_scene	*read_image(char *file)
+void	read_image(t_scene **scene, char *file)
 {
 	char		*line;
-	t_scene		*scene;
+	char		**infos;
 	int			fd;
 
 	fd = open_file(file);
 	if (fd < 0)
-		return (NULL);
-	scene = (t_scene *)ft_calloc(1, sizeof(t_scene));
+		return ;
+	*scene = (t_scene *)ft_calloc(1, sizeof(t_scene));
+	if (!*scene)
+		exit_error("malloc error", false, NULL);
+	(*scene)->fd = fd;
 	line = NULL;
-	while (scene != NULL)
+	while (*scene != NULL)
 	{
-		free(line);
-		line = get_next_line(fd);
+		line = get_next_line((*scene)->fd);
 		if (!line)
 			break ;
-		add_object(&line, scene);
+		if (empty_line(line))
+		{
+			free(line);
+			continue ;
+		}
+		infos = ft_split(line, ' ');
+		free(line);
+		add_object(&infos, *scene);
 	}
-	close(fd);
-	return (scene);
+	close((*scene)->fd);
+	(*scene)->fd = -1;
+	if (!(*scene)->amb_light || !(*scene)->camera || !(*scene)->light)
+		exit_error("invalid arguments", false, NULL);
 }
 
 static int	open_file(char *file)
@@ -56,24 +67,18 @@ static int	open_file(char *file)
 	return (fd);
 }
 
-static void	add_object(char **line, t_scene *scene)
+static void	add_object(char ***infos, t_scene *scene)
 {
 	t_id		id;
 	t_object	*node;
-	char		**infos;
 
-	if (empty_line(*line))
-		return ;
-	infos = ft_split(*line, ' ');
-	free(*line);
-	*line = NULL;
-	if (!infos)
-		return ;
-	id = get_id(infos[0]);
+	if (!infos || !*infos)
+		exit_error("malloc error", false, NULL);
+	id = get_id((*infos)[0]);
 	if (id == Invalid)
 	{
-		ft_split_free(&infos);
-		return ;
+		ft_split_free(infos);
+		exit_error("invalid arguments", false, NULL);
 	}
 	if (id == sp || id == pl || id == cy)
 	{
@@ -82,36 +87,37 @@ static void	add_object(char **line, t_scene *scene)
 	}
 	else
 		add_slg_object(scene, infos, id);
-	ft_split_free(&infos);
+	ft_split_free(infos);
 }
 
-static bool	add_slg_object(t_scene *scene, char **infos, t_id id)
+static void	add_slg_object(t_scene *scene, char ***infos, t_id id)
 {
+	bool	error;
+
+	error = false;
 	if (id == A)
 	{
-		if (scene->amb_light)
-			exit_error("single element duplicated", false, NULL);
-		scene->amb_light = create_amb_light(&infos[1]);
-		if (!scene->amb_light)
-			return (true);
+		error = scene->amb_light != NULL;
+		if (!error)
+			create_amb_light(scene, infos, 1);
 	}
 	if (id == C)
 	{
-		if (scene->camera)
-			exit_error("single element duplicated", false, NULL);
-		scene->camera = create_camera(&infos[1]);
-		if (!scene->camera)
-			return (true);
+		error = scene->camera != NULL;
+		if (!error)
+			create_camera(scene, infos, 1);
 	}
 	if (id == L)
 	{
-		if (scene->light)
-			exit_error("single element duplicated", false, NULL);
-		scene->light = create_light(&infos[1]);
-		if (!scene->light)
-			return (true);
+		error = scene->light != NULL;
+		if (!error)
+			create_light(scene, infos, 1);
 	}
-	return (false);
+	if (error)
+	{
+		ft_split_free(infos);
+		exit_error("single element duplicated", false, NULL);
+	}
 }
 
 static bool	empty_line(char *line)
@@ -122,9 +128,7 @@ static bool	empty_line(char *line)
 	if (!line || !*line)
 		return (true);
 	line_trim = ft_strtrim(line, " \t\n\v\r");
-	empty = false;
-	if (!line_trim || !*line_trim)
-		empty = true;
+	empty = ft_strlen(line_trim) == 0;
 	free(line_trim);
 	return (empty);
 }
