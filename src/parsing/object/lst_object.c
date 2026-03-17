@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 03:01:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 03:33:46 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_object	*lst_new_object(char ***infos, t_id id)
 	}
 	new->id = id;
 	new->coord = get_coord(*infos, 1, false);
-	get_object_type(new, *infos, 2);
+	get_object_type(new, infos, 2);
 	error = get_coolors(&new->colors, *infos, ft_split_len(*infos) - 1);
 	if (error || !valid_tuple(new->coord))
 	{

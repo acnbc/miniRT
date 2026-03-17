@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 03:00:23 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 03:33:53 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			free_scene(t_scene **scene);
 
 t_id			get_id(char *str);
 t_tuple			get_coord(char **infos, int index, bool vector);
-void			get_object_type(t_object *object, char **infos, int index);
+void			get_object_type(t_object *object, char ***infos, int index);
 bool			get_coolors(t_rgb *colors, char **infos, int index);
 bool			valid_tuple(t_tuple tuple);
 
