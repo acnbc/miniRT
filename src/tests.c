@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/14 23:23:32 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/16 23:24:29 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -762,4 +762,44 @@ void test_ray_intersect(void)
 	printf("hit = %f\n", h);
 
 	free(inter);
+}
+
+void	test_cap_5(void)
+{
+	int size = 100;
+	double wall_size = 7.0;
+	double pixel_size = wall_size / size;
+	double half = wall_size / 2;
+
+	t_matrix *ray_origin = create_point(0, 0, -5);
+
+	t_sphere sp;
+	sp.diameter = 2;
+
+	for (int y = 0; y < size; y++)
+	{
+		double world_y = half - pixel_size * y;
+
+		for (int x = 0; x < size; x++)
+		{
+			double world_x = -half + pixel_size * x;
+
+			t_matrix *pos = create_point(world_x, world_y, 10);
+
+			t_matrix *dir = vector_normalization(subtract_tuple(pos, ray_origin));
+
+			t_ray r = create_ray(ray_origin, dir);
+
+			double *inter = intersect(sp, r);
+
+			if (inter && hit(inter) > 0)
+				printf("#");  // pixel branco
+			else
+				printf(".");
+
+			if (inter)
+				free(inter);
+		}
+		printf("\n");
+	}
 }

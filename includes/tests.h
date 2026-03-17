@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/14 22:09:06 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/16 23:15:31 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	test_inverse_matrix_basic(void);
 void	test_muilt_inverse_product(void);
 void	test_transformations(void);
 void	test_ray_intersect(void);
+void	test_cap_5(void);
 
 #endif

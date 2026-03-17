@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 18:14:01 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/03/14 23:27:58 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/16 23:27:50 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ t_ray	create_ray(t_matrix *origin, t_matrix *direction)
 {
 	t_ray	ray;
 
-
 	ray.ori = origin;
 	ray.direc = direction;
-
 	return(ray);
 }
 
@@ -34,7 +32,6 @@ t_sphere	create_sphere(int id)
 
 	sp.diameter = 2.0;
 	sp.id = id;
-
 	return(sp);
 }
 
@@ -72,7 +69,16 @@ double	hit(double *inter)
 			t = inter[i];
 		i++;
 	}
-	if(t == INF) //2 valores negativos
+	if (t == INF) //2 valores negativos
 		return (-1);
-	return(t);
+	return (t);
+}
+
+t_ray	transform(t_ray ray, t_matrix *matrix)
+{
+	t_ray new_ray;
+
+	new_ray.ori = matrix_multiplication(ray.ori, matrix);
+	new_ray.direc = matrix_multiplication(ray.direc, matrix);
+	return (new_ray);
 }
