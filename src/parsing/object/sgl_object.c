@@ -28,7 +28,7 @@ t_amb_light	*create_amb_light(char **infos)
 		free(amb_light);
 		exit_error("malloc error", false, NULL);
 	}
-	amb_light->colors = get_coolors(infos[1]);
+	amb_light->colors = get_coolors(infos[1], 0);
 	if (!amb_light->colors)
 	{
 		free(amb_light);
@@ -75,5 +75,11 @@ t_light	*create_light(char **infos)
 	light->brightness = ft_atod(infos[1]);
 	if (light->brightness < 0 || light->brightness > 1)
 		exit_error("invalid arguments", false, NULL);
+	light->colors = get_coolors(infos[2], 0);
+	if (!light->colors)
+	{
+		free(light);
+		exit_error("malloc error", false, NULL);
+	}
 	return (light);
 }

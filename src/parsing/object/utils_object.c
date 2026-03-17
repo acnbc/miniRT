@@ -75,18 +75,16 @@ static bool	valid_tuple(t_tuple *tuple)
 	return (true);
 }
 
-t_rgb	*get_coolors(char *str)
+t_rgb	*get_coolors(char *str, int i)
 {
 	char	**arr;
 	t_rgb	*colors;
 	int		nbr[3];
-	int		i;
 
 	arr = split_arg(str);
 	if (!arr)
 		return (NULL);
-	i = -1;
-	while (++i < 3)
+	while (i < 3)
 	{
 		nbr[i] = ft_atoi(arr[i]);
 		if (nbr[i] < 0 || nbr[i] > 255)
@@ -94,6 +92,7 @@ t_rgb	*get_coolors(char *str)
 			ft_split_free(&arr);
 			exit_error("invalid arguments", false, NULL);
 		}
+		i++;
 	}
 	ft_split_free(&arr);
 	colors = ft_calloc(1, sizeof(t_rgb));

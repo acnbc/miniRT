@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/15 07:56:15 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/14 17:16:00 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_object	*lst_new_object(char **infos, t_id id)
 	new->id = id;
 	new->coord = get_coord(infos[1], false);
 	new->object = get_object_type(new->id, &infos[2]);
-	new->colors = get_coolors(infos[ft_split_len(infos) - 1]);
+	new->colors = get_coolors(infos[ft_split_len(infos) - 1], 0);
 	if (!new->object || !new->coord || !new->colors)
 	{
 		free(new->coord);

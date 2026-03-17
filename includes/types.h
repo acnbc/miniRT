@@ -72,6 +72,7 @@ typedef struct s_light
 	t_id	id;
 	t_tuple	*light_point;
 	double	brightness;
+	t_rgb	*colors;
 }	t_light;
 
 typedef struct s_sphere

@@ -38,7 +38,7 @@ void			free_scene(t_scene **scene);
 t_id			get_id(char *str);
 t_tuple			*get_coord(char *str, bool vector);
 t_object_type	*get_object_type(t_id id, char **line);
-t_rgb			*get_coolors(char *str);
+t_rgb			*get_coolors(char *str, int i);
 
 t_object		*lst_new_object(char **infos, t_id id);
 void			lst_add_back_object(t_object **lst, t_object *new);
