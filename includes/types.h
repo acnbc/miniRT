@@ -6,21 +6,13 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/14 18:43:33 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/14 22:34:50 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdbool.h>
-
-typedef struct s_tuple
-{
-	double			x;
-	double			y;
-	double			z;
-	bool			is_point;
-}					t_tuple;
 
 typedef struct s_rgb
 {
@@ -62,15 +54,15 @@ typedef struct s_amb_light
 typedef struct s_camera
 {
 	t_id			id;
-	t_tuple			view_point;
-	t_tuple			orientation_vector;
+	t_matrix		view_point;
+	t_matrix		orientation_vector;
 	double			field_of_view;
 }					t_camera;
 
 typedef struct s_light
 {
 	t_id			id;
-	t_tuple			light_point;
+	t_matrix		light_point;
 	double			brightness;
 }					t_light;
 
@@ -82,12 +74,12 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_tuple			normalized_vector;
+	t_matrix		normalized_vector;
 }					t_plane;
 
 typedef struct s_cylinder
 {
-	t_tuple			normalized_vector;
+	t_matrix		normalized_vector;
 	double			diameter;
 	double			height;
 }					t_cylinder;
@@ -102,7 +94,7 @@ typedef union u_object_type
 typedef struct s_object
 {
 	t_id			id;
-	t_tuple			coord;
+	t_matrix		coord;
 	t_rgb			colors;
 	t_object_type	object;
 	struct s_object	*next;
@@ -122,11 +114,15 @@ typedef struct s_scene
 
 typedef struct s_ray
 {
-	t_matrix			origin;
-	t_matrix			direction;
+	t_matrix		*ori;
+	t_matrix		*direc;
 }				t_ray;
 
-
+typedef struct s_intersect
+{
+	double			t;
+	t_object		*obj;
+}				t_intersect;
 
 
 #endif

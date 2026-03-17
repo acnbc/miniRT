@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/12 09:32:17 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/14 23:07:01 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 # include <math.h>
 # include "types.h"
 # define EPSILON 0.00001
+# define INF INFINITY
 
-t_tuple		add_tuples(t_tuple a, t_tuple b);
-t_tuple		subtract_tuple(t_tuple a, t_tuple b);
-t_tuple		negate_tuple(t_tuple tuple);
-t_tuple		scalar_multiplication(t_tuple tuple, double scalar);
-t_tuple		scalar_division(t_tuple tuple, double scalar);
-double		vector_magnitude(t_tuple t_tuple);
-t_tuple		vector_normalization(t_tuple vector);
-double		dot_product(t_tuple a, t_tuple b);
-t_tuple		cross_product(t_tuple a, t_tuple b);
+t_matrix	*add_tuples(t_matrix *a, t_matrix *b);
+t_matrix	*subtract_tuple(t_matrix *a, t_matrix *b);
+t_matrix	*negate_tuple(t_matrix *tuple);
+t_matrix	*scalar_multiplication(t_matrix *tuple, double scalar);
+t_matrix	*scalar_division(t_matrix *tuple, double scalar);
+double		vector_magnitude(t_matrix *tuple);
+t_matrix	*vector_normalization(t_matrix *vector);
+double		dot_product(t_matrix *a, t_matrix *b);
+t_matrix	*cross_product(t_matrix *a, t_matrix *b);
 
-t_tuple		create_point(double x, double y, double z);
-t_tuple		create_vector(double x, double y, double z);
+t_matrix	*create_point(double x, double y, double z);
+t_matrix	*create_vector(double x, double y, double z);
 bool		is_equal(double a, double b);
 
 double		mat_get(t_matrix *m, int row, int col);
