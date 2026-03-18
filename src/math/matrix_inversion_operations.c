@@ -6,11 +6,13 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:48:59 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 14:05:13 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
+
+static double	matrix_determinant_with_scratch(t_matrix *m, t_matrix *s1, t_matrix *s2);
 
 double	get_2x2_determinant(t_matrix *a)
 {
@@ -22,26 +24,24 @@ double	get_2x2_determinant(t_matrix *a)
 	return (ac - bd);
 }
 
-double	get_minor(t_matrix *m, int row, int col)
+double	get_minor(t_matrix *m, int row, int col, t_matrix *s1, t_matrix *s2)
 {
-	t_matrix	*sub;
-	double		minor;
+	double	minor;
 
-	sub = get_submatrix(m, row, col);
-	if (sub->rows == 2 && sub->cols == 2)
-		minor = get_2x2_determinant(sub);
+	get_submatrix(m, row, col, s1);
+	if (s1->rows == 2 && s1->cols == 2)
+		minor = get_2x2_determinant(s1);
 	else
-		minor = matrix_determinant(sub);
-	free_matrix(sub);
+		minor = matrix_determinant_with_scratch(s1, s2, s1);
 	return (minor);
 }
 
-double	get_cofactor(t_matrix *m, int row, int col)
+double	get_cofactor(t_matrix *m, int row, int col, t_matrix *s1, t_matrix *s2)
 {
 	double	cofactor;
 	double	minor;
 
-	minor = get_minor(m, row, col);
+	minor = get_minor(m, row, col, s1, s2);
 	if ((row + col) % 2 == 0)
 		cofactor = minor;
 	else
@@ -49,7 +49,7 @@ double	get_cofactor(t_matrix *m, int row, int col)
 	return (cofactor);
 }
 
-double	matrix_determinant(t_matrix *m)
+double	matrix_determinant_with_scratch(t_matrix *m, t_matrix *s1, t_matrix *s2)
 {
 	double	det;
 	int		i;
@@ -59,21 +59,30 @@ double	matrix_determinant(t_matrix *m)
 	det = 0.0;
 	i = -1;
 	while (++i < m->cols)
-		det += mat_get(m, 0, i) * get_cofactor(m, 0, i);
+		det += mat_get(m, 0, i) * get_cofactor(m, 0, i, s1, s2);
 	return (det);
 }
 
-t_matrix	*inverse_matrix(t_matrix *m)
+double	matrix_determinant(t_matrix *m)
 {
-	t_matrix	*inverted;
-	int			row;
-	int			col;
-	double		det;
-	double		c;
+	t_matrix	scratch1;
+	t_matrix	scratch2;
 
-	if (!is_invertible(m))
-		return (NULL);
-	inverted = create_new_matrix(m->rows, m->cols);
+	return (matrix_determinant_with_scratch(m, &scratch1, &scratch2));
+}
+
+void	inverse_matrix(t_matrix *m, t_matrix *out)
+{
+	int		row;
+	int		col;
+	double	det;
+	double	c;
+	t_matrix	s1;
+	t_matrix	s2;
+
+	if (!out || !is_invertible(m))
+		return ;
+	init_matrix(out, m->rows, m->cols);
 	det = matrix_determinant(m);
 	row = -1;
 	while (++row < m->rows)
@@ -81,9 +90,8 @@ t_matrix	*inverse_matrix(t_matrix *m)
 		col = -1;
 		while (++col < m->cols)
 		{
-			c = get_cofactor(m, col, row);
-			mat_set(inverted, row, col, c / det);
+			c = get_cofactor(m, col, row, &s1, &s2);
+			mat_set(out, row, col, c / det);
 		}
 	}
-	return (inverted);
 }

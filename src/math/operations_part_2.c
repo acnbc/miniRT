@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:07 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/16 14:05:13 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,18 @@ double	vector_magnitude(t_matrix *tuple)
 	return (magnitude);
 }
 
-t_matrix	*vector_normalization(t_matrix *vector)
+void	vector_normalization(t_matrix *vector, t_matrix *out)
 {
-	t_matrix	*normalized;
-	double		magnitude;
+	double	magnitude;
 
+	if (!out || vector_magnitude(vector) == 0.0)
+		return ;
 	magnitude = vector_magnitude(vector);
-	if (magnitude == 0.0)
-		return (NULL);
-	normalized = create_new_matrix(4, 1);
-	if (!normalized)
-		return (NULL);
-	normalized->m_4x1[0] = vector->m_4x1[0] / magnitude;
-	normalized->m_4x1[1] = vector->m_4x1[1] / magnitude;
-	normalized->m_4x1[2] = vector->m_4x1[2] / magnitude;
-	normalized->m_4x1[3] = vector->m_4x1[3];
-	return (normalized);
+	init_matrix(out, 4, 1);
+	out->m_4x1[0] = vector->m_4x1[0] / magnitude;
+	out->m_4x1[1] = vector->m_4x1[1] / magnitude;
+	out->m_4x1[2] = vector->m_4x1[2] / magnitude;
+	out->m_4x1[3] = vector->m_4x1[3];
 }
 
 double	dot_product(t_matrix *a, t_matrix *b)
@@ -47,19 +43,16 @@ double	dot_product(t_matrix *a, t_matrix *b)
 		+ (a->m_4x1[2] * b->m_4x1[2]));
 }
 
-t_matrix	*cross_product(t_matrix *a, t_matrix *b)
+void	cross_product(t_matrix *a, t_matrix *b, t_matrix *out)
 {
-	t_matrix	*vector;
-
-	vector = create_new_matrix(4, 1);
-	if (!vector)
-		return (NULL);
-	vector->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
+	if (!out)
+		return ;
+	init_matrix(out, 4, 1);
+	out->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
 		- (a->m_4x1[2] * b->m_4x1[1]);
-	vector->m_4x1[1] = (a->m_4x1[2] * b->m_4x1[0])
+	out->m_4x1[1] = (a->m_4x1[2] * b->m_4x1[0])
 		- (a->m_4x1[0] * b->m_4x1[2]);
-	vector->m_4x1[2] = (a->m_4x1[0] * b->m_4x1[1])
+	out->m_4x1[2] = (a->m_4x1[0] * b->m_4x1[1])
 		- (a->m_4x1[1] * b->m_4x1[0]);
-	vector->m_4x1[3] = 0.0;
-	return (vector);
+	out->m_4x1[3] = 0.0;
 }
