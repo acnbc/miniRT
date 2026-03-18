@@ -6,20 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/17 01:42:50 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 23:40:53 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
-
-void    print_tuples(t_tuple tuple)
-{
-    printf("Tuple:\n\tx = %.2f\n\ty = %.2f\n\tz = %.2f\n", tuple.x, tuple.y, tuple.z);
-    if (tuple.is_point)
-        printf("The tuple is a point\n");
-    else
-        printf("The tuple is a vector\n");
-}
 
 void    print_matrix(t_matrix *matrix)
 {
@@ -704,4 +695,52 @@ void    test_muilt_inverse_product(void)
     free_matrix(result);
     free_matrix(revert);
     free_matrix(result_final);
+}
+
+void	test_transformations(void)
+{
+	t_matrix	*transform;
+	t_matrix	*result;
+
+	t_matrix	*offset = create_point(5.0, - 3.0, 2.0);
+	
+	transform = translation(offset);
+	
+	t_matrix *point_m = create_point(-3.0, 4.0, 5.0);
+	
+	t_matrix *expected = create_point(2.0, 1.0, 7.0);
+	
+	printf("\n=== Translação: multiplicação por matriz de translação ===\n");
+
+		
+	result = matrix_tuple_multiplication(transform, point_m);
+
+	if (matrix_comparison(result, expected))
+		printf("Translação correta\n");
+	else
+		printf("Translação incorreta\n");
+
+	free_matrix(result);
+	
+	t_matrix	*inversa = inverse_matrix(transform);
+	
+	t_matrix	*point_mi = create_point(-3.0, 4.0, 5.0);
+	
+	t_matrix	*expectedi = create_point(-8.0, 7.0, 3.0);
+	
+	printf("\n=== Translação: multiplicação por inversa da matriz de translação ===\n");
+	
+	result = matrix_tuple_multiplication(inversa, point_mi);
+	
+	if (matrix_comparison(result, expectedi))
+		printf("Translação correta\n");
+	else
+		printf("Translação incorreta\n");
+	
+	free_matrix(result);
+	free_matrix(transform);
+	free_matrix(point_m);
+	free_matrix(point_mi);
+	free_matrix(expected);
+	free_matrix(expectedi);
 }

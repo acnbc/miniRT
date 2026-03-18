@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 22:53:05 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/18 00:18:51 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,36 @@ t_id	get_id(char *str)
 	return (Invalid);
 }
 
-t_tuple	get_coord(char **infos, int index, bool vector)
+t_matrix	get_coord(char **infos, int index, bool vector)
 {
-	t_tuple	coord;
-	char	**arr;
+	char		**arr;
+	double		nbrs[3];
+	t_matrix	matrix;
 
-	coord.x = 0;
-	coord.y = 0;
-	coord.z = 0;
-	coord.is_point = false;
 	arr = ft_split(infos[index], ',');
 	if (ft_split_len(arr) != 3)
 	{
 		ft_split_free(&arr);
-		return (coord);
+		exit_error(ERR_MALLOC, NULL);
 	}
-	coord.x = ft_atod(arr[0]);
-	coord.y = ft_atod(arr[1]);
-	coord.z = ft_atod(arr[2]);
-	coord.is_point = !vector;
+	nbrs[0] = ft_atod(arr[0]);
+	nbrs[1] = ft_atod(arr[1]);
+	nbrs[2] = ft_atod(arr[2]);
 	ft_split_free(&arr);
-	return (coord);
+	if (vector)
+		return (create_vector(nbrs[0], nbrs[1], nbrs[2]));
+	return (create_point(nbrs[0], nbrs[1], nbrs[2]));
 }
 
-t_msg_error	valid_tuple(t_tuple tuple)
+t_msg_error	valid_tuple(t_matrix matrix)
 {
-	if (tuple.is_point)
+	if (matrix.m_4x1[3])
 		return (0);
-	if ((tuple.x < -1 || tuple.x > 1)
-		|| (tuple.y < -1 || tuple.y > 1)
-		|| (tuple.z < -1 || tuple.z > 1))
+	if ((matrix.m_4x1[0] < -1 || matrix.m_4x1[0] > 1)
+		|| (matrix.m_4x1[1] < -1 || matrix.m_4x1[1] > 1)
+		|| (matrix.m_4x1[2] < -1 || matrix.m_4x1[2] > 1))
 		return (ERR_RANGE);
-	if (!tuple.x && !tuple.y && !tuple.z)
+	if (!matrix.m_4x1[0] && !matrix.m_4x1[1] && !matrix.m_4x1[2])
 		return (ERR_ARGS);
 	return (0);
 }

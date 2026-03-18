@@ -12,42 +12,54 @@
 
 #include "../../includes/miniRT.h"
 
-double	vector_magnitude(t_tuple tuple)
+double	vector_magnitude(t_matrix *tuple)
 {
 	double	magnitude;
 	double	temp;
 
-	temp = pow(tuple.x, 2) + pow(tuple.y, 2) + pow(tuple.z, 2);
+	temp = pow(tuple->m_4x1[0], 2) + pow(tuple->m_4x1[1], 2)
+		+ pow(tuple->m_4x1[2], 2);
 	magnitude = sqrt(temp);
 	return (magnitude);
 }
 
-t_tuple	vector_normalization(t_tuple vector)
+t_matrix	*vector_normalization(t_matrix *vector)
 {
-	t_tuple	normalized;
-	double	magnitude;
+	t_matrix	*normalized;
+	double		magnitude;
 
 	magnitude = vector_magnitude(vector);
-	normalized.x = vector.x / magnitude;
-	normalized.y = vector.y / magnitude;
-	normalized.z = vector.z / magnitude;
-	normalized.is_point = vector.is_point;
+	if (magnitude == 0.0)
+		return (NULL);
+	normalized = creat_new_matrix(4, 1);
+	if (!normalized)
+		return (NULL);
+	normalized->m_4x1[0] = vector->m_4x1[0] / magnitude;
+	normalized->m_4x1[1] = vector->m_4x1[1] / magnitude;
+	normalized->m_4x1[2] = vector->m_4x1[2] / magnitude;
+	normalized->m_4x1[3] = vector->m_4x1[3];
 	return (normalized);
 }
 
-double	dot_product(t_tuple a, t_tuple b)
+double	dot_product(t_matrix *a, t_matrix *b)
 {
-	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.is_point
-			* b.is_point));
+	return ((a->m_4x1[0] * b->m_4x1[0]) + (a->m_4x1[1] * b->m_4x1[1])
+		+ (a->m_4x1[2] * b->m_4x1[2]));
 }
 
-t_tuple	cross_product(t_tuple a, t_tuple b)
+t_matrix	*cross_product(t_matrix *a, t_matrix *b)
 {
-	t_tuple	vector;
+	t_matrix	*vector;
 
-	vector.x = (a.y * b.z) - (a.z * b.y);
-	vector.y = (a.z * b.x) - (a.x * b.z);
-	vector.z = (a.x * b.y) - (a.y * b.x);
-	vector.is_point = false;
+	vector = creat_new_matrix(4, 1);
+	if (!vector)
+		return (NULL);
+	vector->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
+		- (a->m_4x1[2] * b->m_4x1[1]);
+	vector->m_4x1[1] = (a->m_4x1[2] * b->m_4x1[0])
+		- (a->m_4x1[0] * b->m_4x1[2]);
+	vector->m_4x1[2] = (a->m_4x1[0] * b->m_4x1[1])
+		- (a->m_4x1[1] * b->m_4x1[0]);
+	vector->m_4x1[3] = 0.0;
 	return (vector);
 }
