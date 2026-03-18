@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 02:54:42 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 04:05:58 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	scene = NULL;
-	exit_error(NULL, false, &scene);
+	exit_error(-1, &scene);
 	read_image(&scene, argv[1]);
-	if (!scene)
-		return (1);
 	tester(scene);
 	free_scene(&scene);
 	return (0);

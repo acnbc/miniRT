@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 03:33:46 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 23:25:27 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,25 @@
 t_object	*lst_new_object(char ***infos, t_id id)
 {
 	t_object	*new;
-	bool		error;
+	t_msg_error	error;
 
-	if (ft_split_len(*infos) < 4)
-	{
-		ft_split_free(infos);
-		exit_error("invalid arguments", false, NULL);
-	}
 	new = (t_object *)ft_calloc(1, sizeof(t_object));
 	if (!new)
 	{
 		ft_split_free(infos);
-		exit_error("malloc error", false, NULL);
+		exit_error(ERR_MALLOC, NULL);
 	}
 	new->id = id;
 	new->coord = get_coord(*infos, 1, false);
 	get_object_type(new, infos, 2);
 	error = get_coolors(&new->colors, *infos, ft_split_len(*infos) - 1);
-	if (error || !valid_tuple(new->coord))
+	if (!error)
+		error = valid_tuple(new->coord);
+	if (error)
 	{
 		ft_split_free(infos);
 		lst_clear_object(&new);
-		exit_error("invalid argument", false, NULL);
+		exit_error(error, NULL);
 	}
 	return (new);
 }

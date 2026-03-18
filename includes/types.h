@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 02:45:26 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 22:57:10 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,18 @@ typedef struct s_scene
 	t_object	*objects;
 	int			fd;
 }	t_scene;
+
+typedef enum e_msg_error
+{
+	ERR_MALLOC = 1,
+	ERR_ARGS,
+	ERR_FILE_FORMAT,
+	ERR_FILE_READ,
+	ERR_DUPLICATE,
+	ERR_RANGE,
+	ERR_MISSING_ELEM,
+	ERR_MISSING_ARGS,
+	ERR_ID
+}	t_msg_error;
 
 #endif

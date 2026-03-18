@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 01:44:21 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/17 22:53:05 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,27 @@ t_tuple	get_coord(char **infos, int index, bool vector)
 	return (coord);
 }
 
-bool	valid_tuple(t_tuple tuple)
+t_msg_error	valid_tuple(t_tuple tuple)
 {
 	if (tuple.is_point)
-		return (true);
+		return (0);
 	if ((tuple.x < -1 || tuple.x > 1)
 		|| (tuple.y < -1 || tuple.y > 1)
 		|| (tuple.z < -1 || tuple.z > 1))
-		return (false);
+		return (ERR_RANGE);
 	if (!tuple.x && !tuple.y && !tuple.z)
-		return (false);
-	return (true);
+		return (ERR_ARGS);
+	return (0);
 }
 
-bool	get_coolors(t_rgb *colors, char **infos, int index)
+t_msg_error	get_coolors(t_rgb *colors, char **infos, int index)
 {
 	char	**arr;
 	int		nbr[3];
 	int		i;
 
 	if (!colors)
-		return (true);
+		return (ERR_ARGS);
 	arr = ft_split(infos[index], ',');
 	i = 0;
 	while (arr && arr[i] && i < 3)
@@ -83,7 +83,7 @@ bool	get_coolors(t_rgb *colors, char **infos, int index)
 		if (nbr[i] < 0 || nbr[i] > 255)
 		{
 			ft_split_free(&arr);
-			return (true);
+			return (ERR_RANGE);
 		}
 		i++;
 	}
@@ -91,5 +91,7 @@ bool	get_coolors(t_rgb *colors, char **infos, int index)
 	colors->r = (unsigned char)nbr[0];
 	colors->g = (unsigned char)nbr[1];
 	colors->b = (unsigned char)nbr[2];
-	return (i != 3);
+	if (i != 3)
+		return (ERR_ARGS);
+	return (0);
 }
