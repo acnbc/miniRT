@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 14:18:29 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:28:28 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ t_matrix	get_coord(char **infos, int index, bool vector)
 	ft_split_free(&arr);
 	if (vector)
 		init_vector(&matrix, nbrs[0], nbrs[1], nbrs[2]);
-	init_point(&matrix, nbrs[0], nbrs[1], nbrs[2]);
+	else
+		init_point(&matrix, nbrs[0], nbrs[1], nbrs[2]);
 	return (matrix);
 }
 
