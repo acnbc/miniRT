@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:51:00 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ bool	is_invertible(t_matrix *m)
 	return (true);
 }
 
-t_matrix	*get_submatrix(t_matrix *m, int row, int col)
+void	get_submatrix(t_matrix *m, int row, int col, t_matrix *out)
 {
-	int			i;
-	int			j;
-	int			k;
-	int			l;
-	t_matrix	*sub;
+	int	i;
+	int	j;
+	int	k;
+	int	l;
 
+	if (!out)
+		return ;
+	init_matrix(out, m->rows - 1, m->cols - 1);
 	i = -1;
 	k = 0;
-	sub = creat_new_matrix(m->rows - 1, m->cols - 1);
 	while (++i < m->rows)
 	{
 		if (i == row)
@@ -40,9 +41,8 @@ t_matrix	*get_submatrix(t_matrix *m, int row, int col)
 		{
 			if (j == col)
 				continue ;
-			mat_set(sub, k, l++, mat_get(m, i, j));
+			mat_set(out, k, l++, mat_get(m, i, j));
 		}
 		k++;
 	}
-	return (sub);
 }
