@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 15:08:07 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 15:53:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,3 @@ void	mat_set(t_matrix *m, int row, int col, double value)
 	ptr = get_matrix(m);
 	ptr[row * m->cols + col] = value;
 }
-

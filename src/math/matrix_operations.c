@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 15:01:44 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 15:54:54 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ bool	matrix_comparison(const t_matrix *a, const t_matrix *b)
 	return (true);
 }
 
-void	matrix_multiplication(t_matrix *matrix, const t_matrix *a, const t_matrix *b)
+void	matrix_multiplication(t_matrix *matrix, const t_matrix *a,
+	const t_matrix *b)
 {
 	int			row;
 	int			col;
@@ -58,12 +59,13 @@ void	matrix_multiplication(t_matrix *matrix, const t_matrix *a, const t_matrix *
 	}
 }
 
-void	matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a, const t_matrix *b)
+void	matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a,
+	const t_matrix *b)
 {
-	int			row;
-	int			k;
-	double	*	ptr_a;
-	double	*	ptr_b;
+	int		row;
+	int		k;
+	double	*ptr_a;
+	double	*ptr_b;
 
 	if (!matrix || b->cols != 1 || a->cols != b->rows)
 		return ;

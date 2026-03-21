@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:47 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 14:36:53 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 15:52:11 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	negate_tuple(t_matrix *matrix, const t_matrix *tuple)
 	matrix->m_4x1[3] = tuple->m_4x1[3];
 }
 
-void	scalar_multiplication(t_matrix *matrix, const t_matrix *tuple, const double scalar)
+void	scalar_multiplication(t_matrix *matrix, const t_matrix *tuple,
+	const double scalar)
 {
 	if (!matrix)
 		return ;
@@ -56,7 +57,8 @@ void	scalar_multiplication(t_matrix *matrix, const t_matrix *tuple, const double
 	matrix->m_4x1[3] = tuple->m_4x1[3];
 }
 
-void	scalar_division(t_matrix *matrix, const t_matrix *tuple, const double scalar)
+void	scalar_division(t_matrix *matrix, const t_matrix *tuple,
+	const double scalar)
 {
 	if (!matrix)
 		return ;

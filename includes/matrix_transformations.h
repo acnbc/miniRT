@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:35:52 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 14:17:47 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 15:53:41 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	x_axis_rotation(t_matrix *matrix, double rotation_value);
 void	y_axis_rotation(t_matrix *matrix, double rotation_value);
 void	z_axis_rotation(t_matrix *matrix, double rotation_value);
 void	combine_transformations(t_matrix *matrix, t_matrix *transposed,
-				t_matrix *rotated, t_matrix *scaled);
+			t_matrix *rotated, t_matrix *scaled);
 
 #endif
