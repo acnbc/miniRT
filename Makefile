@@ -16,26 +16,33 @@ DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
-	$(DIR_OBJ)/src/lighting \
-	$(DIR_OBJ)/src/mlx \
-	$(DIR_OBJ)/src/matrix_transformations \
-	$(DIR_OBJ)/src/ray_tracing \
-	$(DIR_OBJ)/src/objects \
-	$(DIR_OBJ)/src/utils \
+	$(DIR_OBJ)/src/parsing \
+	$(DIR_OBJ)/src/parsing/object \
+	$(DIR_OBJ)/src/test \
 	$(DIR_OBJ)/src/math \
+	$(DIR_OBJ)/src/utils \
+	$(DIR_OBJ)/src/matrix_transformations \
 	$(DIR_OBJ)/images
 
-SRC = 	src/tests.c \
-	src/matrix_transformations/transformations.c \
-	src/utils/math_utils.c \
-	src/utils/matrix_utils.c \
-	src/utils/utils.c \
-	src/utils/matrix_inversion_utils.c \
+SRC = 	src/main.c \
+	src/parsing/object/sgl_object.c \
+	src/parsing/object/utils_object.c \
+	src/parsing/object/lst_object.c \
+	src/parsing/object/object_type.c \
+	src/parsing/read_file.c \
+	src/test/test_scene.c \
+	src/test/main.c \
+	src/test/test_math.c \
+	src/math/matrix_operations.c \
 	src/math/operations_part_2.c \
 	src/math/operations_part_1.c \
 	src/math/matrix_inversion_operations.c \
-	src/math/matrix_operations.c \
-	src/main.c
+	src/utils/matrix_utils.c \
+	src/utils/math_utils.c \
+	src/utils/transformations_utils.c \
+	src/utils/matrix_inversion_utils.c \
+	src/utils/utils.c \
+	src/matrix_transformations/transformations.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
@@ -82,8 +89,8 @@ fclean:
 
 re: fclean all
 
-run: all clean
-	./$(NAME)
+run: clean all
+	./$(NAME) $(MAP)
 
 update:
 	@ ( bash create_makefile.sh -y 2>/dev/null && echo "$(GREEN)Makefile updated successfully!$(RESET)" ) || echo "$(RED)Failed to update Makefile. $2$(RESET)"

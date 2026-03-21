@@ -3,32 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/18 14:18:59 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 12:48:24 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	test_matrix_comparison();
-	test_matrix_multiplication();
-	test_transposition();
-	test_mult_matrix_id();
-	test_determinant();
-	test_submatrix();
-	test_minor();
-	test_final_determinant();
-	test_is_invertible();
-	test_inverse_matrix_basic();
-	test_muilt_inverse_product();
-	test_translation();
-	test_scaling();
-	test_rotation();
-	test_rotation_y_axis();
-	test_rotation_z_axis();
+	t_scene		*scene;
+
+	if (argc < 2)
+		return (0);
+	scene = NULL;
+	exit_error(-1, &scene);
+	read_image(&scene, argv[1]);
+	tester(scene);
+	free_scene(&scene);
 	return (0);
+}
+
+static void	free_gnl(int *fd)
+{
+	char		*line;
+
+	line = get_next_line(*fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(*fd);
+	}
+	close(*fd);
+	*fd = -1;
+}
+
+void	free_scene(t_scene **scene)
+{
+	if (!scene || !*scene)
+		return ;
+	lst_clear_object(&(*scene)->objects);
+	free((*scene)->light);
+	free((*scene)->camera);
+	free((*scene)->amb_light);
+	if ((*scene)->fd != -1)
+		free_gnl(&(*scene)->fd);
+	free(*scene);
+	*scene = NULL;
 }

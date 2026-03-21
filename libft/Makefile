@@ -27,7 +27,7 @@ SRC = 	ft_substr.c \
 	ft_toupper.c \
 	ft_isprint.c \
 	ft_putnbr_fd.c \
-	free_split.c \
+	ft_split_free.c \
 	ft_strlen.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
@@ -88,7 +88,10 @@ SRC = 	ft_substr.c \
 	ft_lstsize.c \
 	ft_dbl_lstclear.c \
 	ft_bzero.c \
-	ft_dbl_lstmap.c
+	ft_dbl_lstmap.c \
+	ft_split_len.c \
+	ft_atod.c \
+	ft_atof.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

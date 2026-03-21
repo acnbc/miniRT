@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/13 15:13:18 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/18 00:04:02 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_rgb
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}					t_rgb;
+}	t_rgb;
 
 typedef struct s_matrix
 {
@@ -32,63 +32,65 @@ typedef struct s_matrix
 	};
 	int				rows;
 	int				cols;
-}					t_matrix;
+}	t_matrix;
 
 typedef enum e_id
 {
+	Invalid = -1,
 	A,
 	C,
 	L,
 	sp,
 	pl,
 	cy
-}					t_id;
+}	t_id;
 
 typedef struct s_amb_light
 {
-	t_id			id;
-	double			light_ratio;
-	t_rgb			colors;
-}					t_amb_light;
+	t_id	id;
+	double	light_ratio;
+	t_rgb	colors;
+}	t_amb_light;
 
 typedef struct s_camera
 {
-	t_id			id;
-	t_matrix		view_point;
-	t_matrix		orientation_vector;
-	double			field_of_view;
-}					t_camera;
+	t_id		id;
+	t_matrix	view_point;
+	t_matrix	orientation_vector;
+	double		field_of_view;
+}	t_camera;
 
 typedef struct s_light
 {
-	t_id			id;
-	t_matrix		light_point;
-	double			brightness;
-}					t_light;
+	t_id		id;
+	t_matrix	light_point;
+	double		brightness;
+	t_rgb		colors;
+}	t_light;
 
 typedef struct s_sphere
 {
 	double			diameter;
-}					t_sphere;
+}	t_sphere;
 
 typedef struct s_plane
 {
-	t_matrix		normalized_vector;
-}					t_plane;
+	t_matrix	normalized_vector;
+}	t_plane;
 
 typedef struct s_cylinder
 {
-	t_matrix		normalized_vector;
-	double			diameter;
-	double			height;
-}					t_cylinder;
+	t_matrix	normalized_vector;
+	double		diameter;
+	double		height;
+}	t_cylinder;
 
 typedef union u_object_type
 {
-	t_sphere		sphere;
-	t_plane			plane;
-	t_cylinder		cylinder;
-}					t_object_type;
+	t_sphere	*sphere;
+	t_plane		*plane;
+	t_cylinder	*cylinder;
+}	t_object_type;
 
 typedef struct s_object
 {
@@ -97,14 +99,28 @@ typedef struct s_object
 	t_rgb			colors;
 	t_object_type	object;
 	struct s_object	*next;
-}					t_object;
+}	t_object;
 
 typedef struct s_scene
 {
-	t_amb_light		amb_light;
-	t_camera		camera;
-	t_light			light;
-	t_object		*objects;
-}					t_scene;
+	t_amb_light	*amb_light;
+	t_camera	*camera;
+	t_light		*light;
+	t_object	*objects;
+	int			fd;
+}	t_scene;
+
+typedef enum e_msg_error
+{
+	ERR_MALLOC = 1,
+	ERR_ARGS,
+	ERR_FILE_FORMAT,
+	ERR_FILE_READ,
+	ERR_DUPLICATE,
+	ERR_RANGE,
+	ERR_MISSING_ELEM,
+	ERR_MISSING_ARGS,
+	ERR_ID
+}	t_msg_error;
 
 #endif

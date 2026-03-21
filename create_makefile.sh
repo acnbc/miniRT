@@ -203,8 +203,8 @@ echo -n '	@ clear
 
 re: fclean all
 
-run: all clean
-	./$(NAME)
+run: clean all
+	./$(NAME) $(MAP)
 
 update:
 	@ ( bash create_makefile.sh -y 2>/dev/null && echo "$(GREEN)Makefile updated successfully!$(RESET)" ) || echo "$(RED)Failed to update Makefile. $2$(RESET)"

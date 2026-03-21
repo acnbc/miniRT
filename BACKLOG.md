@@ -10,25 +10,25 @@
 - [x] Implementar função `main()` básica
 
 ### Fase 2: Parsing do Arquivo .rt
-- [ ] Ler e validar argumentos (arquivo `.rt`)
-- [ ] Implementar parser para ler linhas do arquivo
-- [ ] Validar formato básico do arquivo
-- [ ] Parser para Iluminação Ambiente (A)
-  - [ ] Validar taxa [0.0, 1.0]
-  - [ ] Validar cores RGB [0-255]
-- [ ] Parser para Câmera (C)
-  - [ ] Validar coordenadas x,y,z
-  - [ ] Validar vetor normalizado [-1,1]
-  - [ ] Validar FOV [0,180]
-- [ ] Parser para Luz (L)
-  - [ ] Validar coordenadas x,y,z
-  - [ ] Validar taxa de brilho [0.0, 1.0]
-- [ ] Parser para Esfera (sp)
-- [ ] Parser para Plano (pl)
-- [ ] Parser para Cilindro (cy)
-- [ ] Validar que A, C, L aparecem apenas uma vez
-- [ ] Tratamento de erros com mensagens explícitas
-- [ ] Liberar memória corretamente em caso de erro
+- [x] Ler e validar argumentos (arquivo `.rt`)
+- [x] Implementar parser para ler linhas do arquivo
+- [x] Validar formato básico do arquivo
+- [x] Parser para Iluminação Ambiente (A)
+  - [x] Validar taxa [0.0, 1.0]
+  - [x] Validar cores RGB [0-255]
+- [x] Parser para Câmera (C)
+  - [x] Validar coordenadas x,y,z
+  - [x] Validar vetor normalizado [-1,1]
+  - [x] Validar FOV [0,180]
+- [x] Parser para Luz (L)
+  - [X] Validar coordenadas x,y,z
+  - [X] Validar taxa de brilho [0.0, 1.0]
+- [x] Parser para Esfera (sp)
+- [x] Parser para Plano (pl)
+- [x] Parser para Cilindro (cy)
+- [x] Validar que A, C, L aparecem apenas uma vez
+- [x] Tratamento de erros com mensagens explícitas
+- [x] Liberar memória corretamente em caso de erro
 
 ### Fase 3: Matemática e Estruturas de Dados
 - [x] Criar estruturas para vetores 3D
