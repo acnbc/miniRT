@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 16:04:14 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:10:46 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,11 @@ typedef enum e_msg_error
 	ERR_RANGE,
 	ERR_MISSING_ELEM,
 	ERR_MISSING_ARGS,
-	ERR_ID
+	ERR_ID,
+	ERR_MLX_INIT,
+	ERR_MLX_NEW_WIN,
+	ERR_MLX_NEW_IMG,
+	ERR_MLX_GET_DATA_ADDR
 }	t_msg_error;
 
 #endif
