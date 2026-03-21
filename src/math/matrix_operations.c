@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:01:44 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-bool	matrix_comparison(t_matrix *a, t_matrix *b)
+bool	matrix_comparison(const t_matrix *a, const t_matrix *b)
 {
 	int		i;
 	int		dimension;
@@ -33,16 +33,16 @@ bool	matrix_comparison(t_matrix *a, t_matrix *b)
 	return (true);
 }
 
-void	matrix_multiplication(t_matrix *a, t_matrix *b, t_matrix *out)
+void	matrix_multiplication(t_matrix *matrix, const t_matrix *a, const t_matrix *b)
 {
-	int		row;
-	int		col;
-	int		k;
-	double	sum;
+	int			row;
+	int			col;
+	int			k;
+	double		sum;
 
-	if (!out || a->cols != b->rows)
+	if (!matrix || a->cols != b->rows)
 		return ;
-	init_matrix(out, a->rows, b->cols);
+	init_matrix(matrix, a->rows, b->cols);
 	row = -1;
 	while (++row < a->rows)
 	{
@@ -53,21 +53,21 @@ void	matrix_multiplication(t_matrix *a, t_matrix *b, t_matrix *out)
 			k = -1;
 			while (++k < a->cols)
 				sum += mat_get(a, row, k) * mat_get(b, k, col);
-			mat_set(out, row, col, sum);
+			mat_set(matrix, row, col, sum);
 		}
 	}
 }
 
-void	matrix_tuple_multiplication(t_matrix *a, t_matrix *b, t_matrix *out)
+void	matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a, const t_matrix *b)
 {
-	int		row;
-	int		k;
-	double	*ptr_a;
-	double	*ptr_b;
+	int			row;
+	int			k;
+	double	*	ptr_a;
+	double	*	ptr_b;
 
-	if (!out || b->cols != 1 || a->cols != b->rows)
+	if (!matrix || b->cols != 1 || a->cols != b->rows)
 		return ;
-	init_matrix(out, a->rows, b->cols);
+	init_matrix(matrix, a->rows, b->cols);
 	ptr_a = get_matrix(a);
 	ptr_b = get_matrix(b);
 	row = -1;
@@ -75,22 +75,22 @@ void	matrix_tuple_multiplication(t_matrix *a, t_matrix *b, t_matrix *out)
 	{
 		k = -1;
 		while (++k < a->cols)
-			out->m_4x1[row] += ptr_a[row * a->cols + k] * ptr_b[k];
+			matrix->m_4x1[row] += ptr_a[row * a->cols + k] * ptr_b[k];
 	}
 }
 
-void	matrix_transposition(t_matrix *m, t_matrix *out)
+void	matrix_transposition(t_matrix *matrix, const t_matrix *m)
 {
-	double	*ptr;
-	double	*ptr_tr;
-	int		row;
-	int		col;
+	double		*ptr;
+	double		*ptr_tr;
+	int			row;
+	int			col;
 
-	if (!out)
+	if (!matrix)
 		return ;
-	init_matrix(out, m->cols, m->rows);
+	init_matrix(matrix, m->cols, m->rows);
 	ptr = get_matrix(m);
-	ptr_tr = get_matrix(out);
+	ptr_tr = get_matrix(matrix);
 	row = -1;
 	while (++row < m->rows)
 	{

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/18 00:18:51 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 14:18:29 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ t_matrix	get_coord(char **infos, int index, bool vector)
 	nbrs[2] = ft_atod(arr[2]);
 	ft_split_free(&arr);
 	if (vector)
-		return (create_vector(nbrs[0], nbrs[1], nbrs[2]));
-	return (create_point(nbrs[0], nbrs[1], nbrs[2]));
+		init_vector(&matrix, nbrs[0], nbrs[1], nbrs[2]);
+	init_point(&matrix, nbrs[0], nbrs[1], nbrs[2]);
+	return (matrix);
 }
 
 t_msg_error	valid_tuple(t_matrix matrix)

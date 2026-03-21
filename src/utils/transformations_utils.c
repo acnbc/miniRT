@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   transformations_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:29:32 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 14:59:14 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-void	combine_transformations(t_matrix *transposed,
-		t_matrix *rotated, t_matrix *scaled, t_matrix *out)
+void	combine_transformations(t_matrix *matrix, t_matrix *transposed,
+		t_matrix *rotated, t_matrix *scaled)
 {
 	t_matrix	temp;
 
-	if (!out)
+	if (!matrix)
 		return ;
-	matrix_multiplication(rotated, scaled, &temp);
-	matrix_multiplication(transposed, &temp, out);
+	matrix_multiplication(&temp, rotated, scaled);
+	matrix_multiplication(matrix, transposed, &temp);
 }

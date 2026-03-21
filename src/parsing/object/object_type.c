@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 01:40:17 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/17 22:59:02 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 15:15:02 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ static void	object_type_cylinder(t_object *object, char ***infos, int index)
 		ft_split_free(infos);
 		exit_error(error, NULL);
 	}
-	cylinder->diameter = ft_atoi((*infos)[index + 1]);
-	cylinder->height = ft_atoi((*infos)[index + 2]);
+	cylinder->diameter = ft_atod((*infos)[index + 1]);
+	cylinder->height = ft_atod((*infos)[index + 2]);
 }

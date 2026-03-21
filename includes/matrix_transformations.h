@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transformations.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:35:52 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 14:17:47 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX_TRANSFORMATIONS_H
 # define MATRIX_TRANSFORMATIONS_H
 
-void		translation(t_matrix *offset, t_matrix *out);
-void		scaling(t_matrix *offset, t_matrix *out);
-void		x_axis_rotation(double rotation_value, t_matrix *out);
-void		y_axis_rotation(double rotation_value, t_matrix *out);
-void		z_axis_rotation(double rotation_value, t_matrix *out);
-void		combine_transformations(t_matrix *transposed,
-				t_matrix *rotated, t_matrix *scaled, t_matrix *out);
+void	translation(t_matrix *matrix, const t_matrix *offset);
+void	scaling(t_matrix *matrix, const t_matrix *offset);
+void	x_axis_rotation(t_matrix *matrix, double rotation_value);
+void	y_axis_rotation(t_matrix *matrix, double rotation_value);
+void	z_axis_rotation(t_matrix *matrix, double rotation_value);
+void	combine_transformations(t_matrix *matrix, t_matrix *transposed,
+				t_matrix *rotated, t_matrix *scaled);
 
 #endif

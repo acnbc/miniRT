@@ -39,6 +39,7 @@ SRC = 	src/main.c \
 	src/math/matrix_inversion_operations.c \
 	src/utils/matrix_utils.c \
 	src/utils/math_utils.c \
+	src/utils/transformations_utils.c \
 	src/utils/matrix_inversion_utils.c \
 	src/utils/utils.c \
 	src/matrix_transformations/transformations.c
