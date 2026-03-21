@@ -85,7 +85,7 @@
 - [x] Exibir imagem na janela
 - [x] Implementar hook para tecla ESC (fechar programa)
 - [x] Implementar hook para botão X (fechar programa)
-- [ ] Gerenciar eventos da janela (minimizar, alternar, etc.)
+- [x] Gerenciar eventos da janela (minimizar, alternar, etc.)
 - [x] Limpar recursos ao sair
 
 ### Fase 9: Transformações (se necessário)

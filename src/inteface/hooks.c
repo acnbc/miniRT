@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:35:44 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 19:11:53 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:58:45 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	key_hook(int keycode, void *param)
 	if (keycode == XK_Escape)
 	{
 		mlx_loop_end(scene->window->mlx_ptr);
-		free_scene(&scene);
-		exit(0);
 	}
 	return (0);
 }
@@ -42,7 +40,5 @@ static int	hook(void *param)
 
 	scene = (t_scene *)param;
 	mlx_loop_end(scene->window->mlx_ptr);
-	free_scene(&scene);
-	exit(0);
 	return (0);
 }
