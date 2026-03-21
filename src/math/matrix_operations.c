@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/14 09:05:58 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:54:54 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-bool	matrix_comparison(t_matrix *a, t_matrix *b)
+bool	matrix_comparison(const t_matrix *a, const t_matrix *b)
 {
 	int		i;
 	int		dimension;
@@ -33,47 +33,43 @@ bool	matrix_comparison(t_matrix *a, t_matrix *b)
 	return (true);
 }
 
-t_matrix	*matrix_multiplication(t_matrix *a, t_matrix *b)
+void	matrix_multiplication(t_matrix *matrix, const t_matrix *a,
+	const t_matrix *b)
 {
-	t_matrix	*product;
 	int			row;
 	int			col;
 	int			k;
 	double		sum;
 
-	if (a->cols != b->rows)
-		return (NULL);
+	if (!matrix || a->cols != b->rows)
+		return ;
+	init_matrix(matrix, a->rows, b->cols);
 	row = -1;
-	col = -1;
-	product = creat_new_matrix(a->rows, b->cols);
 	while (++row < a->rows)
 	{
 		col = -1;
-		while (++col < a->cols)
+		while (++col < b->cols)
 		{
 			sum = 0;
 			k = -1;
-			while (++k < b->cols)
+			while (++k < a->cols)
 				sum += mat_get(a, row, k) * mat_get(b, k, col);
-			mat_set(product, row, col, sum);
+			mat_set(matrix, row, col, sum);
 		}
 	}
-	return (product);
 }
 
-t_matrix	*matrix_tuple_multiplication(t_matrix *a, t_matrix *b)
+void	matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a,
+	const t_matrix *b)
 {
-	t_matrix	*result;
-	int			row;
-	int			k;
-	double		*ptr_a;
-	double		*ptr_b;
+	int		row;
+	int		k;
+	double	*ptr_a;
+	double	*ptr_b;
 
-	if (b->cols != 1)
-		return (NULL);
-	if (a->cols != b->rows)
-		return (NULL);
-	result = creat_new_matrix(a->rows, b->cols);
+	if (!matrix || b->cols != 1 || a->cols != b->rows)
+		return ;
+	init_matrix(matrix, a->rows, b->cols);
 	ptr_a = get_matrix(a);
 	ptr_b = get_matrix(b);
 	row = -1;
@@ -81,28 +77,27 @@ t_matrix	*matrix_tuple_multiplication(t_matrix *a, t_matrix *b)
 	{
 		k = -1;
 		while (++k < a->cols)
-			result->m_4x1[row] += ptr_a[row * a->rows + k] * ptr_b[k];
+			matrix->m_4x1[row] += ptr_a[row * a->cols + k] * ptr_b[k];
 	}
-	return (result);
 }
 
-t_matrix	*matrix_transposition(t_matrix *m)
+void	matrix_transposition(t_matrix *matrix, const t_matrix *m)
 {
-	t_matrix	*transposed;
 	double		*ptr;
 	double		*ptr_tr;
 	int			row;
 	int			col;
 
-	transposed = creat_new_matrix(m->rows, m->cols);
+	if (!matrix)
+		return ;
+	init_matrix(matrix, m->cols, m->rows);
 	ptr = get_matrix(m);
-	ptr_tr = get_matrix(transposed);
+	ptr_tr = get_matrix(matrix);
 	row = -1;
 	while (++row < m->rows)
 	{
 		col = -1;
-		while (++col < m->rows)
-			ptr_tr[col * m->rows + row] = ptr[row * m->rows + col];
+		while (++col < m->cols)
+			ptr_tr[col * m->rows + row] = ptr[row * m->cols + col];
 	}
-	return (transposed);
 }

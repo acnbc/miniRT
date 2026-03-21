@@ -3,51 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   operations_part_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:07 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:56:10 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:03:40 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-double	vector_magnitude(t_tuple tuple)
+double	vector_magnitude(const t_matrix *tuple)
 {
 	double	magnitude;
 	double	temp;
 
-	temp = pow(tuple.x, 2) + pow(tuple.y, 2) + pow(tuple.z, 2);
+	temp = pow(tuple->m_4x1[0], 2) + pow(tuple->m_4x1[1], 2)
+		+ pow(tuple->m_4x1[2], 2);
 	magnitude = sqrt(temp);
 	return (magnitude);
 }
 
-t_tuple	vector_normalization(t_tuple vector)
+void	vector_normalization(t_matrix *matrix, const t_matrix *vector)
 {
-	t_tuple	normalized;
-	double	magnitude;
+	double		magnitude;
 
 	magnitude = vector_magnitude(vector);
-	normalized.x = vector.x / magnitude;
-	normalized.y = vector.y / magnitude;
-	normalized.z = vector.z / magnitude;
-	normalized.is_point = vector.is_point;
-	return (normalized);
+	if (!matrix || !magnitude == 0)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = vector->m_4x1[0] / magnitude;
+	matrix->m_4x1[1] = vector->m_4x1[1] / magnitude;
+	matrix->m_4x1[2] = vector->m_4x1[2] / magnitude;
+	matrix->m_4x1[3] = vector->m_4x1[3];
 }
 
-double	dot_product(t_tuple a, t_tuple b)
+double	dot_product(const t_matrix *a, const t_matrix *b)
 {
-	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.is_point
-			* b.is_point));
+	return ((a->m_4x1[0] * b->m_4x1[0]) + (a->m_4x1[1] * b->m_4x1[1])
+		+ (a->m_4x1[2] * b->m_4x1[2]));
 }
 
-t_tuple	cross_product(t_tuple a, t_tuple b)
+void	cross_product(t_matrix *matrix, const t_matrix *a, const t_matrix *b)
 {
-	t_tuple	vector;
-
-	vector.x = (a.y * b.z) - (a.z * b.y);
-	vector.y = (a.z * b.x) - (a.x * b.z);
-	vector.z = (a.x * b.y) - (a.y * b.x);
-	vector.is_point = false;
-	return (vector);
+	if (!matrix)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
+		- (a->m_4x1[2] * b->m_4x1[1]);
+	matrix->m_4x1[1] = (a->m_4x1[2] * b->m_4x1[0])
+		- (a->m_4x1[0] * b->m_4x1[2]);
+	matrix->m_4x1[2] = (a->m_4x1[0] * b->m_4x1[1])
+		- (a->m_4x1[1] * b->m_4x1[0]);
+	matrix->m_4x1[3] = 0.0;
 }

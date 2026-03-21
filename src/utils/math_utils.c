@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:03:49 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/14 09:15:02 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:06:50 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_tuple	create_point(double x, double y, double z)
+void	init_point(t_matrix *matrix, double x, double y, double z)
 {
-	t_tuple	point;
-
-	point.x = x;
-	point.y = y;
-	point.z = z;
-	point.is_point = true;
-	return (point);
+	if (!matrix)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = x;
+	matrix->m_4x1[1] = y;
+	matrix->m_4x1[2] = z;
+	matrix->m_4x1[3] = 1.0;
 }
 
-t_tuple	create_vector(double x, double y, double z)
+void	init_vector(t_matrix *matrix, double x, double y, double z)
 {
-	t_tuple	vector;
-
-	vector.x = x;
-	vector.y = y;
-	vector.z = z;
-	vector.is_point = false;
-	return (vector);
+	if (!matrix)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = x;
+	matrix->m_4x1[1] = y;
+	matrix->m_4x1[2] = z;
+	matrix->m_4x1[3] = 0.0;
 }
 
 bool	is_equal(double a, double b)

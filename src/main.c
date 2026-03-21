@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 20:55:16 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:05:05 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,28 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	scene = read_image(argv[1]);
-	if (!scene)
-		return (1);
-	exit_error(NULL, false, &scene);
+	scene = NULL;
+	exit_error(-1, &scene);
+	read_image(&scene, argv[1]);
 	create_window(scene, argv[1]);
 	create_image(scene->window);
-	tester(scene);
 	init_hooks(scene);
+	tester(scene);
 	return (0);
+}
+
+static void	free_gnl(int *fd)
+{
+	char		*line;
+
+	line = get_next_line(*fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(*fd);
+	}
+	close(*fd);
+	*fd = -1;
 }
 
 void	free_scene(t_scene **scene)
@@ -34,20 +47,13 @@ void	free_scene(t_scene **scene)
 	if (!scene || !*scene)
 		return ;
 	lst_clear_object(&(*scene)->objects);
-	if ((*scene)->light)
-		free((*scene)->light->light_point);
 	free((*scene)->light);
-	if ((*scene)->camera)
-	{
-		free((*scene)->camera->view_point);
-		free((*scene)->camera->orientation_vector);
-	}
 	free((*scene)->camera);
-	if ((*scene)->amb_light)
-		free((*scene)->amb_light->colors);
 	free((*scene)->amb_light);
 	if ((*scene)->window)
 		free_window(&(*scene)->window);
+	if ((*scene)->fd != -1)
+		free_gnl(&(*scene)->fd);
 	free(*scene);
 	*scene = NULL;
 }

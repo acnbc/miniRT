@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/12 17:50:52 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:53:19 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,42 @@
 # include <math.h>
 # define EPSILON 0.00001
 
-t_tuple		add_tuples(t_tuple a, t_tuple b);
-t_tuple		subtract_tuple(t_tuple a, t_tuple b);
-t_tuple		negate_tuple(t_tuple tuple);
-t_tuple		scalar_multiplication(t_tuple tuple, double scalar);
-t_tuple		scalar_division(t_tuple tuple, double scalar);
-double		vector_magnitude(t_tuple t_tuple);
-t_tuple		vector_normalization(t_tuple vector);
-double		dot_product(t_tuple a, t_tuple b);
-t_tuple		cross_product(t_tuple a, t_tuple b);
+void		add_tuples(t_matrix *matrix, const t_matrix *a, const t_matrix *b);
+void		subtract_tuple(t_matrix *matrix, const t_matrix *a,
+				const t_matrix *b);
+void		negate_tuple(t_matrix *matrix, const t_matrix *tuple);
+void		scalar_multiplication(t_matrix *matrix, const t_matrix *tuple,
+				double scalar);
+void		scalar_division(t_matrix *matrix, const t_matrix *tuple,
+				double scalar);
+double		vector_magnitude(const t_matrix *tuple);
+void		vector_normalization(t_matrix *matrix, const t_matrix *vector);
+double		dot_product(const t_matrix *a, const t_matrix *b);
+void		cross_product(t_matrix *matrix, const t_matrix *a,
+				const t_matrix *b);
 
-t_tuple		create_point(double x, double y, double z);
-t_tuple		create_vector(double x, double y, double z);
+void		init_point(t_matrix *matrix, double x, double y, double z);
+void		init_vector(t_matrix *matrix, double x, double y, double z);
+void		init_matrix(t_matrix *matrix, int rows, int cols);
+void		init_identity_matrix(t_matrix *matrix, int dim);
 bool		is_equal(double a, double b);
 
-double		mat_get(t_matrix *m, int row, int col);
+double		mat_get(const t_matrix *m, int row, int col);
 void		mat_set(t_matrix *m, int row, int col, double value);
-t_matrix	*matrix_multiplication(t_matrix *a, t_matrix *b);
-t_matrix	*matrix_tuple_multiplication(t_matrix *a, t_matrix *b);
-bool		matrix_comparison(t_matrix *a, t_matrix *b);
-t_matrix	*matrix_transposition(t_matrix *m);
-t_matrix	*create_identity_matrix(int dim);
-double		get_2x2_determinant(t_matrix *a);
-double		*get_matrix(t_matrix *m);
-t_matrix	*creat_new_matrix(int rows, int cols);
-t_matrix	*get_submatrix(t_matrix *m, int row, int col);
-double		get_minor(t_matrix *m, int row, int col);
-double		get_cofactor(t_matrix *m, int row, int col);
-double		matrix_determinant(t_matrix *m);
-bool		is_invertible(t_matrix *m);
-t_matrix	*inverse_matrix(t_matrix *m);
+void		matrix_multiplication(t_matrix *matrix, const t_matrix *a,
+				const t_matrix *b);
+void		matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a,
+				const t_matrix *b);
+bool		matrix_comparison(const t_matrix *a, const t_matrix *b);
+void		matrix_transposition(t_matrix *matrix, const t_matrix *m);
+double		get_2x2_determinant(const t_matrix *a);
+double		*get_matrix(const t_matrix *m);
+void		get_submatrix(t_matrix *matrix, const t_matrix *m, int row,
+				int col);
+double		get_minor(const t_matrix *m, int row, int col);
+double		get_cofactor(const t_matrix *m, int row, int col);
+double		matrix_determinant(const t_matrix *m);
+bool		is_invertible(const t_matrix *m);
+void		inverse_matrix(t_matrix *matrix, const t_matrix *m);
 
 #endif

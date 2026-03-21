@@ -21,6 +21,7 @@ DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src/parsing/object \
 	$(DIR_OBJ)/src/math \
 	$(DIR_OBJ)/src/utils \
+	$(DIR_OBJ)/src/matrix_transformations \
 	$(DIR_OBJ)/images \
 	$(DIR_OBJ)/test
 
@@ -39,8 +40,10 @@ SRC = 	src/inteface/hooks.c \
 	src/math/matrix_inversion_operations.c \
 	src/utils/matrix_utils.c \
 	src/utils/math_utils.c \
+	src/utils/transformations_utils.c \
 	src/utils/matrix_inversion_utils.c \
 	src/utils/utils.c \
+	src/matrix_transformations/transformations.c \
 	test/test_scene.c \
 	test/main.c \
 	test/test_math.c \

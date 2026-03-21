@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 19:02:12 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:04:14 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_matrix
 
 typedef enum e_id
 {
+	Invalid = -1,
 	A,
 	C,
 	L,
@@ -75,22 +76,23 @@ typedef struct s_amb_light
 {
 	t_id	id;
 	double	light_ratio;
-	t_rgb	*colors;
+	t_rgb	colors;
 }	t_amb_light;
 
 typedef struct s_camera
 {
-	t_id	id;
-	t_tuple	*view_point;
-	t_tuple	*orientation_vector;
-	double	field_of_view;
+	t_id		id;
+	t_matrix	view_point;
+	t_matrix	orientation_vector;
+	double		field_of_view;
 }	t_camera;
 
 typedef struct s_light
 {
-	t_id	id;
-	t_tuple	*light_point;
-	double	brightness;
+	t_id		id;
+	t_matrix	light_point;
+	double		brightness;
+	t_rgb		colors;
 }	t_light;
 
 typedef struct s_sphere
@@ -100,14 +102,14 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_tuple	*normalized_vector;
+	t_matrix	normalized_vector;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_tuple	*normalized_vector;
-	double	diameter;
-	double	height;
+	t_matrix	normalized_vector;
+	double		diameter;
+	double		height;
 }	t_cylinder;
 
 typedef union u_object_type
@@ -120,9 +122,9 @@ typedef union u_object_type
 typedef struct s_object
 {
 	t_id			id;
-	t_tuple			*coord;
-	t_rgb			*colors;
-	t_object_type	*object;
+	t_matrix		coord;
+	t_rgb			colors;
+	t_object_type	object;
 	struct s_object	*next;
 }	t_object;
 
@@ -133,6 +135,20 @@ typedef struct s_scene
 	t_camera	*camera;
 	t_light		*light;
 	t_object	*objects;
+	int			fd;
 }	t_scene;
+
+typedef enum e_msg_error
+{
+	ERR_MALLOC = 1,
+	ERR_ARGS,
+	ERR_FILE_FORMAT,
+	ERR_FILE_READ,
+	ERR_DUPLICATE,
+	ERR_RANGE,
+	ERR_MISSING_ELEM,
+	ERR_MISSING_ARGS,
+	ERR_ID
+}	t_msg_error;
 
 #endif

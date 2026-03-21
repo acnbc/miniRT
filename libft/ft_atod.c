@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:24:34 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/02/15 06:19:04 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/11 23:05:51 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,18 @@ static double	fraction(const char *nptr)
 {
 	double	nb;
 	int		i;
+	int		f;
 
 	i = 0;
 	if (nptr && nptr[i] == '.')
 		i++;
 	nb = 0;
+	f = 10;
 	while (nptr && nptr[i] && ft_isdigit(nptr[i]))
 	{
 		nb = (nb * 10) + (nptr[i] - '0');
 		i++;
+		f *= 10;
 	}
-	return (nb / (i * 10));
+	return (nb / f);
 }

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 06:01:59 by jessica           #+#    #+#             */
-/*   Updated: 2026/02/16 20:23:16 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:05:40 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static const char	*get_id_name(t_id id);
 static void			print_object_details(t_object *obj);
-static void			print_tuple(char *label, t_tuple *t);
-static void			print_rgb(char *label, t_rgb *c);
+static void			print_matrix_as_tuple(char *label, const t_matrix *t);
+static void			print_rgb(char *label, t_rgb c);
 
 
 void	print_scene(t_scene *scene)
@@ -38,15 +38,16 @@ void	print_scene(t_scene *scene)
 	if (scene->camera)
 	{
 		printf("\n[%s]\n", get_id_name(scene->camera->id));
-		print_tuple("View Point", scene->camera->view_point);
-		print_tuple("Orientation", scene->camera->orientation_vector);
+		print_matrix_as_tuple("View Point", &scene->camera->view_point);
+		print_matrix_as_tuple("Orientation", &scene->camera->orientation_vector);
 		printf("	FOV: %.2f\n", scene->camera->field_of_view);
 	}
 	if (scene->light)
 	{
 		printf("\n[%s]\n", get_id_name(scene->light->id));
-		print_tuple("Position", scene->light->light_point);
+		print_matrix_as_tuple("Position", &scene->light->light_point);
 		printf("	Brightness: %.2f\n", scene->light->brightness);
+		print_rgb("Color", scene->light->colors);
 	}
 	printf("\n[OBJECTS LIST]\n");
 	curr = scene->objects;
@@ -54,7 +55,7 @@ void	print_scene(t_scene *scene)
 	while (curr)
 	{
 		printf("  %d. ID: %s\n", i++, get_id_name(curr->id));
-		print_tuple("Coords", curr->coord);
+		print_matrix_as_tuple("Coords", &curr->coord);
 		print_rgb("Color", curr->colors);
 		print_object_details(curr);
 		printf("	----------\n");
@@ -65,22 +66,22 @@ void	print_scene(t_scene *scene)
 
 static void	print_object_details(t_object *obj)
 {
-	if (!obj || !obj->object)
+	if (!obj)
 		return ;
 
-	if (obj->id == sp && obj->object->sphere)
+	if (obj->id == sp && obj->object.sphere)
 	{
-		printf("	Diameter: %.2f\n", obj->object->sphere->diameter);
+		printf("	Diameter: %.2f\n", obj->object.sphere->diameter);
 	}
-	else if (obj->id == pl && obj->object->plane)
+	else if (obj->id == pl && obj->object.plane)
 	{
-		print_tuple("Normal", obj->object->plane->normalized_vector);
+		print_matrix_as_tuple("Normal", &obj->object.plane->normalized_vector);
 	}
-	else if (obj->id == cy && obj->object->cylinder)
+	else if (obj->id == cy && obj->object.cylinder)
 	{
-		print_tuple("Normal", obj->object->cylinder->normalized_vector);
+		print_matrix_as_tuple("Normal", &obj->object.cylinder->normalized_vector);
 		printf("	Diameter: %.2f | Height: %.2f\n", 
-			obj->object->cylinder->diameter, obj->object->cylinder->height);
+			obj->object.cylinder->diameter, obj->object.cylinder->height);
 	}
 }
 
@@ -101,22 +102,18 @@ static const char	*get_id_name(t_id id)
 	return "Unknown";
 }
 
-static void	print_tuple(char *label, t_tuple *t)
+static void	print_matrix_as_tuple(char *label, const t_matrix *t)
 {
 	char	*str;
 
-	if (!t)
-		return ;
 	str = "Vector";
-	if (t->is_point)
+	if (is_equal(t->m_4x1[3], 1.0))
 		str = "Point";
 	printf("	%s: [%.2f, %.2f, %.2f] (%s)\n",
-		label, t->x, t->y, t->z, str);
+		label, t->m_4x1[0], t->m_4x1[1], t->m_4x1[2], str);
 }
 
-static void	print_rgb(char *label, t_rgb *c)
+static void	print_rgb(char *label, t_rgb c)
 {
-	if (!c)
-		return ;
-	printf("	%s: R:%d G:%d B:%d\n", label, c->r, c->g, c->b);
+	printf("	%s: R:%d G:%d B:%d\n", label, c.r, c.g, c.b);
 }
