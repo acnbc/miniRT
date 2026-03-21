@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/17 23:41:07 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 12:48:09 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ void	test_final_determinant(void);
 void	test_is_invertible(void);
 void	test_inverse_matrix_basic(void);
 void	test_muilt_inverse_product(void);
-void	test_transformations(void);
+void	test_translation(void);
+void	test_scaling(void);
+void	test_rotation(void);
+void	test_rotation_y_axis(void);
+void	test_rotation_z_axis(void);
 
 void	print_scene(t_scene *scene);
 

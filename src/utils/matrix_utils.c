@@ -6,21 +6,33 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/18 14:13:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_matrix	*create_identity_matrix(int dim)
+void	init_matrix(t_matrix *out, int rows, int cols)
 {
-	t_matrix	*identity;
-	int			row;
-	int			col;
+	int	i;
 
-	if (dim < 2)
-		return (NULL);
-	identity = creat_new_matrix(dim, dim);
+	if (!out)
+		return ;
+	out->rows = rows;
+	out->cols = cols;
+	i = -1;
+	while (++i < rows * cols)
+		out->m_4x4[i] = 0.0;
+}
+
+void	init_identity_matrix(t_matrix *out, int dim)
+{
+	int	row;
+	int	col;
+
+	if (!out || dim < 2)
+		return ;
+	init_matrix(out, dim, dim);
 	row = -1;
 	while (++row < dim)
 	{
@@ -28,12 +40,11 @@ t_matrix	*create_identity_matrix(int dim)
 		while (++col < dim)
 		{
 			if (row == col)
-				mat_set(identity, row, col, 1.0);
+				mat_set(out, row, col, 1.0);
 			else
-				mat_set(identity, row, col, 0.0);
+				mat_set(out, row, col, 0.0);
 		}
 	}
-	return (identity);
 }
 
 double	*get_matrix(t_matrix *m)
@@ -74,16 +85,3 @@ void	mat_set(t_matrix *m, int row, int col, double value)
 	ptr[row * m->cols + col] = value;
 }
 
-t_matrix	*creat_new_matrix(int rows, int cols)
-{
-	t_matrix	*new;
-	int			i;
-
-	new = (t_matrix *)safe_malloc(sizeof(t_matrix));
-	new->rows = rows;
-	new->cols = cols;
-	i = -1;
-	while (++i < rows * cols)
-		new->m_4x4[i] = 0.0;
-	return (new);
-}

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/17 23:40:53 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 12:52:54 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,27 +163,26 @@ void    test_matrix_multiplication(void)
     print_matrix(&matrix_c);
     printf("Matriz d:\n");
     print_matrix(&matrix_d);
-    t_matrix *result = matrix_multiplication(&matrix_c, &matrix_d);
+    t_matrix result;
+    matrix_multiplication(&matrix_c, &matrix_d, &result);
     printf("Resultado:\n");
-    print_matrix(result);
+    print_matrix(&result);
     printf("Matriz esperada:\n");
     print_matrix(&matrix_r);
-    if (matrix_comparison(result, &matrix_r)) {
+    if (matrix_comparison(&result, &matrix_r)) {
         printf("\n✓ Multiplicação correta!\n");
     } else {
         printf("\n✗ multiplicação incorreta!\n");
     }
-    free_matrix(result);
     printf("Matriz e:\n");
     print_one_col_matrix(&matrix_e);
     printf("Matriz f:\n");
     print_matrix(&matrix_f);    
-    result = matrix_tuple_multiplication(&matrix_f, &matrix_e);
+    matrix_tuple_multiplication(&matrix_f, &matrix_e, &result);
     printf("Resultado:\n");
-    print_one_col_matrix(result);
+    print_one_col_matrix(&result);
     printf("Esperado:\n");
     print_one_col_matrix(&matrix_re);
-    free_matrix(result);
 }
 
 void    test_transposition(void)
@@ -210,24 +209,20 @@ void    test_transposition(void)
         .cols = 4
     };
     
-    t_matrix *result = matrix_transposition(&original);
-    
+    t_matrix result;
+    matrix_transposition(&original, &result);
     printf("/ ============= TESTE DE TRANSPOSIÇÃO ====================== /:\n");
 	printf("Original:\n");
     print_matrix(&original);
-    
     printf("\nTransposta:\n");
-    print_matrix(result);
-    
+    print_matrix(&result);
     printf("\nEsperada:\n");
     print_matrix(&expected);
-    
-    if (matrix_comparison(result, &expected)) {
+    if (matrix_comparison(&result, &expected)) {
         printf("\n✓ Transposição correta!\n");
     } else {
         printf("\n✗ Transposição incorreta!\n");
     }
-    free_matrix(result);
 }
 
 void    test_mult_matrix_id(void)
@@ -250,27 +245,24 @@ void    test_mult_matrix_id(void)
         .cols = 1
     };
 
-    t_matrix    *id = create_identity_matrix(4);
+    t_matrix	id;
+    t_matrix	result;
 
+    init_identity_matrix(&id, 4);
     printf("Matriz identidade:\n");
-    print_matrix(id);
+    print_matrix(&id);
     printf("Matriz a:\n");
-    print_matrix(&matrix_a); 
+    print_matrix(&matrix_a);
     printf("Matriz b:\n");
     print_one_col_matrix(&matrix_b);
-
-    t_matrix *result = matrix_multiplication(&matrix_a, id);
-    if (matrix_comparison(result, &matrix_a)) {
+    matrix_multiplication(&matrix_a, &id, &result);
+    if (matrix_comparison(&result, &matrix_a))
         printf("\n✓ Multiplicação por matriz identidade correta!\n");
-    } else {
+    else
         printf("\n✗ Multiplicação por matriz identidade incorreta!\n");
-    }
-    free_matrix(result);
-    result = matrix_tuple_multiplication(id, &matrix_b);
+    matrix_tuple_multiplication(&id, &matrix_b, &result);
     printf("Multiplicação de matriz de uma coluna:\n");
-    print_one_col_matrix(result);
-    free_matrix(result);
-    free_matrix(id);
+    print_one_col_matrix(&result);
 }
 
 void    test_determinant(void)
@@ -340,33 +332,27 @@ void    test_submatrix(void)
         .cols = 3
     };
     
-    t_matrix    *result_a;
-    t_matrix    *result_b;
-    
-    result_a = get_submatrix(&a, 0, 2);
+    t_matrix	result_a;
+    t_matrix	result_b;
 
+    get_submatrix(&a, 0, 2, &result_a);
     printf("result_a:\n");
-    print_matrix(result_a);
+    print_matrix(&result_a);
     printf("sub_a:\n");
     print_matrix(&sub_a);
-    if (matrix_comparison(result_a, &sub_a))
+    if (matrix_comparison(&result_a, &sub_a))
         printf("Correct submatrix\n");
     else
         printf("Incorrect submatrix\n");
-    free_matrix(result_a);
-
-    result_b = get_submatrix(&b, 2, 1);
-
+    get_submatrix(&b, 2, 1, &result_b);
     printf("result_b:\n");
-    print_matrix(result_b);
+    print_matrix(&result_b);
     printf("sub_b:\n");
     print_matrix(&sub_b);
-    
-    if (matrix_comparison(result_b, &sub_b))
-        printf("Correct submatrix\n");
+    if (matrix_comparison(&result_b, &sub_b))
+		printf("Correct submatrix\n");
     else
-        printf("Incorrect submatrix\n");
-    free_matrix(result_b);
+		printf("Incorrect submatrix\n");
 }
 
 void    test_minor(void)
@@ -384,27 +370,32 @@ void    test_minor(void)
 
     double  expected = 25;
 
-    double  result;
+    double	result;
+    t_matrix	s1;
+    t_matrix	s2;
 
-    result = get_minor(&a, 1, 0);
-
+    result = get_minor(&a, 1, 0, &s1, &s2);
     if (is_equal(result, expected))
         printf("Menor obtido corretamente = %.2f\n", result);
     else
         printf("Menor incorreto\n");
-    printf("Cofactor %.2f\n", get_cofactor(&a, 1, 0));
+    printf("Cofactor %.2f\n", get_cofactor(&a, 1, 0, &s1, &s2));
 }
 
 // ============================================
 // Helper para criar matrizes
 // ============================================
-static t_matrix* create_test_matrix(int rows, int cols, double *values)
+static void	init_test_matrix(t_matrix *out, int rows, int cols, double *values)
 {
-    t_matrix *m = creat_new_matrix(rows, cols);
-    for (int i = 0; i < rows * cols; i++) {
-        m->m_4x4[i] = values[i];  // Usamos m_4x4 pois é o maior array
-    }
-    return m;
+	int	i;
+
+	init_matrix(out, rows, cols);
+	i = 0;
+	while (i < rows * cols)
+	{
+		out->m_4x4[i] = values[i];
+		i++;
+	}
 }
     
     
@@ -417,93 +408,56 @@ void test_final_determinant(void)
     // ============================================
     printf("Teste 1: Matriz 2x2\n");
     double vals2[] = {1, 2, 3, 4};
-    t_matrix *m2x2 = create_test_matrix(2, 2, vals2);
-    
-    double det2 = matrix_determinant(m2x2);
-    double expected2 = 1*4 - 2*3;  // -2
+    t_matrix m2x2;
+    init_test_matrix(&m2x2, 2, 2, vals2);
+    double det2 = matrix_determinant(&m2x2);
+    double expected2 = 1*4 - 2*3;
     printf("  Calculado: %f\n", det2);
     printf("  Esperado:  %f\n", expected2);
     printf("  Resultado: %s\n\n", fabs(det2 - expected2) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
-    free_matrix(m2x2);
-    
-    // ============================================
-    // Teste 2: Matriz 3x3 (determinante zero)
-    // ============================================
     printf("Teste 2: Matriz 3x3 (deve ser 0)\n");
     double vals3[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    t_matrix *m3x3 = create_test_matrix(3, 3, vals3);
-    
-    double det3 = matrix_determinant(m3x3);
+    t_matrix m3x3;
+    init_test_matrix(&m3x3, 3, 3, vals3);
+    double det3 = matrix_determinant(&m3x3);
     printf("  Calculado: %f\n", det3);
     printf("  Esperado:  0.0\n");
     printf("  Resultado: %s\n\n", fabs(det3) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
-    free_matrix(m3x3);
-    
-    // ============================================
-    // Teste 3: Matriz 3x3 (não singular)
-    // ============================================
     printf("Teste 3: Matriz 3x3 (não singular)\n");
     double vals3b[] = {2, -3, 1, 2, 0, -1, 1, 4, 5};
-    t_matrix *m3x3b = create_test_matrix(3, 3, vals3b);
-    
-    double det3b = matrix_determinant(m3x3b);
+    t_matrix m3x3b;
+    init_test_matrix(&m3x3b, 3, 3, vals3b);
+    double det3b = matrix_determinant(&m3x3b);
     double expected3b = 49.0;
     printf("  Calculado: %f\n", det3b);
     printf("  Esperado:  %f\n", expected3b);
     printf("  Resultado: %s\n\n", fabs(det3b - expected3b) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
-    free_matrix(m3x3b);
-    
-    // ============================================
-    // Teste 4: Matriz 4x4 (do livro The Ray Tracer Challenge)
-    // ============================================
     printf("Teste 4: Matriz 4x4\n");
-    double vals4[] = {
-        -2, -8,  3,  5,
-        -3,  1,  7,  3,
-         1,  2, -9,  6,
-        -6,  7,  7, -9
-    };
-    t_matrix *m4x4 = create_test_matrix(4, 4, vals4);
-    
-    double det4 = matrix_determinant(m4x4);
+    double vals4[] = {-2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9};
+    t_matrix m4x4;
+    init_test_matrix(&m4x4, 4, 4, vals4);
+    double det4 = matrix_determinant(&m4x4);
     double expected4 = -4071.0;
     printf("  Calculado: %f\n", det4);
     printf("  Esperado:  %f\n", expected4);
     printf("  Resultado: %s\n\n", fabs(det4 - expected4) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
-    free_matrix(m4x4);
-    
-    // ============================================
-    // Teste 5: Matriz identidade 4x4
-    // ============================================
     printf("Teste 5: Matriz identidade 4x4\n");
-    t_matrix *identity = create_identity_matrix(4);
-    
-    double det_id = matrix_determinant(identity);
+    t_matrix identity;
+    init_identity_matrix(&identity, 4);
+    double det_id = matrix_determinant(&identity);
     printf("  Calculado: %f\n", det_id);
     printf("  Esperado:  1.0\n");
     printf("  Resultado: %s\n\n", fabs(det_id - 1.0) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
-    free_matrix(identity);
-    
-    // ============================================
-    // Teste 6: Matriz 4x4 com translação (deve ter det = 1)
-    // ============================================
     printf("Teste 6: Matriz de translação 4x4\n");
-    t_matrix *translation = create_identity_matrix(4);
-    mat_set(translation, 0, 3, 5.0);   // tx = 5
-    mat_set(translation, 1, 3, -3.0);  // ty = -3
-    mat_set(translation, 2, 3, 2.0);   // tz = 2
-    
-    double det_trans = matrix_determinant(translation);
+    t_matrix translation;
+    init_identity_matrix(&translation, 4);
+    mat_set(&translation, 0, 3, 5.0);
+    mat_set(&translation, 1, 3, -3.0);
+    mat_set(&translation, 2, 3, 2.0);
+    double det_trans = matrix_determinant(&translation);
     printf("  Calculado: %f\n", det_trans);
     printf("  Esperado:  1.0 (matriz de translação preserva volume)\n");
     printf("  Resultado: %s\n\n", fabs(det_trans - 1.0) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
-    free_matrix(translation);
     
     printf("=== FIM DOS TESTES ===\n");
 }
@@ -620,31 +574,23 @@ void    test_inverse_matrix_basic(void)
         .cols = 4
     }; 
 
-    t_matrix    *result;
+    t_matrix	result;
 
-    result = inverse_matrix(&a);
-
-    if (matrix_comparison(result, &b))
-        printf("Matriz inversa gerada corretamente\n");
+    inverse_matrix(&a, &result);
+    if (matrix_comparison(&result, &b))
+		printf("Matriz inversa gerada corretamente\n");
     else
-        printf("Matriz inversa gerada incorretamente\n");
-    free_matrix(result);
-
-    result = inverse_matrix(&c);
-
-    if (matrix_comparison(result, &d))
-        printf("Matriz inversa gerada corretamente\n");
+		printf("Matriz inversa gerada incorretamente\n");
+    inverse_matrix(&c, &result);
+    if (matrix_comparison(&result, &d))
+		printf("Matriz inversa gerada corretamente\n");
     else
-        printf("Matriz inversa gerada incorretamente\n");
-    free_matrix(result);
-
-    result = inverse_matrix(&e);
-
-    if (matrix_comparison(result, &f))
-        printf("Matriz inversa gerada corretamente\n");
+		printf("Matriz inversa gerada incorretamente\n");
+    inverse_matrix(&e, &result);
+    if (matrix_comparison(&result, &f))
+		printf("Matriz inversa gerada corretamente\n");
     else
-        printf("Matriz inversa gerada incorretamente\n");
-    free_matrix(result);
+		printf("Matriz inversa gerada incorretamente\n");
 }
 
 void    test_muilt_inverse_product(void)
@@ -674,73 +620,209 @@ void    test_muilt_inverse_product(void)
     };
 
 
-    t_matrix    *result;
+    t_matrix	result;
+    t_matrix	revert;
+    t_matrix	result_final;
 
-    t_matrix    *revert;
-
-    t_matrix    *result_final;
-
-    result = matrix_multiplication(&a, &b);
-
-    print_matrix(result);
-
-    revert = inverse_matrix(&b);
-
-    result_final = matrix_multiplication(result, revert);
-
-    if (matrix_comparison(result_final, &a))
-        printf("Reversão da multiplicação correta\n");
+    matrix_multiplication(&a, &b, &result);
+    inverse_matrix(&b, &revert);
+    matrix_multiplication(&result, &revert, &result_final);
+    if (matrix_comparison(&result_final, &a))
+		printf("Reversão da multiplicação correta\n");
     else
-        printf("Reversão da multiplicação incorreta\n");
-    free_matrix(result);
-    free_matrix(revert);
-    free_matrix(result_final);
+		printf("Reversão da multiplicação incorreta\n");
 }
 
-void	test_transformations(void)
+void	test_translation(void)
 {
-	t_matrix	*transform;
-	t_matrix	*result;
+	t_matrix	offset;
+	t_matrix	transform;
+	t_matrix	point_m;
+	t_matrix	expected;
+	t_matrix	result;
+	t_matrix	inversa;
+	t_matrix	point_mi;
+	t_matrix	expectedi;
 
-	t_matrix	*offset = create_point(5.0, - 3.0, 2.0);
-	
-	transform = translation(offset);
-	
-	t_matrix *point_m = create_point(-3.0, 4.0, 5.0);
-	
-	t_matrix *expected = create_point(2.0, 1.0, 7.0);
-	
+	init_point(&offset, 5.0, -3.0, 2.0);
+	translation(&offset, &transform);
+	init_point(&point_m, -3.0, 4.0, 5.0);
+	init_point(&expected, 2.0, 1.0, 7.0);
 	printf("\n=== Translação: multiplicação por matriz de translação ===\n");
-
-		
-	result = matrix_tuple_multiplication(transform, point_m);
-
-	if (matrix_comparison(result, expected))
+	matrix_tuple_multiplication(&transform, &point_m, &result);
+	if (matrix_comparison(&result, &expected))
 		printf("Translação correta\n");
 	else
 		printf("Translação incorreta\n");
-
-	free_matrix(result);
-	
-	t_matrix	*inversa = inverse_matrix(transform);
-	
-	t_matrix	*point_mi = create_point(-3.0, 4.0, 5.0);
-	
-	t_matrix	*expectedi = create_point(-8.0, 7.0, 3.0);
-	
+	inverse_matrix(&transform, &inversa);
+	init_point(&point_mi, -3.0, 4.0, 5.0);
+	init_point(&expectedi, -8.0, 7.0, 3.0);
 	printf("\n=== Translação: multiplicação por inversa da matriz de translação ===\n");
-	
-	result = matrix_tuple_multiplication(inversa, point_mi);
-	
-	if (matrix_comparison(result, expectedi))
+	matrix_tuple_multiplication(&inversa, &point_mi, &result);
+	if (matrix_comparison(&result, &expectedi))
 		printf("Translação correta\n");
 	else
 		printf("Translação incorreta\n");
-	
-	free_matrix(result);
-	free_matrix(transform);
-	free_matrix(point_m);
-	free_matrix(point_mi);
-	free_matrix(expected);
-	free_matrix(expectedi);
 }
+
+void	test_scaling(void)
+{
+	t_matrix	transform;
+	t_matrix	result;
+	t_matrix	expected;
+	t_matrix	point;
+	t_matrix	offset;
+	t_matrix	vector;
+	t_matrix	inversa;
+
+	init_point(&expected, -8, 18, 32);
+	init_point(&offset, 2, 3, 4);
+	scaling(&offset, &transform);
+	init_point(&point, -4, 6, 8);
+	matrix_tuple_multiplication(&transform, &point, &result);
+	printf("\n=== Scaling: point ===\n");
+	if (matrix_comparison(&result, &expected))
+		printf("Scaling com ponto correta\n");
+	else
+		printf("Scaling com ponto incorreta\n");
+	init_vector(&expected, -8, 18, 32);
+	init_vector(&offset, 2, 3, 4);
+	scaling(&offset, &transform);
+	init_vector(&vector, -4, 6, 8);
+	matrix_tuple_multiplication(&transform, &vector, &result);
+	printf("\n=== Scaling: vector ===\n");
+	if (matrix_comparison(&result, &expected))
+		printf("Scaling com vector correta\n");
+	else
+		printf("Scaling com vector incorreta\n");
+	init_vector(&expected, -2, 2, 2);
+	scaling(&offset, &transform);
+	inverse_matrix(&transform, &inversa);
+	matrix_tuple_multiplication(&inversa, &vector, &result);
+	printf("\n=== Scaling: vector ===\n");
+	if (matrix_comparison(&result, &expected))
+		printf("Scaling com inversa e vector correta\n");
+	else
+		printf("Scaling com inversa vector incorreta\n");
+}
+
+void	test_rotation(void)
+{
+	t_matrix	point;
+	t_matrix	expected_half;
+	t_matrix	expected_full;
+	t_matrix	half_quarter;
+	t_matrix	full_quarter;
+	t_matrix	half_result;
+	t_matrix	full_result;
+	t_matrix	inverted;
+	t_matrix	result_inverted;
+	t_matrix	expected_inverted;
+
+	init_point(&point, 0, 1, 0);
+	init_point(&expected_half, 0, M_SQRT2 / 2, M_SQRT2 / 2);
+	init_point(&expected_full, 0, 0, 1);
+	x_axis_rotation(M_PI_4, &half_quarter);
+	x_axis_rotation(M_PI_2, &full_quarter);
+	inverse_matrix(&half_quarter, &inverted);
+	init_point(&expected_inverted, 0, M_SQRT2 / 2, -M_SQRT2 / 2);
+	matrix_tuple_multiplication(&half_quarter, &point, &half_result);
+	matrix_tuple_multiplication(&full_quarter, &point, &full_result);
+	matrix_tuple_multiplication(&inverted, &point, &result_inverted);
+	printf("\n=== Rotação no eixo x: half quarter ===\n");
+	if (matrix_comparison(&half_result, &expected_half))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	printf("\n=== Rotação no eixo x: invertida ===\n");
+	if (matrix_comparison(&result_inverted, &expected_inverted))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	printf("\n=== Rotação no eixo x: half quarter ===\n");
+	if (matrix_comparison(&full_result, &expected_full))
+		printf("\nRotação correta\n");
+	else
+		printf("\nRotação incorreta\n");
+}
+
+void	test_rotation_y_axis(void)
+{
+	t_matrix	point;
+	t_matrix	expected_half;
+	t_matrix	expected_full;
+	t_matrix	half_quarter;
+	t_matrix	full_quarter;
+	t_matrix	half_result;
+	t_matrix	full_result;
+	t_matrix	inverted;
+	t_matrix	result_inverted;
+	t_matrix	expected_inverted;
+
+	init_point(&point, 0, 0, 1);
+	init_point(&expected_half, M_SQRT2 / 2, 0, M_SQRT2 / 2);
+	init_point(&expected_full, 1, 0, 0);
+	y_axis_rotation(M_PI_4, &half_quarter);
+	y_axis_rotation(M_PI_2, &full_quarter);
+	inverse_matrix(&half_quarter, &inverted);
+	init_point(&expected_inverted, -M_SQRT2 / 2, 0, M_SQRT2 / 2);
+	matrix_tuple_multiplication(&half_quarter, &point, &half_result);
+	matrix_tuple_multiplication(&full_quarter, &point, &full_result);
+	matrix_tuple_multiplication(&inverted, &point, &result_inverted);
+	printf("\n=== Rotação no eixo Y: half quarter ===\n");
+	if (matrix_comparison(&half_result, &expected_half))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	printf("\n=== Rotação no eixo Y: invertida ===\n");
+	if (matrix_comparison(&result_inverted, &expected_inverted))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	printf("\n=== Rotação no eixo Y: full quarter ===\n");
+	if (matrix_comparison(&full_result, &expected_full))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+}
+
+void	test_rotation_z_axis(void)
+{
+	t_matrix	point;
+	t_matrix	expected_half;
+	t_matrix	expected_full;
+	t_matrix	half_quarter;
+	t_matrix	full_quarter;
+	t_matrix	half_result;
+	t_matrix	full_result;
+	t_matrix	inverted;
+	t_matrix	result_inverted;
+	t_matrix	expected_inverted;
+
+	init_point(&point, 0, 1, 0);
+	init_point(&expected_half, -M_SQRT2 / 2, M_SQRT2 / 2, 0);
+	init_point(&expected_full, -1, 0, 0);
+	z_axis_rotation(M_PI_4, &half_quarter);
+	z_axis_rotation(M_PI_2, &full_quarter);
+	inverse_matrix(&half_quarter, &inverted);
+	init_point(&expected_inverted, M_SQRT2 / 2, M_SQRT2 / 2, 0);
+	matrix_tuple_multiplication(&half_quarter, &point, &half_result);
+	matrix_tuple_multiplication(&full_quarter, &point, &full_result);
+	matrix_tuple_multiplication(&inverted, &point, &result_inverted);
+	printf("\n=== Rotação no eixo Z: half quarter ===\n");
+	if (matrix_comparison(&half_result, &expected_half))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	printf("\n=== Rotação no eixo Z: invertida ===\n");
+	if (matrix_comparison(&result_inverted, &expected_inverted))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+	printf("\n=== Rotação no eixo Z: full quarter ===\n");
+	if (matrix_comparison(&full_result, &expected_full))
+		printf("Rotação correta\n");
+	else
+		printf("Rotação incorreta\n");
+}
+

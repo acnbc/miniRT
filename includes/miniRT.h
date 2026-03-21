@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/18 00:11:26 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 12:52:08 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 # include "types.h"
+# include <math.h>
 # include "math.h"
 # include <stdio.h>
 # include <stdlib.h>
