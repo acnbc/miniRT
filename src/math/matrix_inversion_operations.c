@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_inversion_operations.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:48:59 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:01:07 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-double	get_2x2_determinant(t_matrix *a)
+/* Forward declarations for recursive functions */
+double	get_minor(const t_matrix *m, int row, int col);
+double	get_cofactor(const t_matrix *m, int row, int col);
+
+double	get_2x2_determinant(const t_matrix *a)
 {
 	double	ac;
 	double	bd;
@@ -22,33 +26,26 @@ double	get_2x2_determinant(t_matrix *a)
 	return (ac - bd);
 }
 
-double	get_minor(t_matrix *m, int row, int col)
+double	get_minor(const t_matrix *m, int row, int col)
 {
-	t_matrix	*sub;
-	double		minor;
+	t_matrix	sub;
 
-	sub = get_submatrix(m, row, col);
-	if (sub->rows == 2 && sub->cols == 2)
-		minor = get_2x2_determinant(sub);
-	else
-		minor = matrix_determinant(sub);
-	return (minor);
+	get_submatrix(&sub, m, row, col);
+	return (matrix_determinant(&sub));
 }
 
-double	get_cofactor(t_matrix *m, int row, int col)
+double	get_cofactor(const t_matrix *m, int row, int col)
 {
-	double	cofactor;
 	double	minor;
 
 	minor = get_minor(m, row, col);
 	if ((row + col) % 2 == 0)
-		cofactor = minor;
+		return (minor);
 	else
-		cofactor = -minor;
-	return (cofactor);
+		return (-minor);
 }
 
-double	matrix_determinant(t_matrix *m)
+double	matrix_determinant(const t_matrix *m)
 {
 	double	det;
 	int		i;
@@ -62,17 +59,16 @@ double	matrix_determinant(t_matrix *m)
 	return (det);
 }
 
-t_matrix	*inverse_matrix(t_matrix *m)
+void	inverse_matrix(t_matrix *matrix, const t_matrix *m)
 {
-	t_matrix	*inverted;
-	int			row;
-	int			col;
-	double		det;
-	double		c;
+	int		row;
+	int		col;
+	double	det;
+	double	c;
 
-	if (!is_invertible(m))
-		return (NULL);
-	inverted = creat_new_matrix(m->rows, m->cols);
+	if (!matrix || !is_invertible(m))
+		return ;
+	init_matrix(matrix, m->rows, m->cols);
 	det = matrix_determinant(m);
 	row = -1;
 	while (++row < m->rows)
@@ -81,8 +77,7 @@ t_matrix	*inverse_matrix(t_matrix *m)
 		while (++col < m->cols)
 		{
 			c = get_cofactor(m, col, row);
-			mat_set(inverted, row, col, c / det);
+			mat_set(matrix, row, col, c / det);
 		}
 	}
-	return (inverted);
 }

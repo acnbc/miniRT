@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operations_part_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:07 by anogueir          #+#    #+#             */
-/*   Updated: 2026/01/13 18:56:10 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:03:40 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-double	vector_magnitude(t_matrix *tuple)
+double	vector_magnitude(const t_matrix *tuple)
 {
 	double	magnitude;
 	double	temp;
@@ -23,43 +23,36 @@ double	vector_magnitude(t_matrix *tuple)
 	return (magnitude);
 }
 
-t_matrix	*vector_normalization(t_matrix *vector)
+void	vector_normalization(t_matrix *matrix, const t_matrix *vector)
 {
-	t_matrix	*normalized;
 	double		magnitude;
 
 	magnitude = vector_magnitude(vector);
-	if (magnitude == 0.0)
-		return (NULL);
-	normalized = creat_new_matrix(4, 1);
-	if (!normalized)
-		return (NULL);
-	normalized->m_4x1[0] = vector->m_4x1[0] / magnitude;
-	normalized->m_4x1[1] = vector->m_4x1[1] / magnitude;
-	normalized->m_4x1[2] = vector->m_4x1[2] / magnitude;
-	normalized->m_4x1[3] = vector->m_4x1[3];
-	return (normalized);
+	if (!matrix || !magnitude == 0)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = vector->m_4x1[0] / magnitude;
+	matrix->m_4x1[1] = vector->m_4x1[1] / magnitude;
+	matrix->m_4x1[2] = vector->m_4x1[2] / magnitude;
+	matrix->m_4x1[3] = vector->m_4x1[3];
 }
 
-double	dot_product(t_matrix *a, t_matrix *b)
+double	dot_product(const t_matrix *a, const t_matrix *b)
 {
 	return ((a->m_4x1[0] * b->m_4x1[0]) + (a->m_4x1[1] * b->m_4x1[1])
 		+ (a->m_4x1[2] * b->m_4x1[2]));
 }
 
-t_matrix	*cross_product(t_matrix *a, t_matrix *b)
+void	cross_product(t_matrix *matrix, const t_matrix *a, const t_matrix *b)
 {
-	t_matrix	*vector;
-
-	vector = creat_new_matrix(4, 1);
-	if (!vector)
-		return (NULL);
-	vector->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
+	if (!matrix)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = (a->m_4x1[1] * b->m_4x1[2])
 		- (a->m_4x1[2] * b->m_4x1[1]);
-	vector->m_4x1[1] = (a->m_4x1[2] * b->m_4x1[0])
+	matrix->m_4x1[1] = (a->m_4x1[2] * b->m_4x1[0])
 		- (a->m_4x1[0] * b->m_4x1[2]);
-	vector->m_4x1[2] = (a->m_4x1[0] * b->m_4x1[1])
+	matrix->m_4x1[2] = (a->m_4x1[0] * b->m_4x1[1])
 		- (a->m_4x1[1] * b->m_4x1[0]);
-	vector->m_4x1[3] = 0.0;
-	return (vector);
+	matrix->m_4x1[3] = 0.0;
 }

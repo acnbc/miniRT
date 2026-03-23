@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_inversion_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:51:00 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 14:29:53 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:07:44 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-bool	is_invertible(t_matrix *m)
+bool	is_invertible(const t_matrix *m)
 {
 	if (fabs(matrix_determinant(m)) < EPSILON)
 		return (false);
 	return (true);
 }
 
-t_matrix	*get_submatrix(t_matrix *m, int row, int col)
+void	get_submatrix(t_matrix *matrix, const t_matrix *m, int row, int col)
 {
-	int			i;
-	int			j;
-	int			k;
-	int			l;
-	t_matrix	*sub;
+	int	i;
+	int	j;
+	int	k;
+	int	l;
 
+	if (!matrix)
+		return ;
+	init_matrix(matrix, m->rows - 1, m->cols - 1);
 	i = -1;
 	k = 0;
-	sub = creat_new_matrix(m->rows - 1, m->cols - 1);
 	while (++i < m->rows)
 	{
 		if (i == row)
@@ -40,9 +41,8 @@ t_matrix	*get_submatrix(t_matrix *m, int row, int col)
 		{
 			if (j == col)
 				continue ;
-			mat_set(sub, k, l++, mat_get(m, i, j));
+			mat_set(matrix, k, l++, mat_get(m, i, j));
 		}
 		k++;
 	}
-	return (sub);
 }

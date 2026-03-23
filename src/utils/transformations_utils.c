@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   transformations_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 17:24:34 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/01/03 16:29:16 by jessica          ###   ########.fr       */
+/*   Created: 2026/03/16 16:29:32 by anogueir          #+#    #+#             */
+/*   Updated: 2026/03/21 14:59:14 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/miniRT.h"
 
-long	ft_atol(const char *nptr)
+void	combine_transformations(t_matrix *matrix, t_matrix *transposed,
+		t_matrix *rotated, t_matrix *scaled)
 {
-	int		i;
-	long	nb;
-	int		neg;
+	t_matrix	temp;
 
-	neg = 1;
-	nb = 0;
-	i = 0;
-	while (nptr && ft_isspace(nptr[i]))
-		i++;
-	if (nptr && nptr[i] == '-')
-	{
-		neg = -1;
-		i++;
-	}
-	else if (nptr && nptr[i] == '+')
-		i++;
-	while (nptr && nptr[i] && ft_isdigit(nptr[i]))
-	{
-		nb = (nb * 10) + (nptr[i] - '0');
-		i++;
-	}
-	return (nb * neg);
+	if (!matrix)
+		return ;
+	matrix_multiplication(&temp, rotated, scaled);
+	matrix_multiplication(matrix, transposed, &temp);
 }

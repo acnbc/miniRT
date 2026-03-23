@@ -3,37 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:03:49 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/13 15:04:47 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:06:50 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_matrix	*create_point(double x, double y, double z)
+void	init_point(t_matrix *matrix, double x, double y, double z)
 {
-	t_matrix	*point;
-
-	point = creat_new_matrix(4, 1);
-	point->m_4x1[0] = x;
-	point->m_4x1[1] = y;
-	point->m_4x1[2] = z;
-	point->m_4x1[3] = 1.0;
-	return (point);
+	if (!matrix)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = x;
+	matrix->m_4x1[1] = y;
+	matrix->m_4x1[2] = z;
+	matrix->m_4x1[3] = 1.0;
 }
 
-t_matrix	*create_vector(double x, double y, double z)
+void	init_vector(t_matrix *matrix, double x, double y, double z)
 {
-	t_matrix	*vector;
-
-	vector = creat_new_matrix(4, 1);
-	vector->m_4x1[0] = x;
-	vector->m_4x1[1] = y;
-	vector->m_4x1[2] = z;
-	vector->m_4x1[3] = 0.0;
-	return (vector);
+	if (!matrix)
+		return ;
+	init_matrix(matrix, 4, 1);
+	matrix->m_4x1[0] = x;
+	matrix->m_4x1[1] = y;
+	matrix->m_4x1[2] = z;
+	matrix->m_4x1[3] = 0.0;
 }
 
 bool	is_equal(double a, double b)

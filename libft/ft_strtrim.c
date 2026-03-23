@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mviana-v <mviana-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:47:55 by jesda-si          #+#    #+#             */
-/*   Updated: 2025/04/18 00:37:29 by mviana-v         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:58:03 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ static int	start_index(char const *s1, char const *set)
 {
 	int	i;
 
+	if (!s1 || !*s1)
+		return (0);
 	i = 0;
-	while (s1[i] && ft_strchr(set, s1[i]))
+	while (i >= 0 && s1 && s1[i] && ft_strchr(set, s1[i]))
 		i++;
 	return (i);
 }
@@ -43,8 +45,10 @@ static int	end_index(char const *s1, char const *set)
 {
 	int	i;
 
+	if (!s1 || !*s1)
+		return (0);
 	i = (int)ft_strlen(s1) - 1;
-	while (s1[i] && ft_strchr(set, s1[i]))
+	while (i >= 0 && s1 && s1[i] && ft_strchr(set, s1[i]))
 		i--;
 	return (i - 1);
 }

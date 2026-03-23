@@ -3,24 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
 /*   Updated: 2026/03/16 23:18:18 by ldos_sa2         ###   ########.fr       */
+=======
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
+/*   Updated: 2026/03/21 15:53:32 by jessica          ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_matrix	*create_identity_matrix(int dim)
+void	init_matrix(t_matrix *matrix, int rows, int cols)
 {
-	t_matrix	*identity;
-	int			row;
-	int			col;
+	int	i;
 
-	if (dim < 2)
-		return (NULL);
-	identity = creat_new_matrix(dim, dim);
+	if (!matrix)
+		return ;
+	matrix->rows = rows;
+	matrix->cols = cols;
+	i = -1;
+	while (++i < rows * cols)
+		matrix->m_4x4[i] = 0.0;
+}
+
+void	init_identity_matrix(t_matrix *matrix, int dim)
+{
+	int	row;
+	int	col;
+
+	if (!matrix || dim < 2)
+		return ;
+	init_matrix(matrix, dim, dim);
 	row = -1;
 	while (++row < dim)
 	{
@@ -28,37 +47,36 @@ t_matrix	*create_identity_matrix(int dim)
 		while (++col < dim)
 		{
 			if (row == col)
-				mat_set(identity, row, col, 1.0);
+				mat_set(matrix, row, col, 1.0);
 			else
-				mat_set(identity, row, col, 0.0);
+				mat_set(matrix, row, col, 0.0);
 		}
 	}
-	return (identity);
 }
 
-double	*get_matrix(t_matrix *m)
+double	*get_matrix(const t_matrix *m)
 {
 	double	*ptr;
 
 	if (m->rows == 4 && m->cols == 4)
-		ptr = m->m_4x4;
+		ptr = (double *)&m->m_4x4;
 	else if (m->rows == 4 && m->cols == 1)
-		ptr = m->m_4x1;
+		ptr = (double *)&m->m_4x1;
 	else if (m->rows == 3)
-		ptr = m->m_3x3;
+		ptr = (double *)&m->m_3x3;
 	else if (m->rows == 2)
-		ptr = m->m_2x2;
+		ptr = (double *)&m->m_2x2;
 	else
 	{
 		if (m->rows * m->cols <= 16)
-			return (m->m_4x4);
+			return ((double *)m->m_4x4);
 		else
 			return (NULL);
 	}
 	return (ptr);
 }
 
-double	mat_get(t_matrix *m, int row, int col)
+double	mat_get(const t_matrix *m, int row, int col)
 {
 	double	*ptr;
 
@@ -72,18 +90,4 @@ void	mat_set(t_matrix *m, int row, int col, double value)
 
 	ptr = get_matrix(m);
 	ptr[row * m->cols + col] = value;
-}
-
-t_matrix	*creat_new_matrix(int rows, int cols)
-{
-	t_matrix	*new;
-	int			i;
-
-	new = (t_matrix *)safe_malloc(sizeof(t_matrix));
-	new->rows = rows;
-	new->cols = cols;
-	i = -1;
-	while (++i < rows * cols)
-		new->m_4x4[i] = 0.0;
-	return (new);
 }
