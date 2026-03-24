@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 18:14:01 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/03/24 03:37:05 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 03:53:33 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,25 @@ t_intersect	*sp_intersect(t_object ob, t_ray ray) //por enquanto só esfera
 	return (inter);
 }
 
-double	hit(t_intersections *inters)
+t_intersect	*hit(t_intersections *inters) //vai retornar o object t_intersec com a menor intersect
 {
-	int			i;
-	double		min;
-	int			found;
+	int	i;
+	int	min;
 
 	i = 0;
-	found = 0;
-	min = 0;
+	min = -1;
 	while (i < inters->n_inter)
 	{
 		if (inters->inter[i].t >= 0)
 		{
-			if (found == 0 || inters->inter[i].t < min)
-			{
-				min = inters->inter[i].t;
-				found = 1;
-			}
+			if (min == -1 || inters->inter[i].t < inters->inter[min].t)
+				min = i;
 		}
 		i++;
 	}
-	if (found == 0) //2 valores negativos
-		return (-1);
-	return (min);
+	if (min == -1) //2 valores negativos
+		return (NULL);
+	return (&inters->inter[min]);
 }
 
 t_ray	transform(t_ray ray, t_matrix *matrix) //em vez de mudar o obj de lugar eu mudo o raio
