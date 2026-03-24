@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 17:12:19 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/23 22:49:29 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	free_scene(t_scene **scene)
 {
 	if (!scene || !*scene)
 		return ;
-	free_window(&(*scene)->window);
 	lst_clear_object(&(*scene)->objects);
 	free((*scene)->light);
 	free((*scene)->camera);
