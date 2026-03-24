@@ -16,24 +16,24 @@ DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
-	$(DIR_OBJ)/src/inteface \
 	$(DIR_OBJ)/src/parsing \
 	$(DIR_OBJ)/src/parsing/object \
+	$(DIR_OBJ)/src/interface \
 	$(DIR_OBJ)/src/math \
 	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/src/matrix_transformations \
 	$(DIR_OBJ)/images \
 	$(DIR_OBJ)/test
 
-SRC = 	src/inteface/hooks.c \
-	src/inteface/color.c \
-	src/inteface/window.c \
-	src/main.c \
+SRC = 	src/main.c \
 	src/parsing/object/sgl_object.c \
 	src/parsing/object/utils_object.c \
 	src/parsing/object/lst_object.c \
 	src/parsing/object/object_type.c \
 	src/parsing/read_file.c \
+	src/interface/hooks.c \
+	src/interface/color.c \
+	src/interface/window.c \
 	src/math/matrix_operations.c \
 	src/math/operations_part_2.c \
 	src/math/operations_part_1.c \
