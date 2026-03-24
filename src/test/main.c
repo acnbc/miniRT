@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 07:53:08 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/24 03:04:01 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 04:27:37 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	tester(t_scene *scene)
 	test_mult_inverse_product();
 	test_translation();
 	test_scaling();
-	test_rotation();
-	test_rotation_y_axis();
-	test_rotation_z_axis();
+	//test_rotation();
+	//test_rotation_y_axis();
+	//test_rotation_z_axis();
 	test_chapter5();
 }

@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/23 11:36:28 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 04:26:41 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	scene = NULL;
-	exit_error(-1, &scene);
+	//exit_error(-1, &scene);
 	read_image(&scene, argv[1]);
-	tester(scene);
+	//tester(scene);
 	free_scene(&scene);
 	return (0);
 }

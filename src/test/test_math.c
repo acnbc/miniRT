@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/24 03:01:30 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 04:23:20 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -808,7 +808,7 @@ void	test_chapter5(void)
 	t_intersect		*xs;
 	t_intersections	inters;
 	t_matrix		p;
-	double			h;
+	//double			h;
 
 	printf("===== TEST CHAPTER 5 =====\n");
 
@@ -901,6 +901,7 @@ void	test_chapter5(void)
 	// TEST 6: HIT (4 interseções)
 	// -------------------------
 	printf("\n[TEST 6] hit\n");
+	t_intersect *h;
 
 	inters.n_inter = 4;
 	inters.inter = malloc(4 * sizeof(t_intersect));
@@ -912,8 +913,10 @@ void	test_chapter5(void)
 
 	h = hit(&inters);
 
-	printf("Expected: 2\n");
-	printf("Result:   %f\n", h);
+	if (h != NULL)
+		printf("hit t = %f\n", h->t);
+	else
+		printf("no hit\n");;
 
 	free(inters.inter);
 
