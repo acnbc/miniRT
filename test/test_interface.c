@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 20:42:29 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 16:57:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/23 22:45:45 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_test_square(t_scene *scene)
 	int			color;
 	const t_rgb	green = {0, 255, 0};
 
-	color = conver_color((t_rgb *)&green, 0);
+	color = convert_color((t_rgb *)&green, 0);
 	y = 100;
 	while (y < 200)
 	{

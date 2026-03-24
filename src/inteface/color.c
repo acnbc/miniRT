@@ -6,14 +6,14 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:18:47 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 16:58:04 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/23 22:48:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
 // default value opacity = 0
-unsigned int	conver_color(t_rgb *rgb, unsigned char opacity)
+unsigned int	convert_color(t_rgb *rgb, unsigned char opacity)
 {
 	unsigned int	color;
 
