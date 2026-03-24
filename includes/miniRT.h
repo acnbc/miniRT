@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/23 11:35:42 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 02:52:20 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void			lst_clear_object(t_object **lst);
 void			*safe_malloc(size_t size);
 void			free_matrix(t_matrix *matrix);
 
-t_ray	create_ray(t_matrix *origin, t_matrix *direction);
-t_matrix	*position(t_ray ray, double t);
-t_sphere	create_sphere(int id);
-double	*intersect(t_sphere sp, t_ray ray);
-double	hit(double *inter);
-double	*intersect(t_sphere sp, t_ray ray);
+t_ray			create_ray(t_matrix origin, t_matrix direction);
+double			delta_calc(t_object ob , t_ray ray);
+t_matrix		position(t_ray ray, double t);
+t_intersect		*sp_intersect(t_object ob , t_ray ray);
+double			hit(t_intersections *inters);
+t_ray			transform(t_ray ray, t_matrix *matrix);
 
 #endif

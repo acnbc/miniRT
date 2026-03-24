@@ -20,9 +20,9 @@ DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src/parsing/object \
 	$(DIR_OBJ)/src/test \
 	$(DIR_OBJ)/src/math \
-	$(DIR_OBJ)/src/ray_sphere_intersec \
 	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/src/matrix_transformations \
+	$(DIR_OBJ)/src/ray_intersec \
 	$(DIR_OBJ)/images
 
 SRC = 	src/main.c \
@@ -38,15 +38,14 @@ SRC = 	src/main.c \
 	src/math/operations_part_2.c \
 	src/math/operations_part_1.c \
 	src/math/matrix_inversion_operations.c \
-	src/math/matrix_operations.c \
-	src/ray_sphere_intersec/ray.c \
-	src/main.c
 	src/utils/matrix_utils.c \
 	src/utils/math_utils.c \
 	src/utils/transformations_utils.c \
 	src/utils/matrix_inversion_utils.c \
 	src/utils/utils.c \
-	src/matrix_transformations/transformations.c
+	src/matrix_transformations/transformations.c \
+	src/ray_intersec/ray_utils.c \
+	src/ray_intersec/ray.c \
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

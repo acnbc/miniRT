@@ -6,13 +6,13 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 23:47:17 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/03/16 23:59:47 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 03:39:35 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_ray	create_ray(t_matrix *origin, t_matrix *direction)
+t_ray	create_ray(t_matrix origin, t_matrix direction)
 {
 	t_ray	ray;
 
@@ -21,25 +21,16 @@ t_ray	create_ray(t_matrix *origin, t_matrix *direction)
 	return (ray);
 }
 
-t_sphere	create_sphere(int id) //acho que essa é mais para teste
-{
-	t_sphere	sp;
-
-	sp.diameter = 2.0;
-	sp.id = id;
-	return (sp);
-}
-
-double	delta_calc(t_sphere sp, t_ray ray)
+double	delta_calc(t_object ob, t_ray ray)
 {
 	double		a;
 	double		b;
 	double		c;
-	t_matrix	*sphere_ray;
+	t_matrix	sphere_ray;
 
-	sphere_ray = subtract_tuple(ray.ori, create_point(0, 0, 0)); //está só com o centro 0,0,0
-	a = dot_product(ray.direc, ray.direc);
-	b = 2 * dot_product(ray.direc, sphere_ray);
-	c = (dot_product(sphere_ray, sphere_ray)) - pow(sp.diameter / 2, 2);
+	subtract_tuple(&sphere_ray, &ray.ori, &ob.coord); //distancia do raio até o centro da esfera
+	a = dot_product(&ray.direc, &ray.direc);
+	b = 2 * dot_product(&ray.direc, &sphere_ray);
+	c = (dot_product(&sphere_ray, &sphere_ray)) - 1;
 	return ((b * b) - (4 * a * c));
 }

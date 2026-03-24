@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/23 11:36:01 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 02:52:38 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	test_scaling(void);
 void	test_rotation(void);
 void	test_rotation_y_axis(void);
 void	test_rotation_z_axis(void);
+void	test_chapter5(void);
 
 void	print_scene(t_scene *scene);
 

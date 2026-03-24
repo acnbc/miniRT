@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/23 11:36:16 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/24 02:33:42 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,15 +129,20 @@ typedef enum e_msg_error
 
 typedef struct s_ray
 {
-	t_matrix		*ori;
-	t_matrix		*direc;
+	t_matrix		ori;
+	t_matrix		direc;
 }				t_ray;
 
 typedef struct s_intersect
 {
 	double			t;
-	t_object		*obj;
+	t_object		obj;
 }				t_intersect;
 
+typedef struct s_intersections
+{
+	t_intersect		*inter;
+	int				n_inter;
+}				t_intersections;
 
 #endif
