@@ -6,11 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 15:05:36 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:05:34 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../includes/miniRT.h"
 
 void    print_matrix(const t_matrix *matrix)
 {

@@ -6,14 +6,15 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 07:53:08 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 13:36:02 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:05:26 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../includes/miniRT.h"
 
 void	tester(t_scene *scene)
 {
+	draw_test_square(scene);
 	print_scene(scene);
 	test_matrix_comparison();
 	test_matrix_multiplication();

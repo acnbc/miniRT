@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:57 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 12:49:32 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:09:47 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ static char	*get_error_message(t_msg_error err)
 		"out of range",
 		"missing A, C or L element",
 		"missing arguments",
-		"invalid element identifier"
+		"invalid element identifier",
+		"mlx init error",
+		"mlx new window error",
+		"mlx new image error",
+		"mlx get data addr error"
 	};
 
 	return (messages[err]);

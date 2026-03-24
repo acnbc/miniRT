@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 13:57:48 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:03:58 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	test_rotation_y_axis(void);
 void	test_rotation_z_axis(void);
 
 void	print_scene(t_scene *scene);
+
+void	draw_test_square(t_scene *scene);
 
 #endif

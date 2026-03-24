@@ -6,12 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 06:01:59 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 13:58:14 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:05:40 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
-#include <stdio.h>
+#include "../includes/miniRT.h"
 
 static const char	*get_id_name(t_id id);
 static void			print_object_details(t_object *obj);
