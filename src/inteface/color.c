@@ -31,7 +31,7 @@ void	pixel_put(t_window *win, int x, int y, unsigned int color)
 	int				point_x;
 	int				point_y;
 
-	if (x < 0 || x > win->size_x || y < 0 || y > win->size_y)
+	if (x < 0 || x >= win->size_x || y < 0 || y >= win->size_y)
 		return ;
 	point_x = x * (win->img->bits_per_pixel / 8);
 	point_y = y * win->img->size_line;
