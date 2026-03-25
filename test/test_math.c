@@ -6,11 +6,11 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/24 04:23:20 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/25 20:46:24 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../includes/miniRT.h"
 
 void    print_matrix(const t_matrix *matrix)
 {

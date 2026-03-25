@@ -6,14 +6,15 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 07:53:08 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/24 04:27:37 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/25 20:46:20 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "../includes/miniRT.h"
 
 void	tester(t_scene *scene)
 {
+	draw_test_square(scene);
 	print_scene(scene);
 	test_matrix_comparison();
 	test_matrix_multiplication();

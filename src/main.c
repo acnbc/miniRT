@@ -6,7 +6,11 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/03/24 04:26:41 by ldos_sa2         ###   ########.fr       */
+=======
+/*   Updated: 2026/03/23 22:49:29 by jessica          ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,10 @@ int	main(int argc, char **argv)
 	scene = NULL;
 	//exit_error(-1, &scene);
 	read_image(&scene, argv[1]);
-	//tester(scene);
+	create_window(scene, argv[1]);
+	create_image(scene->window);
+	tester(scene);
+	init_hooks(scene);
 	free_scene(&scene);
 	return (0);
 }
@@ -48,6 +55,8 @@ void	free_scene(t_scene **scene)
 	free((*scene)->light);
 	free((*scene)->camera);
 	free((*scene)->amb_light);
+	if ((*scene)->window)
+		free_window(&(*scene)->window);
 	if ((*scene)->fd != -1)
 		free_gnl(&(*scene)->fd);
 	free(*scene);

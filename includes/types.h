@@ -6,13 +6,40 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/24 02:33:42 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/25 20:45:49 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdbool.h>
+
+typedef struct s_image
+{
+	void	*ptr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	char	*addr;
+}	t_image;
+
+typedef struct s_window
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		size_x;
+	int		size_y;
+	char	*title;
+	t_image	*img;
+}	t_window;
+
+typedef struct s_tuple
+{
+	double			x;
+	double			y;
+	double			z;
+	bool			is_point;
+}	t_tuple;
 
 typedef struct s_rgb
 {
@@ -103,6 +130,7 @@ typedef struct s_object
 
 typedef struct s_scene
 {
+	t_window	*window;
 	t_amb_light	*amb_light;
 	t_camera	*camera;
 	t_light		*light;
@@ -120,7 +148,11 @@ typedef enum e_msg_error
 	ERR_RANGE,
 	ERR_MISSING_ELEM,
 	ERR_MISSING_ARGS,
-	ERR_ID
+	ERR_ID,
+	ERR_MLX_INIT,
+	ERR_MLX_NEW_WIN,
+	ERR_MLX_NEW_IMG,
+	ERR_MLX_GET_DATA_ADDR
 }	t_msg_error;
 
 
