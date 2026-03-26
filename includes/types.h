@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 16:10:46 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/25 20:45:49 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,27 @@ typedef enum e_msg_error
 	ERR_MLX_NEW_IMG,
 	ERR_MLX_GET_DATA_ADDR
 }	t_msg_error;
+
+
+
+//ray_sphere_intersection
+
+typedef struct s_ray
+{
+	t_matrix		ori;
+	t_matrix		direc;
+}				t_ray;
+
+typedef struct s_intersect
+{
+	double			t;
+	t_object		obj;
+}				t_intersect;
+
+typedef struct s_intersections
+{
+	t_intersect		*inter;
+	int				n_inter;
+}				t_intersections;
 
 #endif

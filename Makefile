@@ -22,6 +22,7 @@ DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src/math \
 	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/src/matrix_transformations \
+	$(DIR_OBJ)/src/ray_intersec \
 	$(DIR_OBJ)/images \
 	$(DIR_OBJ)/test
 
@@ -43,17 +44,19 @@ SRC = 	src/main.c \
 	src/utils/transformations_utils.c \
 	src/utils/matrix_inversion_utils.c \
 	src/utils/utils.c \
+	src/ray_intersec/ray_utils.c \
+	src/ray_intersec/ray.c \
 	src/matrix_transformations/transformations.c \
 	test/test_scene.c \
 	test/main.c \
 	test/test_math.c \
-	test/test_interface.c
+	test/test_interface.c \
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
 ADD_FLAGS_COMPILE_PROGRAM = -L./$(DIR_LIBX) -lmlx -lXext -lX11 -lm
 
-ADD_FLAGS_COMPILE_OBJS = 
+ADD_FLAGS_COMPILE_OBJS =
 
 BLINKING = \033[5m
 RESET = \033[0m

@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   math.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 15:53:19 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/23 11:35:29 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATH_H
 # define MATH_H
 # include <math.h>
+# include "types.h"
 # define EPSILON 0.00001
+# define INF INFINITY
 
 void		add_tuples(t_matrix *matrix, const t_matrix *a, const t_matrix *b);
 void		subtract_tuple(t_matrix *matrix, const t_matrix *a,

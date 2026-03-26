@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 17:05:03 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/25 20:45:25 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,12 @@ void			free_scene(t_scene **scene);
 
 void			*safe_malloc(size_t size);
 void			free_matrix(t_matrix *matrix);
+
+t_ray			create_ray(t_matrix origin, t_matrix direction);
+double			delta_calc(t_object ob , t_ray ray);
+t_matrix		position(t_ray ray, double t);
+t_intersect		*sp_intersect(t_object ob , t_ray ray);
+t_intersect		*hit(t_intersections *inters);
+t_ray			transform(t_ray ray, t_matrix *matrix);
 
 #endif

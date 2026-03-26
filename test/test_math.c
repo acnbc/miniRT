@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 16:05:34 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/26 11:53:38 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    print_one_col_matrix(const t_matrix *matrix)
 {
     int i;
     double  *ptr;
-    
+
     i = -1;
     ptr = get_matrix(matrix);
     while (++i < matrix->rows * matrix->cols)
@@ -47,7 +47,7 @@ void    print_one_col_matrix(const t_matrix *matrix)
 void    test_matrix_comparison(void)
 {
     t_matrix	matrix_a = {
-    	.m_4x4 = 
+    	.m_4x4 =
     	{
     	    1.0, 2.0, 3.0, 4.0,
     	    5.5, 6.5, 7.5, 8.5,
@@ -157,7 +157,7 @@ void    test_matrix_multiplication(void)
         .rows = 4,
         .cols = 1
     };
-    
+
     printf("/ ============= TESTE DE MULTIPLICAÇÃO ====================== /:\n");
 	printf("Matriz c:\n");
     print_matrix(&matrix_c);
@@ -177,7 +177,7 @@ void    test_matrix_multiplication(void)
     printf("Matriz e:\n");
     print_one_col_matrix(&matrix_e);
     printf("Matriz f:\n");
-    print_matrix(&matrix_f);    
+    print_matrix(&matrix_f);
     matrix_tuple_multiplication(&result, &matrix_f, &matrix_e);
     printf("Resultado:\n");
     print_one_col_matrix(&result);
@@ -197,7 +197,7 @@ void    test_transposition(void)
         .rows = 4,
         .cols = 4
     };
-    
+
     t_matrix expected = {
         .m_4x4 = {
             0, 9, 1, 0,
@@ -208,7 +208,7 @@ void    test_transposition(void)
         .rows = 4,
         .cols = 4
     };
-    
+
     t_matrix result;
     matrix_transposition(&result, &original);
     printf("/ ============= TESTE DE TRANSPOSIÇÃO ====================== /:\n");
@@ -286,7 +286,7 @@ void    test_submatrix(void)
         .rows = 2,
         .cols = 2
     };
-    
+
     t_matrix	b = {
     	.m_4x4 =
     	{
@@ -308,7 +308,7 @@ void    test_submatrix(void)
         .rows = 3,
         .cols = 3
     };
-    
+
     t_matrix	result_a;
     t_matrix	result_b;
 
@@ -372,12 +372,12 @@ static void	init_test_matrix(t_matrix *out, int rows, int cols, double *values)
 		i++;
 	}
 }
-    
-    
+
+
 void test_final_determinant(void)
 {
     printf("=== TESTANDO DETERMINANTES (com nova estrutura) ===\n\n");
-    
+
     // ============================================
     // Teste 1: Matriz 2x2
     // ============================================
@@ -433,7 +433,7 @@ void test_final_determinant(void)
     printf("  Calculado: %f\n", det_trans);
     printf("  Esperado:  1.0 (matriz de translação preserva volume)\n");
     printf("  Resultado: %s\n\n", fabs(det_trans - 1.0) < EPSILON ? "✓ OK" : "✗ FALHOU");
-    
+
     printf("=== FIM DOS TESTES ===\n");
 }
 
@@ -449,8 +449,8 @@ void    test_is_invertible(void)
         },
         .rows = 4,
         .cols = 4
-    }; 
-    
+    };
+
     t_matrix	b = {
     	.m_4x4 =
     	{
@@ -535,7 +535,7 @@ void    test_inverse_matrix_basic(void)
         },
         .rows = 4,
         .cols = 4
-    }; 
+    };
 
     t_matrix	f = {
     	.m_4x4 =
@@ -547,7 +547,7 @@ void    test_inverse_matrix_basic(void)
         },
         .rows = 4,
         .cols = 4
-    }; 
+    };
 
     t_matrix	result;
 
@@ -681,7 +681,7 @@ void	test_scaling(void)
 		printf("Scaling com inversa vector incorreta\n");
 }
 
-void	test_rotation(void)
+/*void	test_rotation(void)
 {
 	t_matrix	point;
 	t_matrix	expected_half;
@@ -758,7 +758,7 @@ void	test_rotation_y_axis(void)
 	if (matrix_comparison(&full_result, &expected_full))
 		printf("Rotação correta\n");
 	else
-		printf("Rotação incorreta\n");
+	printf("Rotação incorreta\n");
 }
 
 void	test_rotation_z_axis(void)
@@ -799,4 +799,138 @@ void	test_rotation_z_axis(void)
 		printf("Rotação correta\n");
 	else
 		printf("Rotação incorreta\n");
+}*/
+
+void	test_chapter5(void)
+{
+	t_ray			ray;
+	t_object		sphere;
+	t_intersect		*xs;
+	t_intersections	inters;
+	t_matrix		p;
+	//double			h;
+
+	printf("===== TEST CHAPTER 5 =====\n");
+
+	// esfera no centro
+	init_point(&sphere.coord, 0, 0, 0);
+
+	// -------------------------
+	// TEST 1: POSITION
+	// -------------------------
+	printf("\n[TEST 1] position\n");
+    t_matrix	origin;
+	t_matrix	direction;
+
+	init_point(&origin, 2, 3, 4);
+	init_vector(&direction, 1, 0, 0);
+	ray = create_ray(origin, direction);
+	p = position(ray, 2);
+	printf("Expected: (4.0, 3.0, 4.0)\n");
+	printf("Result:   (%.1f, %.1f, %.1f)\n",
+	    p.m_4x1[0],
+	    p.m_4x1[1],
+	    p.m_4x1[2]);
+
+	// -------------------------
+	// TEST 2: INTERSECT (2 pontos)
+	// -------------------------
+	printf("\n[TEST 2] intersect 2 pontos\n");
+	init_point(&origin, 0, 0, -5);
+	init_vector(&direction, 0, 0, 1);
+	ray = create_ray(origin, direction);
+	xs = sp_intersect(sphere, ray);
+	if (xs)
+	{
+		printf("Expected: 4.0 and 6.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
+		free(xs);
+	}
+	else
+		printf("Result: NULL (ERRO)\n");
+
+	// -------------------------
+	// TEST 3: TANGENTE
+	// -------------------------
+	printf("\n[TEST 3] tangente\n");
+	init_point(&origin, 0, 1, -5);
+	init_vector(&direction, 0, 0, 1);
+	ray = create_ray(origin, direction);
+	xs = sp_intersect(sphere, ray);
+	if (xs)
+	{
+		printf("Expected: 5.0 and 5.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
+		free(xs);
+	}
+	else
+		printf("Result: NULL (ERRO)\n");
+
+	// -------------------------
+	// TEST 4: NÃO INTERSECTA
+	// -------------------------
+	printf("\n[TEST 4] no hit\n");
+	init_point(&origin, 0, 2, -5);
+	init_vector(&direction, 0, 0, 1);
+	ray = create_ray(origin, direction);
+	xs = sp_intersect(sphere, ray);
+	if (!xs)
+		printf("Expected: NULL\nResult:   NULL\n");
+	else
+	{
+		printf("ERRO: deveria ser NULL\n");
+		free(xs);
+	}
+
+	// -------------------------
+	// TEST 5: DENTRO DA ESFERA E APÓS A ESFERA
+	// -------------------------
+	printf("\n[TEST 5] inside sphere\n");
+	init_point(&origin, 0, 0, 0);
+	init_vector(&direction, 0, 0, 1);
+	ray = create_ray(origin, direction);
+	xs = sp_intersect(sphere, ray);
+	if (xs)
+	{
+		printf("Expected: -1.0 and 1.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
+		free(xs);
+	}
+
+    printf("\n[TEST 5] after the sphere\n");
+	init_point(&origin, 0, 0, 5);
+	init_vector(&direction, 0, 0, 1);
+	ray = create_ray(origin, direction);
+	xs = sp_intersect(sphere, ray);
+	if (xs)
+	{
+		printf("Expected: -6.0 and -4.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
+		free(xs);
+	}
+
+	// -------------------------
+	// TEST 6: HIT (4 interseções)
+	// -------------------------
+	printf("\n[TEST 6] hit\n");
+	t_intersect *h;
+
+	inters.n_inter = 4;
+	inters.inter = malloc(4 * sizeof(t_intersect));
+
+	inters.inter[0].t = 5;
+	inters.inter[1].t = 7;
+	inters.inter[2].t = -3;
+	inters.inter[3].t = 2;
+
+	h = hit(&inters);
+
+	if (h != NULL)
+		printf("Expected: 2.0\nhit t = %.1f\n", h->t);
+	else
+		printf("no hit\n");;
+
+	free(inters.inter);
+
+	printf("\n===== END TEST =====\n");
 }
