@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/25 20:46:24 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/26 11:53:38 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -826,24 +826,24 @@ void	test_chapter5(void)
 	init_vector(&direction, 1, 0, 0);
 	ray = create_ray(origin, direction);
 	p = position(ray, 2);
-	printf("Expected: (4,3,4)\n");
-	printf("Result:   (%f,%f,%f)\n",
-	p.m_4x1[0],
-	p.m_4x1[1],
-	p.m_4x1[2]);
+	printf("Expected: (4.0, 3.0, 4.0)\n");
+	printf("Result:   (%.1f, %.1f, %.1f)\n",
+	    p.m_4x1[0],
+	    p.m_4x1[1],
+	    p.m_4x1[2]);
 
 	// -------------------------
 	// TEST 2: INTERSECT (2 pontos)
 	// -------------------------
 	printf("\n[TEST 2] intersect 2 pontos\n");
-	init_point(&origin, 2, 3, 4);
-	init_vector(&direction, 1, 0, 0);
+	init_point(&origin, 0, 0, -5);
+	init_vector(&direction, 0, 0, 1);
 	ray = create_ray(origin, direction);
 	xs = sp_intersect(sphere, ray);
 	if (xs)
 	{
-		printf("Expected: 4 and 6\n");
-		printf("Result:   %f and %f\n", xs[0].t, xs[1].t);
+		printf("Expected: 4.0 and 6.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
 		free(xs);
 	}
 	else
@@ -853,14 +853,14 @@ void	test_chapter5(void)
 	// TEST 3: TANGENTE
 	// -------------------------
 	printf("\n[TEST 3] tangente\n");
-	init_point(&origin, 2, 3, 4);
-	init_vector(&direction, 1, 0, 0);
+	init_point(&origin, 0, 1, -5);
+	init_vector(&direction, 0, 0, 1);
 	ray = create_ray(origin, direction);
 	xs = sp_intersect(sphere, ray);
 	if (xs)
 	{
-		printf("Expected: 5 and 5\n");
-		printf("Result:   %f and %f\n", xs[0].t, xs[1].t);
+		printf("Expected: 5.0 and 5.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
 		free(xs);
 	}
 	else
@@ -870,8 +870,8 @@ void	test_chapter5(void)
 	// TEST 4: NÃO INTERSECTA
 	// -------------------------
 	printf("\n[TEST 4] no hit\n");
-	init_point(&origin, 2, 3, 4);
-	init_vector(&direction, 1, 0, 0);
+	init_point(&origin, 0, 2, -5);
+	init_vector(&direction, 0, 0, 1);
 	ray = create_ray(origin, direction);
 	xs = sp_intersect(sphere, ray);
 	if (!xs)
@@ -883,17 +883,29 @@ void	test_chapter5(void)
 	}
 
 	// -------------------------
-	// TEST 5: DENTRO DA ESFERA
+	// TEST 5: DENTRO DA ESFERA E APÓS A ESFERA
 	// -------------------------
 	printf("\n[TEST 5] inside sphere\n");
-	init_point(&origin, 2, 3, 4);
-	init_vector(&direction, 1, 0, 0);
+	init_point(&origin, 0, 0, 0);
+	init_vector(&direction, 0, 0, 1);
 	ray = create_ray(origin, direction);
 	xs = sp_intersect(sphere, ray);
 	if (xs)
 	{
-		printf("Expected: -1 and 1\n");
-		printf("Result:   %f and %f\n", xs[0].t, xs[1].t);
+		printf("Expected: -1.0 and 1.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
+		free(xs);
+	}
+
+    printf("\n[TEST 5] after the sphere\n");
+	init_point(&origin, 0, 0, 5);
+	init_vector(&direction, 0, 0, 1);
+	ray = create_ray(origin, direction);
+	xs = sp_intersect(sphere, ray);
+	if (xs)
+	{
+		printf("Expected: -6.0 and -4.0\n");
+		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
 		free(xs);
 	}
 
@@ -914,7 +926,7 @@ void	test_chapter5(void)
 	h = hit(&inters);
 
 	if (h != NULL)
-		printf("hit t = %f\n", h->t);
+		printf("Expected: 2.0\nhit t = %.1f\n", h->t);
 	else
 		printf("no hit\n");;
 
