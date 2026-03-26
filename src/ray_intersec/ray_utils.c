@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 23:47:17 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/03/24 03:44:12 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/26 12:33:11 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ double	delta_calc(t_object ob, t_ray ray)
 	double		c;
 	t_matrix	sphere_ray;
 
-	subtract_tuple(&sphere_ray, &ray.ori, &ob.coord); //distancia do raio até o centro da esfera
+	subtract_tuple(&sphere_ray, &ray.ori, &ob.coord);
 	a = dot_product(&ray.direc, &ray.direc);
 	b = 2 * dot_product(&ray.direc, &sphere_ray);
 	c = (dot_product(&sphere_ray, &sphere_ray)) - 1;
 	return ((b * b) - (4 * a * c));
 }
-

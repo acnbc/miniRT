@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 18:14:01 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/03/24 03:53:33 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/26 12:32:24 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_matrix	position(t_ray ray, double t)
 	return (position);
 }
 
-t_intersect	*sp_intersect(t_object ob, t_ray ray) //por enquanto só esfera
+t_intersect	*sp_intersect(t_object ob, t_ray ray)
 {
 	double		a;
 	double		b;
@@ -37,17 +37,17 @@ t_intersect	*sp_intersect(t_object ob, t_ray ray) //por enquanto só esfera
 	a = dot_product(&ray.direc, &ray.direc);
 	b = 2 * dot_product(&ray.direc, &sphere_ray);
 	delta = delta_calc(ob, ray);
-	if (delta < 0) //ray não intercepta
+	if (delta < 0)
 	{
 		free(inter);
 		return (NULL);
 	}
-	inter[0].t = ((-1 * b) - sqrt(delta)) / (2 * a); //inter.t é a distancia escalar entre a origem do raio e onde intercepta
+	inter[0].t = ((-1 * b) - sqrt(delta)) / (2 * a);
 	inter[1].t = ((-1 * b) + sqrt(delta)) / (2 * a);
 	return (inter);
 }
 
-t_intersect	*hit(t_intersections *inters) //vai retornar o object t_intersec com a menor intersect
+t_intersect	*hit(t_intersections *inters)
 {
 	int	i;
 	int	min;
@@ -63,12 +63,12 @@ t_intersect	*hit(t_intersections *inters) //vai retornar o object t_intersec com
 		}
 		i++;
 	}
-	if (min == -1) //2 valores negativos
+	if (min == -1)
 		return (NULL);
 	return (&inters->inter[min]);
 }
 
-t_ray	transform(t_ray ray, t_matrix *matrix) //em vez de mudar o obj de lugar eu mudo o raio
+t_ray	transform(t_ray ray, t_matrix *matrix)
 {
 	t_ray	new_ray;
 
