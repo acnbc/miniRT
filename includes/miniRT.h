@@ -41,11 +41,10 @@ void			free_scene(t_scene **scene);
 void			*safe_malloc(size_t size);
 void			free_matrix(t_matrix *matrix);
 
-t_ray			create_ray(t_matrix origin, t_matrix direction);
-double			delta_calc(t_object ob , t_ray ray);
-t_matrix		position(t_ray ray, double t);
-t_intersect		*sp_intersect(t_object ob , t_ray ray);
+void			create_ray(t_ray *ray, t_matrix origin, t_matrix direction);
+void			position(t_matrix *point, t_ray *ray, double t);
+
+void			sp_intersect(t_intersect *inter, t_object *ob, t_ray *ray);
 t_intersect		*hit(t_intersections *inters);
-t_ray			transform(t_ray ray, t_matrix *matrix);
 
 #endif

@@ -3,48 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/14 18:14:01 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/03/26 12:32:24 by anogueir         ###   ########.fr       */
+/*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
+/*   Updated: 2026/03/29 22:16:26 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_matrix	position(t_ray ray, double t)
+static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
+
+void	position(t_matrix *point, t_ray *ray, double t)
 {
 	t_matrix	mult;
-	t_matrix	position;
 
-	scalar_multiplication(&mult, &ray.direc, t);
-	add_tuples(&position, &ray.ori, &mult);
-	return (position);
+	scalar_multiplication(&mult, &ray->direc, t);
+	add_tuples(point, &ray->ori, &mult);
 }
 
-t_intersect	*sp_intersect(t_object ob, t_ray ray)
+void	sp_intersect(t_intersect *inter, t_object *ob, t_ray *ray)
 {
-	double		a;
-	double		b;
 	double		delta;
-	t_intersect	*inter;
 	t_matrix	sphere_ray;
+	t_tuple		numbers;
+	t_matrix	sphere_origin;
+	t_ray		transformed_ray;
 
-	inter = safe_malloc(2 * sizeof(t_intersect));
+	inter[0].obj = NULL;
+	inter[1].obj = NULL;
+	inter[0].t = 0;
+	inter[1].t = 0;
+	transform_ray(&transformed_ray, ob, ray);
+	init_point(&sphere_origin, 0, 0, 0);
+	subtract_tuple(&sphere_ray, &transformed_ray.ori, &sphere_origin);
+	numbers.x = dot_product(&transformed_ray.direc, &transformed_ray.direc);
+	numbers.y = 2 * dot_product(&transformed_ray.direc, &sphere_ray);
+	numbers.z = dot_product(&sphere_ray, &sphere_ray) - 1;
+	delta = (numbers.y * numbers.y) - (4 * numbers.x * numbers.z);
+	if (delta < 0)
+		return ;
 	inter[0].obj = ob;
 	inter[1].obj = ob;
-	subtract_tuple(&sphere_ray, &ray.ori, &ob.coord);
-	a = dot_product(&ray.direc, &ray.direc);
-	b = 2 * dot_product(&ray.direc, &sphere_ray);
-	delta = delta_calc(ob, ray);
-	if (delta < 0)
-	{
-		free(inter);
-		return (NULL);
-	}
-	inter[0].t = ((-1 * b) - sqrt(delta)) / (2 * a);
-	inter[1].t = ((-1 * b) + sqrt(delta)) / (2 * a);
-	return (inter);
+	inter[0].t = ((-1 * numbers.y) - sqrt(delta)) / (2 * numbers.x);
+	inter[1].t = ((-1 * numbers.y) + sqrt(delta)) / (2 * numbers.x);
 }
 
 t_intersect	*hit(t_intersections *inters)
@@ -68,11 +70,11 @@ t_intersect	*hit(t_intersections *inters)
 	return (&inters->inter[min]);
 }
 
-t_ray	transform(t_ray ray, t_matrix *matrix)
+static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
-	t_ray	new_ray;
+	t_matrix	inv_matrix;
 
-	matrix_tuple_multiplication(&new_ray.ori, &ray.ori, matrix);
-	matrix_tuple_multiplication(&new_ray.direc, &ray.direc, matrix);
-	return (new_ray);
+	inverse_matrix(&inv_matrix, &ob->coord);
+	matrix_tuple_multiplication(&transformed->ori, &inv_matrix, &ray->ori);
+	matrix_tuple_multiplication(&transformed->direc, &inv_matrix, &ray->direc);
 }
