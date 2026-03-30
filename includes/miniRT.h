@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/25 20:45:25 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/30 02:05:23 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <X11/keysymdef.h>
 # include <X11/X.h>
 # include "matrix_transformations.h"
+# include "light_shading.h"
 
 /*------------- APAGAR ------------------*/
 # include "tests.h"
