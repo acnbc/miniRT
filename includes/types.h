@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/25 20:45:49 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:41:14 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ typedef struct s_matrix
 	int				cols;
 }	t_matrix;
 
+typedef struct s_material
+{
+	t_tuple	color;
+	double	ambient;
+	double	diffuse;
+	double	specular;
+	double	shininess;
+}	t_material;
+
 typedef enum e_id
 {
 	Invalid = -1,
@@ -90,8 +99,9 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_id		id;
-	t_matrix	light_point;
+	t_matrix	point;
 	double		brightness;
+	t_tuple		intensity;
 	t_rgb		colors;
 }	t_light;
 
@@ -125,6 +135,7 @@ typedef struct s_object
 	t_matrix		coord;
 	t_rgb			colors;
 	t_object_type	object;
+	t_material		material;
 	struct s_object	*next;
 }	t_object;
 
@@ -155,8 +166,6 @@ typedef enum e_msg_error
 	ERR_MLX_GET_DATA_ADDR
 }	t_msg_error;
 
-
-
 //ray_sphere_intersection
 
 typedef struct s_ray
@@ -168,7 +177,7 @@ typedef struct s_ray
 typedef struct s_intersect
 {
 	double			t;
-	t_object		obj;
+	t_object		*obj;
 }				t_intersect;
 
 typedef struct s_intersections
@@ -176,5 +185,13 @@ typedef struct s_intersections
 	t_intersect		*inter;
 	int				n_inter;
 }				t_intersections;
+
+typedef struct s_light_calc
+{
+	t_tuple		effective_color;
+	t_matrix	light_v;
+	double		light_dot_normal;
+	t_tuple		intensity;
+}	t_light_base;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 17:53:27 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 01:50:17 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/30 01:50:47 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ void	create_light(t_scene *scene, char ***infos, int index)
 	error = get_coolors(&light->colors, *infos, index + 2);
 	if (error)
 		error_create_element(infos, error);
+	light->intensity = (t_tuple){
+		(light->colors.r / 255) * light->brightness,
+		(light->colors.g / 255) * light->brightness,
+		(light->colors.b / 255) * light->brightness, 0};
 }
 
 static void	error_create_element(char ***infos, t_msg_error error)
