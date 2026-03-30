@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/25 20:47:21 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:51:55 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int	main(int argc, char **argv)
 		return (0);
 	scene = NULL;
 	exit_error(0, &scene);
+	printf("iniciando parsing...\n");
 	read_image(&scene, argv[1]);
+	printf("parsing finalizado!\n");
 	create_window(scene, argv[1]);
 	create_image(scene->window);
 	tester(scene);
