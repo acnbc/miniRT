@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	scene = NULL;
-	//exit_error(-1, &scene);
+	exit_error(0, &scene);
 	read_image(&scene, argv[1]);
 	create_window(scene, argv[1]);
 	create_image(scene->window);
