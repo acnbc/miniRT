@@ -35,6 +35,7 @@ void	test_chapter5(void);
 
 void	print_scene(t_scene *scene);
 
+void	draw_test_3d_sphere(t_scene *scene);
 
 void	test_normals(void);
 void	test_reflection(void);

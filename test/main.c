@@ -14,8 +14,8 @@
 
 void	tester(t_scene *scene)
 {
-	draw_test_square(scene);
-	print_scene(scene);
+	draw_test_3d_sphere(scene);
+	// print_scene(scene);
 	// test_matrix_comparison();
 	// test_matrix_multiplication();
 	// test_transposition();
