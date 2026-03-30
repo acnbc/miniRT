@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 03:30:22 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 00:28:41 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/30 02:46:50 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,6 @@ t_tuple	lighting(t_light_base *base, t_material *material,
 	tuple_addition(&result, &ambient, &diffuse);
 	tuple_addition(&result, &result, &specular);
 	return (result);
-}
-
-t_light_base	calc_light_base(const t_light *light, const t_matrix *position,
-					const t_material *material, const t_matrix *norm_v)
-{
-	t_light_base	base;
-	t_matrix		tmp;
-
-	tuple_multiplication(&base.effective_color, &material->color,
-		&light->intensity);
-	subtract_tuple(&tmp, &light->point, position);
-	vector_normalization(&base.light_v, &tmp);
-	base.light_dot_normal = dot_product(&base.light_v, norm_v);
-	base.intensity = light->intensity;
-	return (base);
 }
 
 static t_tuple	calc_specular(t_material *material, t_light_base *base,

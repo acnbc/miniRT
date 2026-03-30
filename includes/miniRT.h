@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:05:23 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/30 02:40:22 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			free_matrix(t_matrix *matrix);
 void			create_ray(t_ray *ray, t_matrix origin, t_matrix direction);
 void			position(t_matrix *point, t_ray *ray, double t);
 
-void			sp_intersect(t_intersect *inter, t_object *ob, t_ray *ray);
+void			sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray);
 t_intersect		*hit(t_intersections *inters);
 
 #endif

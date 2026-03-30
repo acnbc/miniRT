@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/29 22:16:26 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/30 02:40:31 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	position(t_matrix *point, t_ray *ray, double t)
 	add_tuples(point, &ray->ori, &mult);
 }
 
-void	sp_intersect(t_intersect *inter, t_object *ob, t_ray *ray)
+void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 {
 	double		delta;
 	t_matrix	sphere_ray;

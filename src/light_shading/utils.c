@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 01:39:44 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/30 02:46:59 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,19 @@ void	default_material(t_material *material)
 	material->diffuse = 0.9;
 	material->specular = 0.9;
 	material->shininess = 200;
+}
+
+t_light_base	calc_light_base(const t_light *light, const t_matrix *position,
+					const t_material *material, const t_matrix *norm_v)
+{
+	t_light_base	base;
+	t_matrix		tmp;
+
+	tuple_multiplication(&base.effective_color, &material->color,
+		&light->intensity);
+	subtract_tuple(&tmp, &light->point, position);
+	vector_normalization(&base.light_v, &tmp);
+	base.light_dot_normal = dot_product(&base.light_v, norm_v);
+	base.intensity = light->intensity;
+	return (base);
 }
