@@ -63,11 +63,11 @@
 - [ ] Calcular normal no ponto de interseção para cada objeto
 
 ### Fase 6: Sistema de Iluminação
-- [ ] Implementar iluminação ambiente
-- [ ] Implementar iluminação difusa
+- [x] Implementar iluminação ambiente
+- [x] Implementar iluminação difusa
 - [ ] Implementar cálculo de sombras duras
   - [ ] Verificar se há objetos entre ponto e luz
-- [ ] Combinar iluminação ambiente + difusa
+- [x] Combinar iluminação ambiente + difusa
 - [ ] Garantir que objetos nunca fiquem completamente escuros
 
 ### Fase 7: Ray Tracing Core
