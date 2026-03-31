@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 06:01:59 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 16:05:40 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/28 23:18:19 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_scene(t_scene *scene)
 	if (scene->light)
 	{
 		printf("\n[%s]\n", get_id_name(scene->light->id));
-		print_matrix_as_tuple("Position", &scene->light->light_point);
+		print_matrix_as_tuple("Position", &scene->light->point);
 		printf("	Brightness: %.2f\n", scene->light->brightness);
 		print_rgb("Color", scene->light->colors);
 	}

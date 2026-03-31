@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/25 20:45:25 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/30 02:40:22 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <X11/keysymdef.h>
 # include <X11/X.h>
 # include "matrix_transformations.h"
+# include "light_shading.h"
 
 /*------------- APAGAR ------------------*/
 # include "tests.h"
@@ -41,11 +42,10 @@ void			free_scene(t_scene **scene);
 void			*safe_malloc(size_t size);
 void			free_matrix(t_matrix *matrix);
 
-t_ray			create_ray(t_matrix origin, t_matrix direction);
-double			delta_calc(t_object ob , t_ray ray);
-t_matrix		position(t_ray ray, double t);
-t_intersect		*sp_intersect(t_object ob , t_ray ray);
+void			create_ray(t_ray *ray, t_matrix origin, t_matrix direction);
+void			position(t_matrix *point, t_ray *ray, double t);
+
+void			sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray);
 t_intersect		*hit(t_intersections *inters);
-t_ray			transform(t_ray ray, t_matrix *matrix);
 
 #endif

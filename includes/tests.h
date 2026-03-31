@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:39:05 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/25 20:45:39 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/03/30 02:22:40 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,18 @@ void	test_minor(void);
 void	test_final_determinant(void);
 void	test_is_invertible(void);
 void	test_inverse_matrix_basic(void);
-void	test_muilt_inverse_product(void);
-void	test_transformations(void);
-void	test_ray_intersect(void);
-void	test_cap_5(void);
 void	test_mult_inverse_product(void);
 void	test_translation(void);
 void	test_scaling(void);
-void	test_rotation(void);
-void	test_rotation_y_axis(void);
-void	test_rotation_z_axis(void);
+
 void	test_chapter5(void);
 
 void	print_scene(t_scene *scene);
 
-void	draw_test_square(t_scene *scene);
+void	draw_test_3d_sphere(t_scene *scene);
+
+void	test_normals(void);
+void	test_reflection(void);
+void	test_lighting(void);
 
 #endif

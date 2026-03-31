@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/26 11:53:38 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/03/30 03:04:30 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -805,15 +805,18 @@ void	test_chapter5(void)
 {
 	t_ray			ray;
 	t_object		sphere;
-	t_intersect		*xs;
+	t_sphere		object_sphere;
+	t_intersect		xs[2];
 	t_intersections	inters;
 	t_matrix		p;
 	//double			h;
 
 	printf("===== TEST CHAPTER 5 =====\n");
-
-	// esfera no centro
-	init_point(&sphere.coord, 0, 0, 0);
+	
+	// esfera unitaria no centro
+	init_identity_matrix(&sphere.coord, 4);
+	object_sphere.diameter = 2;
+	sphere.object.sphere = &object_sphere;
 
 	// -------------------------
 	// TEST 1: POSITION
@@ -824,8 +827,8 @@ void	test_chapter5(void)
 
 	init_point(&origin, 2, 3, 4);
 	init_vector(&direction, 1, 0, 0);
-	ray = create_ray(origin, direction);
-	p = position(ray, 2);
+	create_ray(&ray, origin, direction);
+	position(&p, &ray, 2);
 	printf("Expected: (4.0, 3.0, 4.0)\n");
 	printf("Result:   (%.1f, %.1f, %.1f)\n",
 	    p.m_4x1[0],
@@ -838,13 +841,12 @@ void	test_chapter5(void)
 	printf("\n[TEST 2] intersect 2 pontos\n");
 	init_point(&origin, 0, 0, -5);
 	init_vector(&direction, 0, 0, 1);
-	ray = create_ray(origin, direction);
-	xs = sp_intersect(sphere, ray);
-	if (xs)
+	create_ray(&ray, origin, direction);
+	sp_intersect(xs, &sphere, &ray);
+	if (xs[0].obj && xs[1].obj)
 	{
 		printf("Expected: 4.0 and 6.0\n");
 		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-		free(xs);
 	}
 	else
 		printf("Result: NULL (ERRO)\n");
@@ -855,13 +857,12 @@ void	test_chapter5(void)
 	printf("\n[TEST 3] tangente\n");
 	init_point(&origin, 0, 1, -5);
 	init_vector(&direction, 0, 0, 1);
-	ray = create_ray(origin, direction);
-	xs = sp_intersect(sphere, ray);
-	if (xs)
+	create_ray(&ray, origin, direction);
+	sp_intersect(xs, &sphere, &ray);
+	if (xs[0].obj && xs[1].obj)
 	{
 		printf("Expected: 5.0 and 5.0\n");
 		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-		free(xs);
 	}
 	else
 		printf("Result: NULL (ERRO)\n");
@@ -872,14 +873,13 @@ void	test_chapter5(void)
 	printf("\n[TEST 4] no hit\n");
 	init_point(&origin, 0, 2, -5);
 	init_vector(&direction, 0, 0, 1);
-	ray = create_ray(origin, direction);
-	xs = sp_intersect(sphere, ray);
-	if (!xs)
+	create_ray(&ray, origin, direction);
+	sp_intersect(xs, &sphere, &ray);
+	if (!xs[0].obj && !xs[1].obj)
 		printf("Expected: NULL\nResult:   NULL\n");
 	else
 	{
 		printf("ERRO: deveria ser NULL\n");
-		free(xs);
 	}
 
 	// -------------------------
@@ -888,25 +888,23 @@ void	test_chapter5(void)
 	printf("\n[TEST 5] inside sphere\n");
 	init_point(&origin, 0, 0, 0);
 	init_vector(&direction, 0, 0, 1);
-	ray = create_ray(origin, direction);
-	xs = sp_intersect(sphere, ray);
-	if (xs)
+	create_ray(&ray, origin, direction);
+	sp_intersect(xs, &sphere, &ray);
+	if (xs[0].obj && xs[1].obj)
 	{
 		printf("Expected: -1.0 and 1.0\n");
 		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-		free(xs);
 	}
 
     printf("\n[TEST 5] after the sphere\n");
 	init_point(&origin, 0, 0, 5);
 	init_vector(&direction, 0, 0, 1);
-	ray = create_ray(origin, direction);
-	xs = sp_intersect(sphere, ray);
-	if (xs)
+	create_ray(&ray, origin, direction);
+	sp_intersect(xs, &sphere, &ray);
+	if (xs[0].obj && xs[1].obj)
 	{
 		printf("Expected: -6.0 and -4.0\n");
 		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-		free(xs);
 	}
 
 	// -------------------------
@@ -928,7 +926,7 @@ void	test_chapter5(void)
 	if (h != NULL)
 		printf("Expected: 2.0\nhit t = %.1f\n", h->t);
 	else
-		printf("no hit\n");;
+		printf("no hit\n");
 
 	free(inters.inter);
 
