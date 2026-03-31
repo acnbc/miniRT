@@ -17,6 +17,7 @@ DIR_OBJ = ./obj
 DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
 	$(DIR_OBJ)/src/ray_intersec \
+	$(DIR_OBJ)/src/ray_tracing \
 	$(DIR_OBJ)/src/light_shading \
 	$(DIR_OBJ)/src/parsing \
 	$(DIR_OBJ)/src/parsing/object \
@@ -29,6 +30,10 @@ DIR = $(DIR_OBJ) \
 
 SRC = 	src/ray_intersec/ray_utils.c \
 	src/ray_intersec/ray.c \
+	src/ray_tracing/ray_tracing_cam.c \
+	src/ray_tracing/ray_tracing_hit.c \
+	src/ray_tracing/ray_tracing_shade.c \
+	src/ray_tracing/ray_tracing_draw.c \
 	src/light_shading/utils.c \
 	src/light_shading/lighting.c \
 	src/main.c \

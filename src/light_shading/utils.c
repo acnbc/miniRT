@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:46:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/03/31 15:25:31 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ void	normal_at(t_matrix *normal, t_object *object, t_matrix *point)
 	t_matrix	object_point;
 	t_matrix	object_normal;
 	t_matrix	world_normal;
+	t_matrix	tmp;
 
+	if (object->id == sp && object->coord.rows == 4 && object->coord.cols == 1)
+	{
+		subtract_tuple(&tmp, point, &object->coord);
+		vector_normalization(normal, &tmp);
+		return ;
+	}
 	inverse_matrix(&inverse, &object->coord);
 	matrix_tuple_multiplication(&object_point, &inverse, point);
 	matrix_transposition(&transpose_inverse, &inverse);
