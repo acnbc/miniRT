@@ -21,8 +21,8 @@
   - [x] Validar vetor normalizado [-1,1]
   - [x] Validar FOV [0,180]
 - [x] Parser para Luz (L)
-  - [X] Validar coordenadas x,y,z
-  - [X] Validar taxa de brilho [0.0, 1.0]
+  - [x] Validar coordenadas x,y,z
+  - [x] Validar taxa de brilho [0.0, 1.0]
 - [x] Parser para Esfera (sp)
 - [x] Parser para Plano (pl)
 - [x] Parser para Cilindro (cy)
@@ -35,21 +35,20 @@
 - [x] Implementar operações básicas de vetores (soma, subtração, produto escalar, produto vetorial)
 - [x] Implementar operações básicas de matrizes (comparação, multiplicalção, transposição, determinante)
 - [x] Implementar normalização de vetores
-- [ ] Criar estruturas para raios (origem, direção) (vou implementar essa estrutura na fase 5)
+- [x] Criar estruturas para raios (origem, direção)
 - [x] Criar estruturas para objetos (esfera, plano, cilindro)
 - [x] Criar estruturas para câmera e luz
 
 ### Fase 4: Transformação de Matrizes
-- [ ] Implementar matrizes de translação para pontos e objetos
-- [ ] Implementar matrizes de escala para pontos, vetores e objetos
-- [ ] Implementar matrizes de rotação (eixos X, Y, Z)
-- [ ] Implementar matriz de shear (cisalhamento)
-- [ ] Implementar composição/encadeamento de transformações (produto de matrizes)
+- [x] Implementar matrizes de translação para pontos e objetos
+- [x] Implementar matrizes de escala para pontos, vetores e objetos
+- [x] Implementar matrizes de rotação (eixos X, Y, Z)
+- [x] Implementar composição/encadeamento de transformações (produto de matrizes)
 - [ ] Aplicar transformações de matriz à câmera e aos objetos da cena
 
 ### Fase 5: Cálculo de Interseções
-- [ ] Implementar interseção raio-esfera
-  - [ ] Tratar todos os casos (sem interseção, uma, duas)
+- [x] Implementar interseção raio-esfera
+  - [x] Tratar todos os casos (sem interseção, uma, duas)
   - [ ] Tratar interior da esfera
 - [ ] Implementar interseção raio-plano
   - [ ] Tratar todos os casos
@@ -68,25 +67,26 @@
 - [ ] Implementar cálculo de sombras duras
   - [ ] Verificar se há objetos entre ponto e luz
 - [x] Combinar iluminação ambiente + difusa
-- [ ] Garantir que objetos nunca fiquem completamente escuros
+- [x] Garantir que objetos nunca fiquem completamente escuros
 
 ### Fase 7: Ray Tracing Core
-- [ ] Implementar função principal de ray tracing
-- [ ] Calcular raio primário para cada pixel
-- [ ] Encontrar interseção mais próxima
-- [ ] Calcular cor do pixel baseado na iluminação
-- [ ] Renderizar imagem completa
+- [x] Implementar função principal de ray tracing
+- [x] Calcular raio primário para cada pixel
+- [x] Encontrar interseção mais próxima
+- [x] Calcular cor do pixel baseado na iluminação
+- [x] Renderizar imagem completa
 
 ### Fase 8: MiniLibX e Interface
 - [x] Inicializar conexão com MiniLibX
 - [x] Criar janela
 - [x] Criar imagem (usar `images` é recomendado)
-- [ ] Renderizar cena na imagem
+- [x] Renderizar cena na imagem
 - [x] Exibir imagem na janela
 - [x] Implementar hook para tecla ESC (fechar programa)
 - [x] Implementar hook para botão X (fechar programa)
 - [x] Gerenciar eventos da janela (minimizar, alternar, etc.)
 - [x] Limpar recursos ao sair
+- [ ] Implementar funcionalidades para programa não quebrar ao mover ou redimensionar a janela
 
 ### Fase 9: Transformações (se necessário)
 - [ ] Implementar translação de objetos
@@ -94,7 +94,7 @@
 - [ ] Implementar redimensionamento (diâmetro esfera, dimensões cilindro)
 
 ### Fase 10: Validação e Testes
-- [ ] Criar cenas de teste básicas
+- [x] Criar cenas de teste básicas
 - [ ] Testar cada objeto isoladamente
 - [ ] Testar múltiplos objetos na mesma cena
 - [ ] Testar diferentes posições de câmera
