@@ -12,7 +12,7 @@
 
 #include "../../includes/miniRT.h"
 
-size_t	rt_count_spheres(t_object *objects)
+size_t	count_spheres(t_object *objects)
 {
 	size_t	n;
 
@@ -26,7 +26,7 @@ size_t	rt_count_spheres(t_object *objects)
 	return (n);
 }
 
-size_t	rt_fill_sphere_hits(t_object *objects, t_ray *ray, t_intersect *buf,
+size_t	fill_sphere_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 		t_intersect pair[2])
 {
 	size_t	n;
@@ -49,7 +49,7 @@ size_t	rt_fill_sphere_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 	return (n);
 }
 
-bool	rt_resolve_closest_hit(t_intersect *buf, size_t n, t_intersect *out_hit)
+bool	resolve_closest_hit(t_intersect *buf, size_t n, t_intersect *out_hit)
 {
 	t_intersections	inters;
 	t_intersect		*winner;
@@ -68,7 +68,7 @@ bool	rt_resolve_closest_hit(t_intersect *buf, size_t n, t_intersect *out_hit)
 	return (winner != NULL);
 }
 
-bool	rt_closest_hit_spheres(t_object *objects, t_ray *ray,
+bool	closest_hit_spheres(t_object *objects, t_ray *ray,
 		t_intersect *out_hit)
 {
 	t_intersect	pair[2];
@@ -76,15 +76,15 @@ bool	rt_closest_hit_spheres(t_object *objects, t_ray *ray,
 	size_t		cap;
 	size_t		n;
 
-	cap = rt_count_spheres(objects);
+	cap = count_spheres(objects);
 	if (cap == 0)
 		return (false);
 	buf = (t_intersect *)safe_malloc(2 * cap * sizeof(t_intersect));
-	n = rt_fill_sphere_hits(objects, ray, buf, pair);
-	return (rt_resolve_closest_hit(buf, n, out_hit));
+	n = fill_sphere_hits(objects, ray, buf, pair);
+	return (resolve_closest_hit(buf, n, out_hit));
 }
 
-void	rt_amb_tuple(t_scene *scene, t_tuple *out)
+void	amb_tuple(t_scene *scene, t_tuple *out)
 {
 	if (!scene->amb_light)
 	{

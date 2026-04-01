@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:40:31 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/01 12:30:11 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 	{
 		inverse_matrix(&inv_matrix, &ob->coord);
 		matrix_tuple_multiplication(&transformed->ori, &inv_matrix, &ray->ori);
-		matrix_tuple_multiplication(&transformed->direc, &inv_matrix, &ray->direc);
+		matrix_tuple_multiplication(&transformed->direc,
+			&inv_matrix, &ray->direc);
 		return ;
 	}
 	r = ob->object.sphere->diameter * 0.5;

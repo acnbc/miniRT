@@ -12,7 +12,7 @@
 
 #include "../../includes/miniRT.h"
 
-void	rt_rgb_to_tuple(t_tuple *out, const t_rgb *rgb)
+void	rgb_to_tuple(t_tuple *out, const t_rgb *rgb)
 {
 	out->x = rgb->r / 255.0;
 	out->y = rgb->g / 255.0;
@@ -20,7 +20,7 @@ void	rt_rgb_to_tuple(t_tuple *out, const t_rgb *rgb)
 	out->is_point = false;
 }
 
-void	rt_scene_amb_times_material(t_tuple *out, t_scene *scene,
+void	scene_amb_times_material(t_tuple *out, t_scene *scene,
 		const t_tuple *mat_color)
 {
 	double	ratio;
@@ -37,7 +37,7 @@ void	rt_scene_amb_times_material(t_tuple *out, t_scene *scene,
 	out->is_point = false;
 }
 
-void	rt_shade_orient_normal(t_matrix *norm, t_ray *ray)
+void	shade_orient_normal(t_matrix *norm, t_ray *ray)
 {
 	t_matrix	eye;
 	t_matrix	flipped;
@@ -50,7 +50,7 @@ void	rt_shade_orient_normal(t_matrix *norm, t_ray *ray)
 	}
 }
 
-t_tuple	rt_shade_lit_color(t_hit_shade *in)
+t_tuple	shade_lit_color(t_hit_shade *in)
 {
 	t_tuple			amb;
 	t_tuple			final;
@@ -58,7 +58,7 @@ t_tuple	rt_shade_lit_color(t_hit_shade *in)
 	t_tuple			lit;
 	t_matrix		eye;
 
-	rt_scene_amb_times_material(&amb, in->sc, &in->mt->color);
+	scene_amb_times_material(&amb, in->sc, &in->mt->color);
 	if (!in->sc->light)
 		return (amb);
 	negate_tuple(&eye, &in->ray->direc);
@@ -68,7 +68,7 @@ t_tuple	rt_shade_lit_color(t_hit_shade *in)
 	return (final);
 }
 
-unsigned int	rt_shade_sphere_pixel(t_scene *scene, t_ray *ray,
+unsigned int	shade_sphere_pixel(t_scene *scene, t_ray *ray,
 		t_intersect *hit)
 {
 	t_matrix		hit_pt;
@@ -79,15 +79,15 @@ unsigned int	rt_shade_sphere_pixel(t_scene *scene, t_ray *ray,
 
 	position(&hit_pt, ray, hit->t);
 	normal_at(&norm_v, hit->obj, &hit_pt);
-	rt_shade_orient_normal(&norm_v, ray);
+	shade_orient_normal(&norm_v, ray);
 	mat = hit->obj->material;
-	rt_rgb_to_tuple(&mat.color, &hit->obj->colors);
+	rgb_to_tuple(&mat.color, &hit->obj->colors);
 	mat.ambient = 0.0;
 	sh.sc = scene;
 	sh.ray = ray;
 	sh.pt = &hit_pt;
 	sh.nm = &norm_v;
 	sh.mt = &mat;
-	color = rt_shade_lit_color(&sh);
+	color = shade_lit_color(&sh);
 	return (convert_color(&color));
 }

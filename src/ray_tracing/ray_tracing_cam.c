@@ -12,7 +12,7 @@
 
 #include "../../includes/miniRT.h"
 
-void	rt_compute_camera_axes(t_cam_basis *basis, const t_camera *camera)
+void	compute_camera_axes(t_cam_basis *basis, const t_camera *camera)
 {
 	t_matrix	world_up;
 	t_matrix	tmp;
@@ -25,7 +25,7 @@ void	rt_compute_camera_axes(t_cam_basis *basis, const t_camera *camera)
 	vector_normalization(&basis->up, &tmp);
 }
 
-void	rt_init_viewport(t_viewport *viewport, t_scene *scene)
+void	init_viewport(t_viewport *viewport, t_scene *scene)
 {
 	viewport->fov_rad = scene->camera->field_of_view * (acos(-1.0) / 180.0);
 	viewport->half_height = tan(viewport->fov_rad / 2.0);
@@ -33,20 +33,20 @@ void	rt_init_viewport(t_viewport *viewport, t_scene *scene)
 	viewport->half_width = viewport->half_height * viewport->aspect;
 }
 
-void	rt_map_pixel_ndc(t_scene *scene, int x, int y, t_ndc *out)
+void	map_pixel_ndc(t_scene *scene, int x, int y, t_ndc *out)
 {
 	out->x = ((x + 0.5) / (double)scene->window->size_x) * 2.0 - 1.0;
 	out->y = 1.0 - ((y + 0.5) / (double)scene->window->size_y) * 2.0;
 }
 
-void	rt_ray_gen_init(t_ray_gen *ctx, t_scene *scene)
+void	ray_gen_init(t_ray_gen *ctx, t_scene *scene)
 {
 	ctx->camera = scene->camera;
-	rt_compute_camera_axes(&ctx->basis, scene->camera);
-	rt_init_viewport(&ctx->viewport, scene);
+	compute_camera_axes(&ctx->basis, scene->camera);
+	init_viewport(&ctx->viewport, scene);
 }
 
-void	rt_make_primary_ray(t_ray_gen *ctx, const t_ndc *ndc, t_ray *ray)
+void	make_primary_ray(t_ray_gen *ctx, const t_ndc *ndc, t_ray *ray)
 {
 	t_matrix	scaled_r;
 	t_matrix	scaled_u;
