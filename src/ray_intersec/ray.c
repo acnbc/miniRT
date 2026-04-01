@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/01 12:30:11 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/01 12:31:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ t_intersect	*hit(t_intersections *inters)
 	return (&inters->inter[min]);
 }
 
-/*
- * Parsing: ob->coord é o centro (4x1). Testes/código com matriz 4×4 completa:
- * usa-se a inversa como antes.
- */
 static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
 	double		r;
