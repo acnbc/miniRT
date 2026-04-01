@@ -39,26 +39,26 @@ void	map_pixel_ndc(t_scene *scene, int x, int y, t_ndc *out)
 	out->y = 1.0 - ((y + 0.5) / (double)scene->window->size_y) * 2.0;
 }
 
-void	ray_gen_init(t_ray_gen *ctx, t_scene *scene)
+void	ray_gen_init(t_ray_gen *context, t_scene *scene)
 {
-	ctx->camera = scene->camera;
-	compute_camera_axes(&ctx->basis, scene->camera);
-	init_viewport(&ctx->viewport, scene);
+	context->camera = scene->camera;
+	compute_camera_axes(&context->basis, scene->camera);
+	init_viewport(&context->viewport, scene);
 }
 
-void	make_primary_ray(t_ray_gen *ctx, const t_ndc *ndc, t_ray *ray)
+void	make_primary_ray(t_ray_gen *context, const t_ndc *ndc, t_ray *ray)
 {
 	t_matrix	scaled_r;
 	t_matrix	scaled_u;
 	t_matrix	offset;
 	t_matrix	dir;
 
-	scalar_multiplication(&scaled_r, &ctx->basis.right,
-		ndc->x * ctx->viewport.half_width);
-	scalar_multiplication(&scaled_u, &ctx->basis.up,
-		ndc->y * ctx->viewport.half_height);
+	scalar_multiplication(&scaled_r, &context->basis.right,
+		ndc->x * context->viewport.half_width);
+	scalar_multiplication(&scaled_u, &context->basis.up,
+		ndc->y * context->viewport.half_height);
 	add_tuples(&offset, &scaled_r, &scaled_u);
-	add_tuples(&dir, &ctx->basis.forward, &offset);
+	add_tuples(&dir, &context->basis.forward, &offset);
 	vector_normalization(&ray->direc, &dir);
-	ray->ori = ctx->camera->view_point;
+	ray->ori = context->camera->view_point;
 }

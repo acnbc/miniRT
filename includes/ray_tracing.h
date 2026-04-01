@@ -58,8 +58,8 @@ void			compute_camera_axes(t_cam_basis *basis,
 					const t_camera *camera);
 void			init_viewport(t_viewport *viewport, t_scene *scene);
 void			map_pixel_ndc(t_scene *scene, int x, int y, t_ndc *out);
-void			ray_gen_init(t_ray_gen *ctx, t_scene *scene);
-void			make_primary_ray(t_ray_gen *ctx, const t_ndc *ndc,
+void			ray_gen_init(t_ray_gen *context, t_scene *scene);
+void			make_primary_ray(t_ray_gen *context, const t_ndc *ndc,
 					t_ray *ray);
 
 size_t			count_spheres(t_object *objects);
@@ -80,9 +80,9 @@ unsigned int	shade_sphere_pixel(t_scene *scene, t_ray *ray,
 					t_intersect *hit);
 
 void			ray_show_image(t_window *win);
-void			ray_trace_scanline(t_scene *scene, t_ray_gen *ctx, int y,
+void			ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y,
 					unsigned int amb_c);
-void			ray_trace_loop(t_scene *scene, t_ray_gen *ctx,
+void			ray_trace_loop(t_scene *scene, t_ray_gen *context,
 					t_tuple *amb);
 
 void			print_put_row(t_window *win, int y, double den_x,
