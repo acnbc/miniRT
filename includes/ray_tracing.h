@@ -17,43 +17,6 @@
 # include <stddef.h>
 # include <stdbool.h>
 
-typedef struct s_viewport
-{
-	double	fov_rad;
-	double	half_height;
-	double	aspect;
-	double	half_width;
-}	t_viewport;
-
-typedef struct s_cam_basis
-{
-	t_matrix	forward;
-	t_matrix	right;
-	t_matrix	up;
-}	t_cam_basis;
-
-typedef struct s_ray_gen
-{
-	const t_camera	*camera;
-	t_cam_basis		basis;
-	t_viewport		viewport;
-}	t_ray_gen;
-
-typedef struct s_ndc
-{
-	double	x;
-	double	y;
-}	t_ndc;
-
-typedef struct s_hit_shade
-{
-	t_scene		*sc;
-	t_ray		*ray;
-	t_matrix	*pt;
-	t_matrix	*nm;
-	t_material	*mt;
-}	t_hit_shade;
-
 void			compute_camera_axes(t_cam_basis *basis,
 					const t_camera *camera);
 void			init_viewport(t_viewport *viewport, t_scene *scene);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:43:56 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 01:41:14 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/01 12:40:45 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,42 @@ typedef struct s_light_calc
 	double		light_dot_normal;
 	t_tuple		intensity;
 }	t_light_base;
+
+typedef struct s_viewport
+{
+	double	fov_rad;
+	double	half_height;
+	double	aspect;
+	double	half_width;
+}	t_viewport;
+
+typedef struct s_cam_basis
+{
+	t_matrix	forward;
+	t_matrix	right;
+	t_matrix	up;
+}	t_cam_basis;
+
+typedef struct s_ray_gen
+{
+	const t_camera	*camera;
+	t_cam_basis		basis;
+	t_viewport		viewport;
+}	t_ray_gen;
+
+typedef struct s_ndc
+{
+	double	x;
+	double	y;
+}	t_ndc;
+
+typedef struct s_hit_shade
+{
+	t_scene		*sc;
+	t_ray		*ray;
+	t_matrix	*pt;
+	t_matrix	*nm;
+	t_material	*mt;
+}	t_hit_shade;
 
 #endif
