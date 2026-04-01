@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:40:31 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/01 12:31:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
+static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
 
 void	position(t_matrix *point, t_ray *ray, double t)
 {
@@ -34,7 +34,7 @@ void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 	inter[1].obj = NULL;
 	inter[0].t = 0;
 	inter[1].t = 0;
-	transform_ray(&transformed_ray, ob, ray);
+	sphere_transform_ray(&transformed_ray, ob, ray);
 	init_point(&sphere_origin, 0, 0, 0);
 	subtract_tuple(&sphere_ray, &transformed_ray.ori, &sphere_origin);
 	numbers.x = dot_product(&transformed_ray.direc, &transformed_ray.direc);
@@ -70,11 +70,24 @@ t_intersect	*hit(t_intersections *inters)
 	return (&inters->inter[min]);
 }
 
-static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
+static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
+	double		r;
+	t_matrix	diff;
 	t_matrix	inv_matrix;
 
-	inverse_matrix(&inv_matrix, &ob->coord);
-	matrix_tuple_multiplication(&transformed->ori, &inv_matrix, &ray->ori);
-	matrix_tuple_multiplication(&transformed->direc, &inv_matrix, &ray->direc);
+	if (ob->coord.rows == 4 && ob->coord.cols == 4)
+	{
+		inverse_matrix(&inv_matrix, &ob->coord);
+		matrix_tuple_multiplication(&transformed->ori, &inv_matrix, &ray->ori);
+		matrix_tuple_multiplication(&transformed->direc,
+			&inv_matrix, &ray->direc);
+		return ;
+	}
+	r = ob->object.sphere->diameter * 0.5;
+	if (r < EPSILON)
+		r = EPSILON;
+	subtract_tuple(&diff, &ray->ori, &ob->coord);
+	scalar_multiplication(&transformed->ori, &diff, 1.0 / r);
+	scalar_multiplication(&transformed->direc, &ray->direc, 1.0 / r);
 }

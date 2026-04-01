@@ -17,7 +17,7 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 # include "types.h"
-# include "math.h"
+# include "minirt_math.h"
 # include "interface.h"
 # include "parsing.h"
 # include <math.h>
@@ -29,6 +29,7 @@
 # include <X11/X.h>
 # include "matrix_transformations.h"
 # include "light_shading.h"
+# include "ray_tracing.h"
 
 /*------------- APAGAR ------------------*/
 # include "tests.h"

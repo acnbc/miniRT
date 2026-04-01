@@ -16,48 +16,53 @@ DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
 	$(DIR_OBJ)/src \
-	$(DIR_OBJ)/src/ray_intersec \
-	$(DIR_OBJ)/src/light_shading \
+	$(DIR_OBJ)/src/interface \
 	$(DIR_OBJ)/src/parsing \
 	$(DIR_OBJ)/src/parsing/object \
-	$(DIR_OBJ)/src/interface \
-	$(DIR_OBJ)/src/math \
-	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/src/matrix_transformations \
-	$(DIR_OBJ)/images \
-	$(DIR_OBJ)/test
+	$(DIR_OBJ)/src/light_shading \
+	$(DIR_OBJ)/src/ray_intersec \
+	$(DIR_OBJ)/src/ray_tracing \
+	$(DIR_OBJ)/src/utils \
+	$(DIR_OBJ)/src/math \
+	$(DIR_OBJ)/test \
+	$(DIR_OBJ)/images
 
-SRC = 	src/ray_intersec/ray_utils.c \
-	src/ray_intersec/ray.c \
-	src/light_shading/utils.c \
-	src/light_shading/lighting.c \
-	src/main.c \
-	src/parsing/object/sgl_object.c \
+SRC = 	src/interface/window.c \
+	src/interface/color.c \
+	src/interface/hooks.c \
 	src/parsing/object/utils_object.c \
+	src/parsing/object/sgl_object.c \
 	src/parsing/object/lst_object.c \
 	src/parsing/object/object_type.c \
 	src/parsing/read_file.c \
-	src/interface/hooks.c \
-	src/interface/color.c \
-	src/interface/window.c \
-	src/math/matrix_operations.c \
+	src/matrix_transformations/transformations.c \
+	src/light_shading/utils.c \
+	src/light_shading/lighting.c \
+	src/ray_intersec/ray.c \
+	src/ray_intersec/ray_utils.c \
+	src/ray_tracing/ray_tracing_shade.c \
+	src/ray_tracing/ray_tracing_cam.c \
+	src/ray_tracing/ray_tracing_hit.c \
+	src/ray_tracing/ray_tracing.c \
+	src/utils/math_utils.c \
+	src/utils/transformations_utils.c \
+	src/utils/matrix_utils.c \
+	src/utils/utils.c \
+	src/utils/matrix_inversion_utils.c \
 	src/math/operations_part_2.c \
 	src/math/operations_part_1.c \
 	src/math/matrix_inversion_operations.c \
 	src/math/tuple_operations.c \
-	src/utils/matrix_utils.c \
-	src/utils/math_utils.c \
-	src/utils/transformations_utils.c \
-	src/utils/matrix_inversion_utils.c \
-	src/utils/utils.c \
-	src/matrix_transformations/transformations.c \
-	test/test_scene.c \
-	test/main.c \
-	test/test_normals.c \
-	test/test_reflection.c \
+	src/math/matrix_operations.c \
+	src/main.c \
 	test/test_math.c \
 	test/test_lighting.c \
-	test/test_interface.c
+	test/test_interface.c \
+	test/test_scene.c \
+	test/test_normals.c \
+	test/test_reflection.c \
+	test/main.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 

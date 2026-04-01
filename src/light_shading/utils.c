@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:46:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/01 12:29:40 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@ void	normal_at(t_matrix *normal, t_object *object, t_matrix *point)
 	t_matrix	transpose_inverse;
 	t_matrix	object_point;
 	t_matrix	object_normal;
-	t_matrix	world_normal;
+	t_matrix	tmp;
 
+	if (object->id == sp && object->coord.rows == 4 && object->coord.cols == 1)
+	{
+		subtract_tuple(&tmp, point, &object->coord);
+		vector_normalization(normal, &tmp);
+		return ;
+	}
 	inverse_matrix(&inverse, &object->coord);
 	matrix_tuple_multiplication(&object_point, &inverse, point);
 	matrix_transposition(&transpose_inverse, &inverse);
 	local_normal_at(&object_normal, &object_point);
-	matrix_tuple_multiplication(&world_normal, &transpose_inverse,
+	matrix_tuple_multiplication(&object_point, &transpose_inverse,
 		&object_normal);
-	world_normal.m_4x1[3] = 0.0;
-	vector_normalization(normal, &world_normal);
+	object_point.m_4x1[3] = 0.0;
+	vector_normalization(normal, &object_point);
 }
 
 static void	local_normal_at(t_matrix *object_normal,

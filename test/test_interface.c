@@ -19,6 +19,12 @@ static double	simplified_hit(t_intersect inter[2]);
 static t_tuple	lighting_calc(t_light *light, t_ray *ray, t_object *sphere,
 					double hit_t);
 
+/*
+ * Cena equivalente em .rt (miniRT real): images/test_interface_scene.rt
+ * Nota: o teste usa projeção na parede z=10 e janela 400x400; o traçador
+ * oficial usa FOV + tamanho da janela (mlx_get_screen_size), logo o enquadramento
+ * difere ligeiramente se não fixares size_x/size_y a 400.
+ */
 void	draw_test_3d_sphere(t_scene *scene)
 {
 	int				canvas_pixels;
