@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:18:47 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 01:01:39 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 01:22:48 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static unsigned int	convert_color_pixel(const t_tuple *rgb)
 	int				g;
 	int				b;
 
-	r = (int)fmax(0.0, fmin(rgb->r * 255, 255));
-	g = (int)fmax(0.0, fmin(rgb->g * 255, 255));
-	b = (int)fmax(0.0, fmin(rgb->b * 255, 255));
+	r = (int)fmax(0.0, fmin(rgb->r * 255.0, 255.0));
+	g = (int)fmax(0.0, fmin(rgb->g * 255.0, 255.0));
+	b = (int)fmax(0.0, fmin(rgb->b * 255.0, 255.0));
 	color = 0;
 	color += b;
 	color += (g << 8);

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:03:58 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 00:58:07 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 01:23:05 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ t_msg_error	get_coolors(t_rgb *colors, char **infos, int index)
 		i++;
 	}
 	ft_split_free(&arr);
-	colors->r = nbr[0] / 255;
-	colors->g = nbr[1] / 255;
-	colors->b = nbr[2] / 255;
+	colors->r = nbr[0] / 255.0;
+	colors->g = nbr[1] / 255.0;
+	colors->b = nbr[2] / 255.0;
 	if (i != 3)
 		return (ERR_ARGS);
 	return (0);
