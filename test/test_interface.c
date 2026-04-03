@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 20:42:29 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 00:37:36 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:09:19 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,21 +151,26 @@ static double	simplified_hit(t_intersect inter[2])
 	return (hit_t);
 }
 
-static t_tuple	lighting_calc(t_scene *scene, t_ray *ray, t_object *sphere,
+static t_rgb	lighting_calc(t_scene *scene, t_ray *ray, t_object *sphere,
 					double hit_t)
 {
-	t_tuple			pixel_color;
+	t_rgb			pixel_color;
 	t_matrix		hit_point;
 	t_matrix		normal_v;
 	t_matrix		eye_v;
 	t_light_base	base;
+	t_hit_shade		in;
 
 	position(&hit_point, ray, hit_t);
 	normal_at(&normal_v, sphere, &hit_point);
 	negate_tuple(&eye_v, &ray->direc); // O vetor olho aponta na direção contrária do raio
 
 	// 9. A Mágica Final
-	base = calc_light_base(scene, &hit_point, &sphere->material, &normal_v);
+	in.sc = scene;
+	in.nm = &normal_v;
+	in.pt = &hit_point;
+	in.mt = &sphere->material;
+	base = calc_light_base(&in);
 	pixel_color = lighting(&base, &sphere->material, &eye_v, &normal_v);
 	return (pixel_color);
 }

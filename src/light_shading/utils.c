@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 01:10:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:05:51 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,18 @@ void	default_material(t_material *material)
 	material->shininess = 200;
 }
 
-t_light_base	calc_light_base(const t_scene *scene, const t_matrix *position,
-					const t_material *material, const t_matrix *norm_v)
+t_light_base	calc_light_base(const t_hit_shade *in)
 {
 	t_light_base	base;
 	t_matrix		tmp;
 
-	tuple_scalar_multiplication(&base.ambient, &scene->amb_light->colors,
-		scene->amb_light->light_ratio);
-	tuple_multiplication(&base.effective_color, &material->color,
-		&scene->light->intensity);
-	subtract_tuple(&tmp, &scene->light->point, position);
+	tuple_scalar_multiplication(&base.ambient, &in->sc->amb_light->colors,
+		in->sc->amb_light->light_ratio);
+	tuple_multiplication(&base.effective_color, &in->mt->color,
+		&in->sc->light->intensity);
+	subtract_tuple(&tmp, &in->sc->light->point, in->pt);
 	vector_normalization(&base.light_v, &tmp);
-	base.light_dot_normal = dot_product(&base.light_v, norm_v);
-	base.intensity = scene->light->intensity;
+	base.light_dot_normal = dot_product(&base.light_v, in->nm);
+	base.intensity = in->sc->light->intensity;
 	return (base);
 }

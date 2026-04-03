@@ -32,7 +32,7 @@ t_rgb	shade_lit_color(t_hit_shade *in)
 	t_matrix		eye;
 
 	negate_tuple(&eye, &in->ray->direc);
-	base = calc_light_base(in->sc, in->pt, in->mt, in->nm);
+	base = calc_light_base(in);
 	lit = lighting(&base, in->mt, &eye, in->nm);
 	return (lit);
 }
