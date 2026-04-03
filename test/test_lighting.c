@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 16:52:53 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:20:35 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:28:36 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	test_lighting(void)
 
 	default_material(&material);
 	init_point(&position, 0, 0, 0);
-	amb.colors = (t_tuple){{.r = 1, .g = 1, .b = 1}};
-	amb.light_ratio = 0.2;
+	amb.colors = (t_rgb){.r = 1, .g = 1, .b = 1};
+	amb.light_ratio = 0.1;
 	scene.amb_light = &amb;
 	scene.light = &light;
 
@@ -135,4 +135,6 @@ static void	create_point_light(t_light *p_light, t_tuple point, t_rgb color)
 {
 	init_point(&p_light->point, point.x, point.y, point.z);
 	p_light->intensity = color;
+	p_light->colors = color;
+	p_light->brightness = 1.0;
 }

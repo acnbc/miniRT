@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:05:51 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:26:23 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	reflect(t_matrix *result, t_matrix *vector, t_matrix *normal)
 
 void	default_material(t_material *material)
 {
-	material->color = (t_rgb){{.r = 1, .g = 1, .b = 1}};
+	material->color = (t_rgb){.r = 1, .g = 1, .b = 1};
 	material->diffuse = 0.9;
 	material->specular = 0.9;
 	material->shininess = 200;

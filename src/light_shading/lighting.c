@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 03:30:22 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 01:03:12 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:26:23 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_rgb	lighting(t_light_base *base, t_material *material,
 	tuple_multiplication(&ambient, &base->effective_color,
 		&base->ambient);
 	specular = calc_specular(material, base, eye_v, norm_v);
-	diffuse = (t_rgb){{.r = 0, .g = 0, .b = 0}};
+	diffuse = (t_rgb){.r = 0, .g = 0, .b = 0};
 	if (base->light_dot_normal >= 0)
 	{
 		mult = material->diffuse * base->light_dot_normal;
@@ -48,7 +48,7 @@ static t_rgb	calc_specular(t_material *material, t_light_base *base,
 	double		reflect_dot_eye;
 	double		factor;
 
-	specular = (t_rgb){{.r = 0, .g = 0, .b = 0}};
+	specular = (t_rgb){.r = 0, .g = 0, .b = 0};
 	if (base->light_dot_normal < 0)
 		return (specular);
 	negate_tuple(&neg_light_v, &base->light_v);

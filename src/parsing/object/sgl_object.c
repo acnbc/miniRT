@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 17:53:27 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 01:11:02 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:26:37 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ void	create_light(t_scene *scene, char ***infos, int index)
 
 static void	calc_intensity(t_light *light)
 {
-	light->intensity = (t_rgb){{
+	light->intensity = (t_rgb){
 		.r = light->colors.r * light->brightness,
 		.g = light->colors.g * light->brightness,
-		.b = light->colors.b * light->brightness}};
+		.b = light->colors.b * light->brightness};
 }
 
 static void	error_create_element(char ***infos, t_msg_error error)

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 20:42:29 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:09:19 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 02:28:29 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_test_3d_sphere(t_scene *scene)
 	init_sphere(&sphere);
 
 	// 4. Inicialização da Luz
-	scene->light->intensity = (t_tuple){{.r = 1.0, .g = 1.0, .b = 1.0}}; // Luz branca forte
+	scene->light->intensity = (t_rgb){.r = 1.0, .g = 1.0, .b = 1.0}; // Luz branca forte
 
 	// init_point(&scene->light->point, 10, -10, -10); // teste padrão
 	init_point(&scene->light->point, 0, 0, -20); // ponto de luz no centro
@@ -117,8 +117,8 @@ static void	init_sphere(t_object *sphere)
 	sphere->object.cylinder = NULL;
 	default_material(&sphere->material);
 
-	sphere->material.color = (t_tuple){{.r = 7, .g = 0.7, .b = 0}}; // sol
-	// sphere->material.color = (t_tuple){{.r = 1.0, .g = 0.2, .b = 1.0}}; // teste padrão (Roxo fosco com brilho)
+	sphere->material.color = (t_rgb){.r = 7, .g = 0.7, .b = 0}; // sol
+	// sphere->material.color = (t_rgb){.r = 1.0, .g = 0.2, .b = 1.0}; // teste padrão (Roxo fosco com brilho)
 }
 
 static t_ray	init_ray(t_matrix *ray_origin, double world_x, double world_y,
