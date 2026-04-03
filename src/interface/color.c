@@ -6,13 +6,13 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:18:47 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 01:22:48 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:38:27 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-static unsigned int	convert_color_pixel(const t_tuple *rgb)
+static unsigned int	convert_color_pixel(const t_rgb *rgb)
 {
 	unsigned int	color;
 	int				r;
@@ -29,7 +29,7 @@ static unsigned int	convert_color_pixel(const t_tuple *rgb)
 	return (color);
 }
 
-void	pixel_put(t_window *win, int x, int y, t_tuple *rgb)
+void	put_pixel(t_window *win, int x, int y, t_rgb *rgb)
 {
 	char			*dest;
 	int				point_x;

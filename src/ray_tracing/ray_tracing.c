@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 11:12:48 by anogueir          #+#    #+#             */
-/*   Updated: 2026/04/03 00:16:28 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:38:27 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y)
 			scene->amb_light->light_ratio);
 		if (closest_hit_spheres(scene->objects, &ray, &hit))
 			px = shade_sphere_pixel(scene, &ray, &hit);
-		pixel_put(scene->window, x, y, &px);
+		put_pixel(scene->window, x, y, &px);
 		x++;
 	}
 }

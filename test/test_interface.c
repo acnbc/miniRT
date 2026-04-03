@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 20:42:29 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:28:29 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:38:27 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	draw_test_3d_sphere(t_scene *scene)
 			pixel_color = lighting_calc(scene, &ray, &sphere, hit_t);
 
 			// 10. Pintar na imagem
-			pixel_put(scene->window, x, y, &pixel_color);
+			put_pixel(scene->window, x, y, &pixel_color);
 		}
 	}
 
