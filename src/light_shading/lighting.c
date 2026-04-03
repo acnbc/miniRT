@@ -24,8 +24,7 @@ t_rgb	lighting(t_light_base *base, t_material *material,
 	double	mult;
 	t_rgb	result;
 
-	tuple_multiplication(&ambient, &base->effective_color,
-		&base->ambient);
+	tuple_multiplication(&ambient, &material->color, &base->ambient);
 	specular = calc_specular(material, base, eye_v, norm_v);
 	diffuse = (t_rgb){.r = 0, .g = 0, .b = 0};
 	if (base->light_dot_normal >= 0)

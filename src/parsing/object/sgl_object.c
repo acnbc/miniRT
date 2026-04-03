@@ -52,7 +52,7 @@ void	create_camera(t_scene *scene, char ***infos, int index)
 	if (error)
 		error_create_element(infos, error);
 	camera->field_of_view = ft_atoi((*infos)[index + 2]);
-	if (camera->field_of_view < 0 || camera->field_of_view > 180)
+	if (camera->field_of_view <= 0 || camera->field_of_view >= 180)
 		error_create_element(infos, ERR_RANGE);
 }
 

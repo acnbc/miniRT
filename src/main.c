@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:12:40 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 13:15:40 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	create_window(scene, argv[1]);
 	create_image(scene->window);
     ray_tracer(scene);
-	tester(scene);
+	// tester(scene);
 	init_hooks(scene);
 	free_scene(&scene);
 	return (0);

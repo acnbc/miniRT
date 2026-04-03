@@ -12,6 +12,8 @@
 
 #include "../../includes/miniRT.h"
 
+# define CAM_UP_DOT_EPS 1e-6
+
 void	compute_camera_axes(t_cam_basis *basis, const t_camera *camera)
 {
 	t_matrix	world_up;
@@ -19,6 +21,8 @@ void	compute_camera_axes(t_cam_basis *basis, const t_camera *camera)
 
 	vector_normalization(&basis->forward, &camera->orientation_vector);
 	init_vector(&world_up, 0, 1, 0);
+	if (fabs(dot_product(&basis->forward, &world_up)) > 1.0 - 1e-6)
+		init_vector(&world_up, 0, 0, 1);
 	cross_product(&tmp, &basis->forward, &world_up);
 	vector_normalization(&basis->right, &tmp);
 	cross_product(&tmp, &basis->right, &basis->forward);
