@@ -28,6 +28,6 @@ void			tuple_addition(t_tuple *result, const t_tuple *a,
 void			tuple_multiplication(t_tuple *result, const t_tuple *a,
 					const t_tuple *b);
 void			tuple_scalar_multiplication(t_tuple *result,
-					const t_tuple *color, double scalar);
+					const t_tuple *a, double scalar);
 
 #endif

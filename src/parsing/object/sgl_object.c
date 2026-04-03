@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sgl_object.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 17:53:27 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/01 12:39:31 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/03 01:11:02 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/miniRT.h"
 
 static void	error_create_element(char ***infos, t_msg_error error);
+static void	calc_intensity(t_light *light);
 
 void	create_amb_light(t_scene *scene, char ***infos, int index)
 {
@@ -27,14 +28,9 @@ void	create_amb_light(t_scene *scene, char ***infos, int index)
 	amb_light->light_ratio = ft_atod((*infos)[index]);
 	if (amb_light->light_ratio < 0 || amb_light->light_ratio > 1)
 		error_create_element(infos, ERR_RANGE);
-	if (!*infos)
-	{
-		error = get_coolors(&amb_light->colors, *infos, index + 1);
-		if (error)
-			error_create_element(infos, error);
-	}
-	else
-		amb_light->colors = (t_rgb){255, 255, 255};
+	error = get_coolors(&amb_light->colors, *infos, index + 1);
+	if (error)
+		error_create_element(infos, error);
 }
 
 void	create_camera(t_scene *scene, char ***infos, int index)
@@ -77,13 +73,24 @@ void	create_light(t_scene *scene, char ***infos, int index)
 	light->brightness = ft_atod((*infos)[index + 1]);
 	if (light->brightness < 0 || light->brightness > 1)
 		error_create_element(infos, ERR_RANGE);
-	error = get_coolors(&light->colors, *infos, index + 2);
-	if (error)
-		error_create_element(infos, error);
-	light->intensity = (t_tuple){
-		(light->colors.r / 255) * light->brightness,
-		(light->colors.g / 255) * light->brightness,
-		(light->colors.b / 255) * light->brightness, 0};
+	light->colors.r = 1;
+	light->colors.g = 1;
+	light->colors.b = 1;
+	if ((*infos)[index + 2])
+	{
+		error = get_coolors(&light->colors, *infos, index + 2);
+		if (error)
+			error_create_element(infos, error);
+	}
+	calc_intensity(scene->light);
+}
+
+static void	calc_intensity(t_light *light)
+{
+	light->intensity = (t_rgb){{
+		.r = light->colors.r * light->brightness,
+		.g = light->colors.g * light->brightness,
+		.b = light->colors.b * light->brightness}};
 }
 
 static void	error_create_element(char ***infos, t_msg_error error)

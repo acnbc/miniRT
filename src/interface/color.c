@@ -6,37 +6,41 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:18:47 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 03:32:28 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 01:01:39 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-unsigned int	convert_color(const t_tuple *tuple)
+static unsigned int	convert_color_pixel(const t_tuple *rgb)
 {
 	unsigned int	color;
-	t_rgb			rgb;
+	int				r;
+	int				g;
+	int				b;
 
-	rgb.r = (unsigned char)fmax(0.0, fmin(tuple->x * 255, 255));
-	rgb.g = (unsigned char)fmax(0.0, fmin(tuple->y * 255, 255));
-	rgb.b = (unsigned char)fmax(0.0, fmin(tuple->z * 255, 255));
+	r = (int)fmax(0.0, fmin(rgb->r * 255, 255));
+	g = (int)fmax(0.0, fmin(rgb->g * 255, 255));
+	b = (int)fmax(0.0, fmin(rgb->b * 255, 255));
 	color = 0;
-	color += (int)rgb.b;
-	color += ((int)rgb.g << 8);
-	color += ((int)rgb.r << 16);
+	color += b;
+	color += (g << 8);
+	color += (r << 16);
 	return (color);
 }
 
-void	pixel_put(t_window *win, int x, int y, unsigned int color)
+void	pixel_put(t_window *win, int x, int y, t_tuple *rgb)
 {
 	char			*dest;
 	int				point_x;
 	int				point_y;
+	unsigned int	color;
 
 	if (x < 0 || x >= win->size_x || y < 0 || y >= win->size_y)
 		return ;
 	point_x = x * (win->img->bits_per_pixel / 8);
 	point_y = y * win->img->size_line;
 	dest = win->img->addr + (point_y + point_x);
+	color = convert_color_pixel(rgb);
 	*(unsigned int *)dest = color;
 }

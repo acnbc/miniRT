@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:35:28 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/02 23:35:00 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:55:18 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_amb_light
 {
 	t_id	id;
 	double	light_ratio;
-	t_tuple	colors;
+	t_rgb	colors;
 }	t_amb_light;
 
 typedef struct s_camera
@@ -44,8 +44,8 @@ typedef struct s_light
 	t_id		id;
 	t_matrix	point;
 	double		brightness;
-	t_tuple		intensity;
-	t_tuple		colors;
+	t_rgb		intensity;
+	t_rgb		colors;
 }	t_light;
 
 typedef struct s_sphere

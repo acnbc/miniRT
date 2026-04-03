@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:32:33 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/02 23:46:56 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 01:04:36 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_tuple
 	};
 }	t_tuple;
 
-// typedef t_tuple t_rgb;
+typedef t_tuple	t_rgb;
 
 typedef struct s_matrix
 {
@@ -52,7 +52,7 @@ typedef struct s_matrix
 
 typedef struct s_material
 {
-	t_tuple	color;
+	t_rgb	color;
 	double	diffuse;
 	double	specular;
 	double	shininess;
@@ -83,11 +83,11 @@ typedef enum e_msg_error
 
 typedef struct s_light_calc
 {
-	t_tuple		effective_color;
+	t_rgb		effective_color;
 	t_matrix	light_v;
 	double		light_dot_normal;
-	t_tuple		intensity;
-	t_tuple		ambient;
+	t_rgb		intensity;
+	t_rgb		ambient;
 }	t_light_base;
 
 #endif

@@ -60,8 +60,7 @@ void	reflect(t_matrix *result, t_matrix *vector, t_matrix *normal)
 
 void	default_material(t_material *material)
 {
-	material->color = (t_tuple){1, 1, 1, 0};
-	material->ambient = 0.1;
+	material->color = (t_rgb){{.r = 1, .g = 1, .b = 1}};
 	material->diffuse = 0.9;
 	material->specular = 0.9;
 	material->shininess = 200;
