@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 16:45:30 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/28 22:41:39 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:30:39 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	test_normals(void)
 	printf("\n================ NORMALS DEBUG ================\n");
 
 	sphere.id = sp;
-	sphere.colors = (t_rgb){200, 0, 200};
+	default_material(&sphere.material);
+	sphere.material.color = (t_tuple){{.r = 200, .g = 0, .b = 200}};
 	init_identity_matrix(&sphere.coord, 4);
 	object_sphere.diameter = 2; // Raio 1
 	sphere.object.sphere = &object_sphere;

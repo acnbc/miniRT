@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 20:42:29 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 03:01:46 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:37:36 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		init_sphere(t_object *sphere);
 static t_ray	init_ray(t_matrix *ray_origin, double world_x, double world_y,
 					double wall_z);
 static double	simplified_hit(t_intersect inter[2]);
-static t_tuple	lighting_calc(t_light *light, t_ray *ray, t_object *sphere,
+static t_tuple	lighting_calc(t_scene *scene, t_ray *ray, t_object *sphere,
 					double hit_t);
 
 /*
@@ -42,7 +42,6 @@ void	draw_test_3d_sphere(t_scene *scene)
 	t_intersect		inter[2];
 	double 			hit_t;
 	t_tuple			pixel_color;
-	unsigned int	final_mlx_color;
 
 
 	// 1. Configurações da Câmera e da "Parede" (Canvas)
@@ -59,7 +58,7 @@ void	draw_test_3d_sphere(t_scene *scene)
 	init_sphere(&sphere);
 
 	// 4. Inicialização da Luz
-	scene->light->intensity = (t_tuple){1.0, 1.0, 1.0, 0}; // Luz branca forte
+	scene->light->intensity = (t_tuple){{.r = 1.0, .g = 1.0, .b = 1.0}}; // Luz branca forte
 
 	// init_point(&scene->light->point, 10, -10, -10); // teste padrão
 	init_point(&scene->light->point, 0, 0, -20); // ponto de luz no centro
@@ -92,11 +91,10 @@ void	draw_test_3d_sphere(t_scene *scene)
 			hit_t = simplified_hit(inter);
 
 			// 8. O Raio acertou! Vamos calcular a Iluminação
-			pixel_color = lighting_calc(scene->light, &ray, &sphere, hit_t);
+			pixel_color = lighting_calc(scene, &ray, &sphere, hit_t);
 
 			// 10. Pintar na imagem
-			final_mlx_color = convert_color(&pixel_color);
-			pixel_put(scene->window, x, y, final_mlx_color);
+			pixel_put(scene->window, x, y, &pixel_color);
 		}
 	}
 
@@ -119,8 +117,8 @@ static void	init_sphere(t_object *sphere)
 	sphere->object.cylinder = NULL;
 	default_material(&sphere->material);
 
-	sphere->material.color = (t_tuple){7, 0.7, 0, 0}; // sol
-	// sphere->material.color = (t_tuple){1.0, 0.2, 1.0, 0}; // teste padrão (Roxo fosco com brilho)
+	sphere->material.color = (t_tuple){{.r = 7, .g = 0.7, .b = 0}}; // sol
+	// sphere->material.color = (t_tuple){{.r = 1.0, .g = 0.2, .b = 1.0}}; // teste padrão (Roxo fosco com brilho)
 }
 
 static t_ray	init_ray(t_matrix *ray_origin, double world_x, double world_y,
@@ -153,7 +151,7 @@ static double	simplified_hit(t_intersect inter[2])
 	return (hit_t);
 }
 
-static t_tuple	lighting_calc(t_light *light, t_ray *ray, t_object *sphere,
+static t_tuple	lighting_calc(t_scene *scene, t_ray *ray, t_object *sphere,
 					double hit_t)
 {
 	t_tuple			pixel_color;
@@ -167,7 +165,7 @@ static t_tuple	lighting_calc(t_light *light, t_ray *ray, t_object *sphere,
 	negate_tuple(&eye_v, &ray->direc); // O vetor olho aponta na direção contrária do raio
 
 	// 9. A Mágica Final
-	base = calc_light_base(light, &hit_point, &sphere->material, &normal_v);
+	base = calc_light_base(scene, &hit_point, &sphere->material, &normal_v);
 	pixel_color = lighting(&base, &sphere->material, &eye_v, &normal_v);
 	return (pixel_color);
 }
