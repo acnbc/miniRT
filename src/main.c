@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:12:40 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:55:44 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	printf("parsing finalizado!\n");
 	create_window(scene, argv[1]);
 	create_image(scene->window);
-    ray_tracer(scene);
+	ray_tracer(scene);
 	tester(scene);
 	init_hooks(scene);
 	free_scene(&scene);
