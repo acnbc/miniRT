@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:47 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 15:52:11 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 15:09:46 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	scalar_division(t_matrix *matrix, const t_matrix *tuple,
 	if (!matrix)
 		return ;
 	init_matrix(matrix, 4, 1);
+	if (scalar < EPSILON)
+		return ;
 	matrix->m_4x1[0] = tuple->m_4x1[0] / scalar;
 	matrix->m_4x1[1] = tuple->m_4x1[1] / scalar;
 	matrix->m_4x1[2] = tuple->m_4x1[2] / scalar;
