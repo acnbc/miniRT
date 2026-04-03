@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:40:22 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:22:45 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
-# include "types.h"
+
+# include <math.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <sys/time.h>
+# include <X11/keysymdef.h>
+# include <X11/X.h>
+
+# include "types/types.h"
 # include "minirt_math.h"
 # include "interface.h"
 # include "parsing.h"
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
-# include <X11/keysymdef.h>
-# include <X11/X.h>
 # include "matrix_transformations.h"
 # include "light_shading.h"
 # include "ray_tracing.h"
