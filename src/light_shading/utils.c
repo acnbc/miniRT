@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/01 12:29:40 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/03 01:10:59 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,19 @@ void	default_material(t_material *material)
 	material->shininess = 200;
 }
 
-t_light_base	calc_light_base(const t_light *light, const t_matrix *position,
+t_light_base	calc_light_base(const t_scene *scene, const t_matrix *position,
 					const t_material *material, const t_matrix *norm_v)
 {
 	t_light_base	base;
 	t_matrix		tmp;
 
+	tuple_scalar_multiplication(&base.ambient, &scene->amb_light->colors,
+		scene->amb_light->light_ratio);
 	tuple_multiplication(&base.effective_color, &material->color,
-		&light->intensity);
-	subtract_tuple(&tmp, &light->point, position);
+		&scene->light->intensity);
+	subtract_tuple(&tmp, &scene->light->point, position);
 	vector_normalization(&base.light_v, &tmp);
 	base.light_dot_normal = dot_product(&base.light_v, norm_v);
-	base.intensity = light->intensity;
+	base.intensity = scene->light->intensity;
 	return (base);
 }

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 01:43:57 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:18:24 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:44:48 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_tuple			lighting(t_light_base *light_calc, t_material *material,
 void			normal_at(t_matrix *normal, t_object *sphere, t_matrix *point);
 void			reflect(t_matrix *result, t_matrix *vector, t_matrix *normal);
 
-t_light_base	calc_light_base(const t_light *light, const t_matrix *position,
+t_light_base	calc_light_base(const t_scene *scene, const t_matrix *position,
 					const t_material *material, const t_matrix *norm_v);
 void			default_material(t_material *material);
 

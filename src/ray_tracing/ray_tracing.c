@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 11:12:48 by anogueir          #+#    #+#             */
-/*   Updated: 2026/04/01 12:37:52 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/03 00:16:28 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,36 @@ void	ray_show_image(t_window *win)
 	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->img->ptr, 0, 0);
 }
 
-void	ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y,
-		unsigned int amb_c)
+void	ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y)
 {
 	t_ndc			ndc;
 	t_ray			ray;
 	t_intersect		hit;
 	int				x;
-	unsigned int	px;
+	t_tuple			px;
 
 	x = 0;
 	while (x < scene->window->size_x)
 	{
 		map_pixel_ndc(scene, x, y, &ndc);
 		make_primary_ray(context, &ndc, &ray);
-		px = amb_c;
+		tuple_scalar_multiplication(&px, &scene->amb_light->colors,
+			scene->amb_light->light_ratio);
 		if (closest_hit_spheres(scene->objects, &ray, &hit))
 			px = shade_sphere_pixel(scene, &ray, &hit);
-		pixel_put(scene->window, x, y, px);
+		pixel_put(scene->window, x, y, &px);
 		x++;
 	}
 }
 
-void	ray_trace_loop(t_scene *scene, t_ray_gen *context, t_tuple *amb)
+void	ray_trace_loop(t_scene *scene, t_ray_gen *context)
 {
-	unsigned int		c;
-	int					y;
+	int	y;
 
-	c = convert_color(amb);
 	y = 0;
 	while (y < scene->window->size_y)
 	{
-		ray_trace_scanline(scene, context, y, c);
+		ray_trace_scanline(scene, context, y);
 		y++;
 	}
 }
@@ -56,12 +54,10 @@ void	ray_trace_loop(t_scene *scene, t_ray_gen *context, t_tuple *amb)
 void	ray_tracer(t_scene *scene)
 {
 	t_ray_gen	context;
-	t_tuple		amb;
 
 	if (!scene || !scene->camera || !scene->window)
 		return ;
 	ray_gen_init(&context, scene);
-	amb_tuple(scene, &amb);
-	ray_trace_loop(scene, &context, &amb);
+	ray_trace_loop(scene, &context);
 	ray_show_image(scene->window);
 }
