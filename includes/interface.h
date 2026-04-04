@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/02 22:02:36 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:38:46 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void			create_image(t_window *win);
 void			free_window(t_window **win);
 void			free_image(t_image **img, void *mlx_ptr);
 
-void			pixel_put(t_window *win, int x, int y, t_tuple *rgb);
+void			put_pixel(t_window *win, int x, int y, t_rgb *rgb);
 
 #endif

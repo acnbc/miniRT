@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/21 17:04:47 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:39:09 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			create_light(t_scene *scene, char ***infos, int index);
 t_id			get_id(char *str);
 t_matrix		get_coord(char **infos, int index, bool vector);
 void			get_object_type(t_object *object, char ***infos, int index);
-t_msg_error		get_coolors(t_rgb *colors, char **infos, int index);
+t_msg_error		get_colors(t_rgb *colors, char **infos, int index);
 t_msg_error		valid_tuple(t_matrix matrix);
 
 t_object		*lst_new_object(char ***infos, t_id id);

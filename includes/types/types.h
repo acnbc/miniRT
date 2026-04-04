@@ -75,6 +75,7 @@ typedef struct s_hit_shade
 	t_matrix	*pt;
 	t_matrix	*nm;
 	t_material	*mt;
+	t_matrix	*o_pt;
 }	t_hit_shade;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 03:30:22 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:26:23 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/04 11:30:05 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_rgb	lighting(t_light_base *base, t_material *material,
 	t_rgb	result;
 
 	tuple_multiplication(&ambient, &material->color, &base->ambient);
+	if (base->in_shadow)
+		return (ambient);
 	specular = calc_specular(material, base, eye_v, norm_v);
 	diffuse = (t_rgb){.r = 0, .g = 0, .b = 0};
 	if (base->light_dot_normal >= 0)

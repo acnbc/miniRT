@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 17:53:27 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:26:37 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:39:08 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	create_amb_light(t_scene *scene, char ***infos, int index)
 	amb_light->light_ratio = ft_atod((*infos)[index]);
 	if (amb_light->light_ratio < 0 || amb_light->light_ratio > 1)
 		error_create_element(infos, ERR_RANGE);
-	error = get_coolors(&amb_light->colors, *infos, index + 1);
+	error = get_colors(&amb_light->colors, *infos, index + 1);
 	if (error)
 		error_create_element(infos, error);
 }
@@ -78,7 +78,7 @@ void	create_light(t_scene *scene, char ***infos, int index)
 	light->colors.b = 1;
 	if ((*infos)[index + 2])
 	{
-		error = get_coolors(&light->colors, *infos, index + 2);
+		error = get_colors(&light->colors, *infos, index + 2);
 		if (error)
 			error_create_element(infos, error);
 	}

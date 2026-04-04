@@ -6,7 +6,7 @@
 /*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 13:15:40 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/04 11:30:18 by anogueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 	printf("parsing finalizado!\n");
 	create_window(scene, argv[1]);
 	create_image(scene->window);
-    ray_tracer(scene);
-	// tester(scene);
+	ray_tracer(scene);
+	tester(scene);
 	init_hooks(scene);
 	free_scene(&scene);
 	return (0);

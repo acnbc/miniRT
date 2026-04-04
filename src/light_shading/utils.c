@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:26:23 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/04 00:20:04 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ t_light_base	calc_light_base(const t_hit_shade *in)
 		in->sc->amb_light->light_ratio);
 	tuple_multiplication(&base.effective_color, &in->mt->color,
 		&in->sc->light->intensity);
-	subtract_tuple(&tmp, &in->sc->light->point, in->pt);
+	subtract_tuple(&tmp, &in->sc->light->point, in->o_pt);
 	vector_normalization(&base.light_v, &tmp);
 	base.light_dot_normal = dot_product(&base.light_v, in->nm);
 	base.intensity = in->sc->light->intensity;
+	base.in_shadow = is_shadowed(in);
 	return (base);
 }
