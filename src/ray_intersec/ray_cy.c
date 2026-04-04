@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 02:44:21 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/04 07:53:17 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/04 08:57:17 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ double	check_cap(t_ray *ray, double t, double diameter)
 	x = ray->ori.m_4x1[0] + (t * ray->direc.m_4x1[0]);
 	z = ray->ori.m_4x1[2] + (t * ray->direc.m_4x1[2]);
 	return ((pow(x, 2) + pow(z, 2)) <= pow((diameter / 2),2));
+}
+int	close_to_zero(double n)
+{
+	return (n < EPSILON && n > -EPSILON);
 }
 
 void	cy_body_intersect(t_intersect inter[2], t_object *ob, t_ray *ray,
