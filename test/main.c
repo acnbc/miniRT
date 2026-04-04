@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 07:53:08 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:22:19 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/04 01:29:52 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	tester(t_scene *scene)
 	test_chapter5();
 	test_normals();
 	test_reflection();
-	test_lighting();
+	// test_lighting(); // depreciado
 }

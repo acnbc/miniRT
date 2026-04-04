@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:38:40 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 00:25:25 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/04 01:27:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	is_shadowed(const t_hit_shade *in)
 	t_ray		ray;
 	t_intersect	intersect;
 
+	if (!in)
+		return (false);
 	subtract_tuple(&vector, &in->sc->light->point, in->o_pt);
 	distance = vector_magnitude(&vector);
 	vector_normalization(&direction, &vector);

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 16:52:53 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 02:28:36 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/04 01:29:26 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static t_rgb	color(double r, double g, double b);
 static bool		tuple_is_equal(t_rgb *a, t_rgb *b);
 static void	create_point_light(t_light *p_light, t_tuple point, t_rgb color);
 
+// teste depreciado apos a implementacao do sombreamento
 void	test_lighting(void)
 {
 	t_material		material;
