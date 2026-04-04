@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:32:33 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 01:04:36 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 18:29:32 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_light_calc
 	double		light_dot_normal;
 	t_rgb		intensity;
 	t_rgb		ambient;
+	bool		in_shadow;
 }	t_light_base;
 
 #endif
