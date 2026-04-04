@@ -12,15 +12,14 @@
 
 #include "../../includes/miniRT.h"
 
-size_t	count_spheres(t_object *objects)
+size_t	count_objects(t_object *objects)
 {
 	size_t	n;
 
 	n = 0;
 	while (objects)
 	{
-		if (objects->id == sp && objects->object.sphere)
-			n++;
+		n++;
 		objects = objects->next;
 	}
 	return (n);
@@ -30,18 +29,74 @@ size_t	fill_sphere_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 		t_intersect pair[2])
 {
 	size_t	n;
+	t_ray	transf_ray;
 
 	n = 0;
 	while (objects)
 	{
 		if (objects->id == sp && objects->object.sphere)
 		{
-			sp_intersect(pair, objects, ray);
+			transform_ray(&transf_ray, &objects, &ray);
+			sp_intersect(pair, objects, &transf_ray);
 			if (pair[0].obj && pair[1].obj)
 			{
 				buf[n] = pair[0];
 				buf[n + 1] = pair[1];
 				n += 2;
+			}
+		}
+		objects = objects->next;
+	}
+	return (n);
+}
+
+size_t	fill_pl_hits(t_object *objects, t_ray *ray, t_intersect *buf,
+	t_intersect pair[1])
+{
+	size_t	n;
+	t_ray	transf_ray;
+
+	n = 0;
+	while (objects)
+	{
+		if (objects->id == pl && objects->object.plane)
+		{
+			transform_ray(&transf_ray, &objects, &ray);
+			pl_intersect(pair, objects, &transf_ray);
+			if (pair[0].obj)
+			{
+				buf[n] = pair[0];
+				n++;
+			}
+		}
+		objects = objects->next;
+	}
+	return (n);
+}
+
+size_t	fill_cy_hits(t_object *objects, t_ray *ray, t_intersect *buf,
+	t_intersect pair[4])
+{
+	size_t	n;
+	size_t	i;
+	t_ray	transf_ray;
+
+	n = 0;
+	while (objects)
+	{
+		if (objects->id == cy && objects->object.cylinder)
+		{
+			transform_ray(&transf_ray, &objects, &ray);
+			cy_intersect(pair, objects, &transf_ray);
+			i = 0;
+			while (i < 4)
+			{
+				if (pair[i].obj)
+				{
+					buf[n] = pair[i];
+					n++;
+				}
+				i++;
 			}
 		}
 		objects = objects->next;
@@ -76,13 +131,15 @@ bool	closest_hit_spheres(t_object *objects, t_ray *ray,
 	size_t		cap;
 	size_t		n;
 
-	cap = count_spheres(objects);
+	cap = count_objects(objects);
 	if (cap == 0)
 		return (false);
 	buf = (t_intersect *)safe_malloc(2 * cap * sizeof(t_intersect));
-	n = fill_sphere_hits(objects, ray, buf, pair);
+	n += fill_sphere_hits(objects, ray, buf, pair);
 	return (resolve_closest_hit(buf, n, out_hit));
 }
+
+
 
 void	amb_tuple(t_scene *scene, t_tuple *out)
 {

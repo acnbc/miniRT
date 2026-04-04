@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/01 12:31:18 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/04 07:28:44 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
+static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
 
 void	position(t_matrix *point, t_ray *ray, double t)
 {
@@ -28,17 +28,15 @@ void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 	t_matrix	sphere_ray;
 	t_tuple		numbers;
 	t_matrix	sphere_origin;
-	t_ray		transformed_ray;
 
 	inter[0].obj = NULL;
 	inter[1].obj = NULL;
 	inter[0].t = 0;
 	inter[1].t = 0;
-	sphere_transform_ray(&transformed_ray, ob, ray);
 	init_point(&sphere_origin, 0, 0, 0);
-	subtract_tuple(&sphere_ray, &transformed_ray.ori, &sphere_origin);
-	numbers.x = dot_product(&transformed_ray.direc, &transformed_ray.direc);
-	numbers.y = 2 * dot_product(&transformed_ray.direc, &sphere_ray);
+	subtract_tuple(&sphere_ray, &ray->ori, &sphere_origin);
+	numbers.x = dot_product(&ray->direc, &ray->direc);
+	numbers.y = 2 * dot_product(&ray->direc, &sphere_ray);
 	numbers.z = dot_product(&sphere_ray, &sphere_ray) - 1;
 	delta = (numbers.y * numbers.y) - (4 * numbers.x * numbers.z);
 	if (delta < 0)
@@ -49,28 +47,20 @@ void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 	inter[1].t = ((-1 * numbers.y) + sqrt(delta)) / (2 * numbers.x);
 }
 
-t_intersect	*hit(t_intersections *inters)
+void	pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray)
 {
-	int	i;
-	int	min;
+	double	t;
 
-	i = 0;
-	min = -1;
-	while (i < inters->n_inter)
-	{
-		if (inters->inter[i].t >= 0)
-		{
-			if (min == -1 || inters->inter[i].t < inters->inter[min].t)
-				min = i;
-		}
-		i++;
-	}
-	if (min == -1)
-		return (NULL);
-	return (&inters->inter[min]);
+	inter[0].obj = NULL;
+	inter[0].t = 0;
+	if (fabs(ray->direc.m_4x1[1]) < EPSILON)
+		return ;
+	inter[0].t = (-1 * ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
+	inter[0].obj = ob;
 }
 
-static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
+
+static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
 	double		r;
 	t_matrix	diff;
