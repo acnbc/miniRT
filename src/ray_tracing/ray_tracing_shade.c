@@ -42,31 +42,29 @@ t_rgb	shade_sphere_pixel(t_scene *scene, t_ray *ray,
 {
 	t_matrix		hit_pt;
 	t_matrix		norm_v;
+	t_matrix		over_point;
 	t_material		mat;
 	t_hit_shade		sh;
-	t_rgb			color;
 
 	position(&hit_pt, ray, hit->t);
 	normal_at(&norm_v, hit->obj, &hit_pt);
 	shade_orient_normal(&norm_v, ray);
+	calc_over_point(&over_point, &norm_v, &hit_pt);
 	mat = hit->obj->material;
 	sh.sc = scene;
 	sh.ray = ray;
 	sh.pt = &hit_pt;
 	sh.nm = &norm_v;
 	sh.mt = &mat;
-	calc_over_point(&sh, &norm_v, &hit_pt);
-	color = shade_lit_color(&sh);
-	return (color);
+	sh.o_pt = &over_point;
+	return (shade_lit_color(&sh));
 }
 
-void	calc_over_point(t_hit_shade *sh, const t_matrix *norm_v,
+void	calc_over_point(t_matrix *over_point, const t_matrix *norm_v,
 			const t_matrix *hit_pt)
 {
 	t_matrix	tmp;
-	t_matrix	over_point;
 
 	scalar_multiplication(&tmp, norm_v, EPSILON);
-	add_tuples(&over_point, hit_pt, &tmp);
-	sh->o_pt = &over_point;
+	add_tuples(over_point, hit_pt, &tmp);
 }
