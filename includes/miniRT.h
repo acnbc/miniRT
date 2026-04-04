@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 07:54:19 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/04 16:51:55 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
-# include "types.h"
+
+# include <math.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <sys/time.h>
+# include <X11/keysymdef.h>
+# include <X11/X.h>
+
+# include "types/types.h"
 # include "minirt_math.h"
 # include "interface.h"
 # include "parsing.h"
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
-# include <X11/keysymdef.h>
-# include <X11/X.h>
 # include "matrix_transformations.h"
 # include "light_shading.h"
 # include "ray_tracing.h"

@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 21:59:30 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 03:31:05 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:47:05 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	tuple_addition(t_tuple *result, const t_tuple *a, const t_tuple *b)
 	result->x = a->x + b->x;
 	result->y = a->y + b->y;
 	result->z = a->z + b->z;
-	result->is_point = 1;
+	result->is_point = a->is_point + b->is_point;
 }
 
 void	tuple_multiplication(t_tuple *result, const t_tuple *a,
@@ -26,14 +26,14 @@ void	tuple_multiplication(t_tuple *result, const t_tuple *a,
 	result->x = a->x * b->x;
 	result->y = a->y * b->y;
 	result->z = a->z * b->z;
-	result->is_point = 1;
+	result->is_point = a->is_point && b->is_point;
 }
 
-void	tuple_scalar_multiplication(t_tuple *result, const t_tuple *color,
+void	tuple_scalar_multiplication(t_tuple *result, const t_tuple *a,
 				double scalar)
 {
-	result->x = color->x * scalar;
-	result->y = color->y * scalar;
-	result->z = color->z * scalar;
-	result->is_point = 1;
+	result->x = a->x * scalar;
+	result->y = a->y * scalar;
+	result->z = a->z * scalar;
+	result->is_point = a->is_point;
 }

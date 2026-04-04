@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:56:07 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/28 18:31:55 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 15:10:49 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	vector_normalization(t_matrix *matrix, const t_matrix *vector)
 	double		magnitude;
 
 	magnitude = vector_magnitude(vector);
-	if (!matrix || magnitude == 0)
+	if (!matrix || magnitude < EPSILON)
 		return ;
 	init_matrix(matrix, 4, 1);
 	matrix->m_4x1[0] = vector->m_4x1[0] / magnitude;

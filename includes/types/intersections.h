@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interface.h                                        :+:      :+:    :+:   */
+/*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 14:38:46 by jessica          ###   ########.fr       */
+/*   Created: 2026/04/02 21:38:35 by jessica           #+#    #+#             */
+/*   Updated: 2026/04/02 21:43:49 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERFACE_H
-# define INTERFACE_H
+#ifndef INTERSECTIONS_H
+# define INTERSECTIONS_H
 
-void			create_window(t_scene *scene, char *file);
-void			create_image(t_window *win);
-void			free_window(t_window **win);
-void			free_image(t_image **img, void *mlx_ptr);
+typedef struct s_ray
+{
+	t_matrix		ori;
+	t_matrix		direc;
+}				t_ray;
 
-void			put_pixel(t_window *win, int x, int y, t_rgb *rgb);
+typedef struct s_intersect
+{
+	double			t;
+	t_object		*obj;
+}				t_intersect;
+
+typedef struct s_intersections
+{
+	t_intersect		*inter;
+	int				n_inter;
+}				t_intersections;
 
 #endif
