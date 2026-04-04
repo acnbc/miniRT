@@ -30,6 +30,7 @@ DIR = $(DIR_OBJ) \
 
 SRC = 	src/ray_intersec/ray_utils.c \
 	src/ray_intersec/ray.c \
+	src/light_shading/shadow.c \
 	src/light_shading/utils.c \
 	src/light_shading/lighting.c \
 	src/main.c \
