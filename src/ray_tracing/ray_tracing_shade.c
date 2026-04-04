@@ -55,6 +55,18 @@ t_rgb	shade_sphere_pixel(t_scene *scene, t_ray *ray,
 	sh.pt = &hit_pt;
 	sh.nm = &norm_v;
 	sh.mt = &mat;
+	calc_over_point(&sh, &norm_v, &hit_pt);
 	color = shade_lit_color(&sh);
 	return (color);
+}
+
+void	calc_over_point(t_hit_shade *sh, const t_matrix *norm_v,
+			const t_matrix *hit_pt)
+{
+	t_matrix	tmp;
+	t_matrix	over_point;
+
+	scalar_multiplication(&tmp, norm_v, EPSILON);
+	add_tuples(&over_point, hit_pt, &tmp);
+	sh->o_pt = &over_point;
 }

@@ -21,6 +21,8 @@ void			reflect(t_matrix *result, t_matrix *vector, t_matrix *normal);
 
 t_light_base	calc_light_base(const t_hit_shade *in);
 void			default_material(t_material *material);
+void			calc_over_point(t_hit_shade *sh, const t_matrix *norm_v,
+					const t_matrix *hit_pt);
 
 void			tuple_addition(t_tuple *result, const t_tuple *a,
 					const t_tuple *b);
