@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/23 11:35:29 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/03 00:59:36 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_MATH_H
 # define MINIRT_MATH_H
 # include <math.h>
-# include "types.h"
+# include "types/types.h"
 # define EPSILON 0.00001
 # define INF INFINITY
 

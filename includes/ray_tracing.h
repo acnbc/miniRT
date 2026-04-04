@@ -13,10 +13,6 @@
 #ifndef RAY_TRACING_H
 # define RAY_TRACING_H
 
-# include "types.h"
-# include <stddef.h>
-# include <stdbool.h>
-
 void			compute_camera_axes(t_cam_basis *basis,
 					const t_camera *camera);
 void			init_viewport(t_viewport *viewport, t_scene *scene);
@@ -32,21 +28,15 @@ bool			resolve_closest_hit(t_intersect *buf, size_t n,
 					t_intersect *out_hit);
 bool			closest_hit_spheres(t_object *objects, t_ray *ray,
 					t_intersect *out_hit);
-void			amb_tuple(t_scene *scene, t_tuple *out);
 
-void			rgb_to_tuple(t_tuple *out, const t_rgb *rgb);
-void			scene_amb_times_material(t_tuple *out, t_scene *scene,
-					const t_tuple *mat_color);
 void			shade_orient_normal(t_matrix *norm, t_ray *ray);
-t_tuple			shade_lit_color(t_hit_shade *in);
-unsigned int	shade_sphere_pixel(t_scene *scene, t_ray *ray,
+t_rgb			shade_lit_color(t_hit_shade *in);
+t_rgb			shade_sphere_pixel(t_scene *scene, t_ray *ray,
 					t_intersect *hit);
 
 void			ray_show_image(t_window *win);
-void			ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y,
-					unsigned int amb_c);
-void			ray_trace_loop(t_scene *scene, t_ray_gen *context,
-					t_tuple *amb);
+void			ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y);
+void			ray_trace_loop(t_scene *scene, t_ray_gen *context);
 
 void			print_put_row(t_window *win, int y, double den_x,
 					double den_y);

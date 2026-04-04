@@ -6,13 +6,11 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/28 21:51:00 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:39:08 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/miniRT.h"
-
-static void	convert_color_tuple(t_tuple *tuple, t_rgb *rgb);
 
 t_object	*lst_new_object(char ***infos, t_id id)
 {
@@ -28,9 +26,8 @@ t_object	*lst_new_object(char ***infos, t_id id)
 	new->id = id;
 	new->coord = get_coord(*infos, 1, false);
 	default_material(&new->material);
-	convert_color_tuple(&new->material.color, &new->colors);
 	get_object_type(new, infos, 2);
-	error = get_coolors(&new->colors, *infos, ft_split_len(*infos) - 1);
+	error = get_colors(&new->material.color, *infos, ft_split_len(*infos) - 1);
 	if (!error)
 		error = valid_tuple(new->coord);
 	if (error)
@@ -87,11 +84,4 @@ void	lst_clear_object(t_object **lst)
 		(*lst) = next;
 	}
 	*lst = NULL;
-}
-
-static void	convert_color_tuple(t_tuple *tuple, t_rgb *rgb)
-{
-	tuple->x = rgb->r / 255;
-	tuple->y = rgb->g / 255;
-	tuple->z = rgb->b / 255;
 }

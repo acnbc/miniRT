@@ -6,28 +6,29 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 03:30:22 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/30 02:46:50 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 18:34:58 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-static t_tuple	calc_specular(t_material *material, t_light_base *light_calc,
+static t_rgb	calc_specular(t_material *material, t_light_base *light_calc,
 					t_matrix *eye_v, t_matrix *norm_v);
 
-t_tuple	lighting(t_light_base *base, t_material *material,
+t_rgb	lighting(t_light_base *base, t_material *material,
 			t_matrix *eye_v, t_matrix *norm_v)
 {
-	t_tuple		ambient;
-	t_tuple		diffuse;
-	t_tuple		specular;
-	double		mult;
-	t_tuple		result;
+	t_rgb	ambient;
+	t_rgb	diffuse;
+	t_rgb	specular;
+	double	mult;
+	t_rgb	result;
 
-	tuple_scalar_multiplication(&ambient, &base->effective_color,
-		material->ambient);
+	tuple_multiplication(&ambient, &material->color, &base->ambient);
+	if (base->in_shadow)
+		return (ambient);
 	specular = calc_specular(material, base, eye_v, norm_v);
-	diffuse = (t_tuple){0, 0, 0, 0};
+	diffuse = (t_rgb){.r = 0, .g = 0, .b = 0};
 	if (base->light_dot_normal >= 0)
 	{
 		mult = material->diffuse * base->light_dot_normal;
@@ -39,16 +40,16 @@ t_tuple	lighting(t_light_base *base, t_material *material,
 	return (result);
 }
 
-static t_tuple	calc_specular(t_material *material, t_light_base *base,
+static t_rgb	calc_specular(t_material *material, t_light_base *base,
 					t_matrix *eye_v, t_matrix *norm_v)
 {
-	t_tuple		specular;
+	t_rgb		specular;
 	t_matrix	neg_light_v;
 	t_matrix	v_reflect;
 	double		reflect_dot_eye;
 	double		factor;
 
-	specular = (t_tuple){0, 0, 0, 0};
+	specular = (t_rgb){.r = 0, .g = 0, .b = 0};
 	if (base->light_dot_normal < 0)
 		return (specular);
 	negate_tuple(&neg_light_v, &base->light_v);

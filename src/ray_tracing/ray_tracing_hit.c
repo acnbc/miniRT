@@ -83,22 +83,3 @@ bool	closest_hit_spheres(t_object *objects, t_ray *ray,
 	n = fill_sphere_hits(objects, ray, buf, pair);
 	return (resolve_closest_hit(buf, n, out_hit));
 }
-
-void	amb_tuple(t_scene *scene, t_tuple *out)
-{
-	if (!scene->amb_light)
-	{
-		out->x = 0;
-		out->y = 0;
-		out->z = 0;
-		out->is_point = false;
-		return ;
-	}
-	out->x = (scene->amb_light->colors.r / 255.0)
-		* scene->amb_light->light_ratio;
-	out->y = (scene->amb_light->colors.g / 255.0)
-		* scene->amb_light->light_ratio;
-	out->z = (scene->amb_light->colors.b / 255.0)
-		* scene->amb_light->light_ratio;
-	out->is_point = false;
-}

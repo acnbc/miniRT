@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 06:01:59 by jessica           #+#    #+#             */
-/*   Updated: 2026/03/28 23:18:19 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/03 00:32:21 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static const char	*get_id_name(t_id id);
 static void			print_object_details(t_object *obj);
 static void			print_matrix_as_tuple(char *label, const t_matrix *t);
-static void			print_rgb(char *label, t_rgb c);
+static void			print_rgb(char *label, t_tuple c);
 
 
 void	print_scene(t_scene *scene)
@@ -56,7 +56,7 @@ void	print_scene(t_scene *scene)
 	{
 		printf("  %d. ID: %s\n", i++, get_id_name(curr->id));
 		print_matrix_as_tuple("Coords", &curr->coord);
-		print_rgb("Color", curr->colors);
+		print_rgb("Color", curr->material.color);
 		print_object_details(curr);
 		printf("	----------\n");
 		curr = curr->next;
@@ -113,7 +113,7 @@ static void	print_matrix_as_tuple(char *label, const t_matrix *t)
 		label, t->m_4x1[0], t->m_4x1[1], t->m_4x1[2], str);
 }
 
-static void	print_rgb(char *label, t_rgb c)
+static void	print_rgb(char *label, t_tuple c)
 {
-	printf("	%s: R:%d G:%d B:%d\n", label, c.r, c.g, c.b);
+	printf("	%s: R:%f G:%f B:%f\n", label, c.r, c.g, c.b);
 }

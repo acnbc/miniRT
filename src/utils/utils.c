@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:57 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/25 20:46:00 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/03 15:19:34 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ void	*safe_malloc(size_t size)
 
 void	exit_error(t_msg_error error, t_scene **_scene)
 {
-	static t_scene	**scene;
+	static t_scene	**scene = NULL;
 
 	if (_scene)
 	{
 		scene = _scene;
 		return ;
 	}
-	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd("Error\n", 2);
 	ft_putendl_fd(get_error_message(error), 2);
-	free_scene(scene);
+	if (scene)
+		free_scene(scene);
 	exit(1);
 }
 
