@@ -50,6 +50,7 @@ SRC = 	src/ray_intersec/ray_utils.c \
 	src/ray_tracing/ray_tracing_cam.c \
 	src/ray_tracing/ray_tracing_shade.c \
 	src/ray_tracing/ray_tracing_hit.c \
+	src/ray_tracing/ray_tracing_fills.c \
 	src/ray_tracing/ray_tracing.c \
 	src/utils/matrix_utils.c \
 	src/utils/math_utils.c \
@@ -69,7 +70,7 @@ OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
 ADD_FLAGS_COMPILE_PROGRAM = -L./$(DIR_LIBX) -lmlx -lXext -lX11 -lm
 
-ADD_FLAGS_COMPILE_OBJS = 
+ADD_FLAGS_COMPILE_OBJS =
 
 BLINKING = \033[5m
 RESET = \033[0m

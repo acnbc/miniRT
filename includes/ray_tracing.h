@@ -21,12 +21,12 @@ void			ray_gen_init(t_ray_gen *context, t_scene *scene);
 void			make_primary_ray(t_ray_gen *context, const t_ndc *ndc,
 					t_ray *ray);
 
-size_t			count_spheres(t_object *objects);
-size_t			fill_sphere_hits(t_object *objects, t_ray *ray,
+size_t			count_objects(t_object *objects);
+size_t			fill_hits(t_object *objects, t_ray *ray,
 					t_intersect *buf, t_intersect pair[2]);
 bool			resolve_closest_hit(t_intersect *buf, size_t n,
 					t_intersect *out_hit);
-bool			closest_hit_spheres(t_object *objects, t_ray *ray,
+bool			closest_hit(t_object *objects, t_ray *ray,
 					t_intersect *out_hit);
 
 void			shade_orient_normal(t_matrix *norm, t_ray *ray);
@@ -42,5 +42,11 @@ void			print_put_row(t_window *win, int y, double den_x,
 					double den_y);
 
 void			ray_tracer(t_scene *scene);
+
+void			sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray);
+t_intersect		*hit(t_intersect *buf, size_t n);
+static void		transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
+void			pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray);
+void			cy_intersect(t_intersect inter[4], t_object *ob, t_ray *ray);
 
 #endif

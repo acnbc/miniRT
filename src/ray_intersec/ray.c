@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 07:28:44 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/05 06:48:30 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray)
 	inter[0].t = (-1 * ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
 	inter[0].obj = ob;
 }
-
 
 static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {

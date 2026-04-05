@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 11:12:48 by anogueir          #+#    #+#             */
-/*   Updated: 2026/04/04 11:30:25 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/05 06:30:55 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y)
 		make_primary_ray(context, &ndc, &ray);
 		tuple_scalar_multiplication(&px, &scene->amb_light->colors,
 			scene->amb_light->light_ratio);
-		if (closest_hit_spheres(scene->objects, &ray, &hit))
+		if (closest_hit(scene->objects, &ray, &hit))
 			px = shade_sphere_pixel(scene, &ray, &hit);
 		put_pixel(scene->window, x, y, &px);
 		x++;
