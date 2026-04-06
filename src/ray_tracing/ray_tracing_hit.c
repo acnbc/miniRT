@@ -51,14 +51,10 @@ bool	resolve_closest_hit(t_intersect *buf, size_t n, t_intersect *out_hit)
 	t_intersect		*winner;
 
 	if (n == 0)
-	{
-		free(buf);
 		return (false);
-	}
 	winner = hit(buf, n);
 	if (winner)
 		*out_hit = *winner;
-	free(buf);
 	return (winner != NULL);
 }
 
@@ -66,15 +62,12 @@ bool	closest_hit(t_object *objects, t_ray *ray,
 		t_intersect *out_hit)
 {
 	t_intersect	pair[4];
-	t_intersect	*buf;
-	size_t		cap;
+	t_intersect	buf[248];
 	size_t		n;
 
 	n = 0;
-	cap = count_objects(objects);
-	if (cap == 0)
+	if (!objects)
 		return (false);
-	buf = (t_intersect *)safe_malloc(4 * cap * sizeof(t_intersect));
 	n += fill_hits(objects, ray, buf, pair);
 	return (resolve_closest_hit(buf, n, out_hit));
 }

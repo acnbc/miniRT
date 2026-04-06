@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 02:44:21 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/06 09:36:45 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/06 11:08:07 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray,
 	double *min_max)
 {
 	double	t;
-	//double	n;
 
-	//n = ray->direc.m_4x1[1];
 	inter[0].obj = NULL;
 	inter[0].t = 0;
 	inter[1].obj = NULL;
@@ -82,11 +80,10 @@ static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray,
 
 void	cy_intersect(t_intersect inter[4], t_object *ob, t_ray *ray)
 {
-	double		*min_max;
+	double		min_max[2];
 	t_intersect	pair_1[2];
 	t_intersect	pair_2[2];
 
-	min_max = safe_malloc(2 * sizeof(double));
 	min_max[0] = (-1 * ob->object.cylinder->height) / 2;
 	min_max[1] = (ob->object.cylinder->height) / 2;
 	cy_body_intersect(pair_1, ob, ray, min_max);
@@ -95,5 +92,4 @@ void	cy_intersect(t_intersect inter[4], t_object *ob, t_ray *ray)
 	inter[1] = pair_1[1];
 	inter[2] = pair_2[0];
 	inter[3] = pair_2[1];
-	free(min_max);
 }
