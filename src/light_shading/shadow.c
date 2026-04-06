@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:38:40 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 00:25:25 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/06 09:22:51 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	is_shadowed(const t_hit_shade *in)
 	distance = vector_magnitude(&vector);
 	vector_normalization(&direction, &vector);
 	create_ray(&ray, *in->o_pt, direction);
-	if (closest_hit_spheres(in->sc->objects, &ray, &intersect))
+	if (closest_hit(in->sc->objects, &ray, &intersect))
 	{
 		if (intersect.t < distance)
 			return (true);

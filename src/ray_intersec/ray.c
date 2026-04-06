@@ -6,13 +6,11 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/05 06:48:30 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/06 09:17:15 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
-
-static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
 
 void	position(t_matrix *point, t_ray *ray, double t)
 {
@@ -49,8 +47,6 @@ void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 
 void	pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray)
 {
-	double	t;
-
 	inter[0].obj = NULL;
 	inter[0].t = 0;
 	if (fabs(ray->direc.m_4x1[1]) < EPSILON)
@@ -59,7 +55,7 @@ void	pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray)
 	inter[0].obj = ob;
 }
 
-static void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
+void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
 	double		r;
 	t_matrix	diff;

@@ -65,7 +65,7 @@ bool	resolve_closest_hit(t_intersect *buf, size_t n, t_intersect *out_hit)
 bool	closest_hit(t_object *objects, t_ray *ray,
 		t_intersect *out_hit)
 {
-	t_intersect	pair[2];
+	t_intersect	pair[4];
 	t_intersect	*buf;
 	size_t		cap;
 	size_t		n;

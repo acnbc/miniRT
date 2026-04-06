@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 16:58:02 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/05 07:07:46 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/06 09:31:06 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	fill_sphere_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 	t_ray	transf_ray;
 
 	n = 0;
-	transform_ray(&transf_ray, objects, &ray);
+	transform_ray(&transf_ray, objects, ray);
 	sp_intersect(pair, objects, &transf_ray);
 	if (pair[0].obj && pair[1].obj)
 	{
@@ -37,7 +37,7 @@ size_t	fill_pl_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 	t_ray	transf_ray;
 
 	n = 0;
-	transform_ray(&transf_ray, objects, &ray);
+	transform_ray(&transf_ray, objects, ray);
 	pl_intersect(pair, objects, &transf_ray);
 	if (pair[0].obj)
 	{
@@ -55,7 +55,7 @@ size_t	fill_cy_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 	t_ray	transf_ray;
 
 	n = 0;
-	transform_ray(&transf_ray, objects, &ray);
+	transform_ray(&transf_ray, objects, ray);
 	cy_intersect(pair, objects, &transf_ray);
 	i = 0;
 	while (i < 4)
@@ -74,8 +74,6 @@ size_t	fill_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 	t_intersect pair[4])
 {
 	size_t	n;
-	size_t	i;
-	t_ray	transf_ray;
 
 	n = 0;
 	while (objects)

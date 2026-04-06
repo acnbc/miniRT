@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:38:20 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/30 03:04:30 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/06 09:32:28 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -800,135 +800,3 @@ void	test_rotation_z_axis(void)
 	else
 		printf("Rotação incorreta\n");
 }*/
-
-void	test_chapter5(void)
-{
-	t_ray			ray;
-	t_object		sphere;
-	t_sphere		object_sphere;
-	t_intersect		xs[2];
-	t_intersections	inters;
-	t_matrix		p;
-	//double			h;
-
-	printf("===== TEST CHAPTER 5 =====\n");
-	
-	// esfera unitaria no centro
-	init_identity_matrix(&sphere.coord, 4);
-	object_sphere.diameter = 2;
-	sphere.object.sphere = &object_sphere;
-
-	// -------------------------
-	// TEST 1: POSITION
-	// -------------------------
-	printf("\n[TEST 1] position\n");
-    t_matrix	origin;
-	t_matrix	direction;
-
-	init_point(&origin, 2, 3, 4);
-	init_vector(&direction, 1, 0, 0);
-	create_ray(&ray, origin, direction);
-	position(&p, &ray, 2);
-	printf("Expected: (4.0, 3.0, 4.0)\n");
-	printf("Result:   (%.1f, %.1f, %.1f)\n",
-	    p.m_4x1[0],
-	    p.m_4x1[1],
-	    p.m_4x1[2]);
-
-	// -------------------------
-	// TEST 2: INTERSECT (2 pontos)
-	// -------------------------
-	printf("\n[TEST 2] intersect 2 pontos\n");
-	init_point(&origin, 0, 0, -5);
-	init_vector(&direction, 0, 0, 1);
-	create_ray(&ray, origin, direction);
-	sp_intersect(xs, &sphere, &ray);
-	if (xs[0].obj && xs[1].obj)
-	{
-		printf("Expected: 4.0 and 6.0\n");
-		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-	}
-	else
-		printf("Result: NULL (ERRO)\n");
-
-	// -------------------------
-	// TEST 3: TANGENTE
-	// -------------------------
-	printf("\n[TEST 3] tangente\n");
-	init_point(&origin, 0, 1, -5);
-	init_vector(&direction, 0, 0, 1);
-	create_ray(&ray, origin, direction);
-	sp_intersect(xs, &sphere, &ray);
-	if (xs[0].obj && xs[1].obj)
-	{
-		printf("Expected: 5.0 and 5.0\n");
-		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-	}
-	else
-		printf("Result: NULL (ERRO)\n");
-
-	// -------------------------
-	// TEST 4: NÃO INTERSECTA
-	// -------------------------
-	printf("\n[TEST 4] no hit\n");
-	init_point(&origin, 0, 2, -5);
-	init_vector(&direction, 0, 0, 1);
-	create_ray(&ray, origin, direction);
-	sp_intersect(xs, &sphere, &ray);
-	if (!xs[0].obj && !xs[1].obj)
-		printf("Expected: NULL\nResult:   NULL\n");
-	else
-	{
-		printf("ERRO: deveria ser NULL\n");
-	}
-
-	// -------------------------
-	// TEST 5: DENTRO DA ESFERA E APÓS A ESFERA
-	// -------------------------
-	printf("\n[TEST 5] inside sphere\n");
-	init_point(&origin, 0, 0, 0);
-	init_vector(&direction, 0, 0, 1);
-	create_ray(&ray, origin, direction);
-	sp_intersect(xs, &sphere, &ray);
-	if (xs[0].obj && xs[1].obj)
-	{
-		printf("Expected: -1.0 and 1.0\n");
-		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-	}
-
-    printf("\n[TEST 5] after the sphere\n");
-	init_point(&origin, 0, 0, 5);
-	init_vector(&direction, 0, 0, 1);
-	create_ray(&ray, origin, direction);
-	sp_intersect(xs, &sphere, &ray);
-	if (xs[0].obj && xs[1].obj)
-	{
-		printf("Expected: -6.0 and -4.0\n");
-		printf("Result:   %.1f and %.1f\n", xs[0].t, xs[1].t);
-	}
-
-	// -------------------------
-	// TEST 6: HIT (4 interseções)
-	// -------------------------
-	printf("\n[TEST 6] hit\n");
-	t_intersect *h;
-
-	inters.n_inter = 4;
-	inters.inter = malloc(4 * sizeof(t_intersect));
-
-	inters.inter[0].t = 5;
-	inters.inter[1].t = 7;
-	inters.inter[2].t = -3;
-	inters.inter[3].t = 2;
-
-	h = hit(&inters);
-
-	if (h != NULL)
-		printf("Expected: 2.0\nhit t = %.1f\n", h->t);
-	else
-		printf("no hit\n");
-
-	free(inters.inter);
-
-	printf("\n===== END TEST =====\n");
-}

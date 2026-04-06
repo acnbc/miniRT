@@ -47,6 +47,7 @@ SRC = 	src/ray_intersec/ray_utils.c \
 	src/math/operations_part_1.c \
 	src/math/matrix_inversion_operations.c \
 	src/math/tuple_operations.c \
+	src/ray_intersec/ray_cy.c \
 	src/ray_tracing/ray_tracing_cam.c \
 	src/ray_tracing/ray_tracing_shade.c \
 	src/ray_tracing/ray_tracing_hit.c \

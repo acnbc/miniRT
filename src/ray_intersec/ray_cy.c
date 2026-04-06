@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 02:44:21 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/05 07:12:30 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/06 09:36:45 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray,
 	double *min_max)
 {
 	double	t;
-	double	n;
+	//double	n;
 
-	n = ray->direc.m_4x1[1];
+	//n = ray->direc.m_4x1[1];
 	inter[0].obj = NULL;
 	inter[0].t = 0;
 	inter[1].obj = NULL;
