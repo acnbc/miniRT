@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 14:39:08 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/06 22:45:59 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_object	*lst_new_object(char ***infos, t_id id)
 		lst_clear_object(&new);
 		exit_error(error, NULL);
 	}
+	transformation_matrix(new);
 	return (new);
 }
 
