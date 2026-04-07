@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:34:25 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/07 01:04:29 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/07 01:16:33 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	transformation_matrix(t_object *object)
 	}
 	if (normalized_vector)
 		rotate_object(&rotate, normalized_vector);
-	inverse_matrix_multiplication(&object, &rotate, &scale, &translate);
+	inverse_matrix_multiplication(object, &rotate, &scale, &translate);
 }
 
 static t_matrix	inverse_matrix_multiplication(t_object *object,
