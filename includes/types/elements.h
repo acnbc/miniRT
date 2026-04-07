@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:35:28 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 00:55:18 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/07 00:51:28 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_object
 {
 	t_id			id;
 	t_matrix		coord;
+	t_matrix		inverse_matrix;
 	t_object_type	object;
 	t_material		material;
 	struct s_object	*next;

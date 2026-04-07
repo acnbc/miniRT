@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/01 12:31:18 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/07 12:36:31 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,9 @@ t_intersect	*hit(t_intersections *inters)
 
 static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
-	double		r;
-	t_matrix	diff;
-	t_matrix	inv_matrix;
+	matrix_tuple_multiplication(&transformed->ori, &ob->inverse_matrix,
+		&ray->ori);
+	matrix_tuple_multiplication(&transformed->direc, &ob->inverse_matrix,
+		&ray->direc);
 
-	if (ob->coord.rows == 4 && ob->coord.cols == 4)
-	{
-		inverse_matrix(&inv_matrix, &ob->coord);
-		matrix_tuple_multiplication(&transformed->ori, &inv_matrix, &ray->ori);
-		matrix_tuple_multiplication(&transformed->direc,
-			&inv_matrix, &ray->direc);
-		return ;
-	}
-	r = ob->object.sphere->diameter * 0.5;
-	if (r < EPSILON)
-		r = EPSILON;
-	subtract_tuple(&diff, &ray->ori, &ob->coord);
-	scalar_multiplication(&transformed->ori, &diff, 1.0 / r);
-	scalar_multiplication(&transformed->direc, &ray->direc, 1.0 / r);
 }
