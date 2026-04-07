@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/06 23:39:48 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/07 12:36:31 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,9 @@ t_intersect	*hit(t_intersections *inters)
 
 static void	sphere_transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 {
-	t_matrix	transpose_inverse;
-
 	matrix_tuple_multiplication(&transformed->ori, &ob->inverse_matrix,
 		&ray->ori);
-	matrix_transposition(&transpose_inverse, &ob->inverse_matrix);
-	matrix_tuple_multiplication(&transformed->direc, &transpose_inverse,
+	matrix_tuple_multiplication(&transformed->direc, &ob->inverse_matrix,
 		&ray->direc);
 
 }
