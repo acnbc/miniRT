@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:34:25 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/07 01:16:33 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/07 01:28:08 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_matrix	inverse_matrix_multiplication(t_object *object,
 		tmp = *rotate;
 	else if (object->id == sp)
 		tmp = *scale;
-	matrix_multiplication(&base, &tmp, translate);
+	matrix_multiplication(&base, translate, &tmp);
 	if (is_invertible(&base))
 		inverse_matrix(&object->inverse_matrix, &base);
 	else
