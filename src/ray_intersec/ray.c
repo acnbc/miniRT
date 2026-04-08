@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/08 08:55:37 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 18:35:40 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 void	pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray)
 {
 	double	t;
-	
+
 	inter[0].obj = NULL;
 	inter[0].t = 0;
 	if (fabs(ray->direc.m_4x1[1]) < EPSILON)

@@ -43,8 +43,10 @@ void			ray_tracer(t_scene *scene);
 
 void			sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray);
 t_intersect		*hit(t_intersect *buf, size_t n);
-bool			calc_inter(t_intersect	inter[2], double t[2], t_object *ob, t_ray *ray);
-void			assing_inter(t_intersect inter[2], double t[2], t_object *ob, t_ray *ray);
+bool			calc_inter(t_intersect	inter[2], double t[2], t_object *ob,
+					t_ray *ray);
+void			assing_inter(t_intersect inter[2], double t[2], t_object *ob,
+					t_ray *ray);
 void			transform_ray(t_ray *transformed, t_object *ob, t_ray *ray);
 void			pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray);
 void			cy_intersect(t_intersect inter[4], t_object *ob, t_ray *ray);

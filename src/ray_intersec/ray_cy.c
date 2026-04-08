@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos-sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 02:44:21 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/08 16:30:45 by ldos-sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 18:36:35 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ static double	check_cap(t_ray *ray, double t)
 static void	cy_body_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 {
 	double	t[2];
+	double	tmp;
 
 	inter[0].obj = NULL;
 	inter[1].obj = NULL;
 	inter[0].t = 0;
 	inter[1].t = 0;
-	if(!calc_inter(inter, t, ob, ray))
+	if (!calc_inter(inter, t, ob, ray))
 		return ;
 	if (t[0] > t[1])
 	{
-		double tmp = t[0];
+		tmp = t[0];
 		t[0] = t[1];
 		t[1] = tmp;
 	}
 	assing_inter(inter, t, ob, ray);
 }
-
 
 static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 {
@@ -50,17 +50,14 @@ static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 	inter[0].t = 0;
 	inter[1].obj = NULL;
 	inter[1].t = 0;
-
 	if (fabs(ray->direc.m_4x1[1]) < EPSILON)
 		return ;
-
 	t = (-0.5 - ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
 	if (t > EPSILON && check_cap(ray, t))
 	{
 		inter[0].t = t;
 		inter[0].obj = ob;
 	}
-
 	t = (0.5 - ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
 	if (t > EPSILON && check_cap(ray, t))
 	{

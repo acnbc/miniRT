@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos-sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 23:47:17 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/08 16:32:02 by ldos-sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 18:34:35 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ bool	calc_inter(t_intersect	inter[2], double t[2], t_object *ob, t_ray *ray)
 	{
 		t[0] = -n.y / (2 * n.x);
 		y = ray->ori.m_4x1[1] + t[0] * ray->direc.m_4x1[1];
-
 		if (t[0] > EPSILON && -0.5 < y && y < 0.5)
 		{
 			inter[0].t = t[0];
@@ -52,7 +51,8 @@ bool	calc_inter(t_intersect	inter[2], double t[2], t_object *ob, t_ray *ray)
 	return (true);
 }
 
-void	assing_inter(t_intersect inter[2], double t[2], t_object *ob, t_ray *ray)
+void	assing_inter(t_intersect inter[2], double t[2], t_object *ob,
+			t_ray *ray)
 {
 	double	y;
 
