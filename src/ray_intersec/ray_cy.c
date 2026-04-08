@@ -41,19 +41,21 @@ static void	cy_body_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 	numbers.x = cy_dot_product(&ray->direc, &ray->direc);
 	numbers.y = 2 * cy_dot_product(&ray->direc, &ray->ori);
 	numbers.z = cy_dot_product(&ray->ori, &ray->ori) - 1;
+	if (fabs(numbers.x) < EPSILON)
+		return ;
 	delta = (numbers.y * numbers.y) - (4 * numbers.x * numbers.z);
 	if (delta < 0)
 		return ;
 	t = ((-1 * numbers.y) - sqrt(delta)) / (2 * numbers.x);
 	y = ray->ori.m_4x1[1] + (t * ray->direc.m_4x1[1]);
-	if (-0.5 < y && y < 0.5)
+	if (t > EPSILON && -0.5 < y && y < 0.5)
 	{
 		inter[0].obj = ob;
 		inter[0].t = ((-1 * numbers.y) - sqrt(delta)) / (2 * numbers.x);
 	}
 	t = ((-1 * numbers.y) + sqrt(delta)) / (2 * numbers.x);
 	y = ray->ori.m_4x1[1] + (t * ray->direc.m_4x1[1]);
-	if (-0.5 < y && y < 0.5)
+	if (t > EPSILON && -0.5 < y && y < 0.5)
 	{
 		inter[1].t = ((-1 * numbers.y) + sqrt(delta)) / (2 * numbers.x);
 		inter[1].obj = ob;
@@ -71,13 +73,13 @@ static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 	if (fabs(ray->direc.m_4x1[1]) < EPSILON)
 		return ;
 	t = (-0.5 - ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
-	if (check_cap(ray, t))
+	if (t > EPSILON && check_cap(ray, t))
 	{
 		inter[0].t = t;
 		inter[0].obj = ob;
 	}
 	t = (0.5 - ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
-	if (check_cap(ray, t))
+	if (t > EPSILON && check_cap(ray, t))
 	{
 		inter[1].t = t;
 		inter[1].obj = ob;

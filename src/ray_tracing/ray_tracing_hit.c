@@ -34,7 +34,7 @@ t_intersect	*hit(t_intersect *buf, size_t n)
 	min = -1;
 	while ((size_t)i < n)
 	{
-		if (buf[i].t >= 0)
+		if (buf[i].t > EPSILON)
 		{
 			if ((min == -1 || buf[i].t < buf[min].t) && buf[i].obj != NULL)
 				min = i;

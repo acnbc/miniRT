@@ -26,7 +26,7 @@ bool	is_shadowed(const t_hit_shade *in)
 	create_ray(&ray, *in->o_pt, direction);
 	if (closest_hit(in->sc->objects, &ray, &intersect))
 	{
-		if (intersect.t < distance)
+		if (intersect.t < distance - EPSILON)
 			return (true);
 	}
 	return (false);

@@ -25,8 +25,8 @@ void	create_window(t_scene *scene, char *file)
 	scene->window->mlx_ptr = mlx_init();
 	if (!scene->window->mlx_ptr)
 		exit_error(ERR_MLX_INIT, NULL);
-	mlx_get_screen_size(scene->window->mlx_ptr, &scene->window->size_x,
-		&scene->window->size_y);
+	scene->window->size_x = 1200;
+	scene->window->size_y = 1000;
 	scene->window->win_ptr = mlx_new_window(scene->window->mlx_ptr,
 			scene->window->size_x, scene->window->size_y, scene->window->title);
 	if (!scene->window->win_ptr)

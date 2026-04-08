@@ -49,6 +49,7 @@ static float	fraction(const char *nptr)
 	int		f;
 
 	i = 0;
+	f = 0;
 	if (nptr && nptr[i] == '.')
 		i++;
 	nb = 0;

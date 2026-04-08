@@ -37,14 +37,13 @@ t_rgb	shade_lit_color(t_hit_shade *in)
 	return (lit);
 }
 
-t_rgb	shade_sphere_pixel(t_scene *scene, t_ray *ray,
-		t_intersect *hit)
+t_rgb	shade_sphere_pixel(t_scene *scene, t_ray *ray, t_intersect *hit)
 {
-	t_matrix		hit_pt;
-	t_matrix		norm_v;
-	t_matrix		over_point;
-	t_material		mat;
-	t_hit_shade		sh;
+	t_matrix	hit_pt;
+	t_matrix	norm_v;
+	t_matrix	over_point;
+	t_material	mat;
+	t_hit_shade	sh;
 
 	position(&hit_pt, ray, hit->t);
 	normal_at(&norm_v, hit->obj, &hit_pt);
@@ -61,7 +60,7 @@ t_rgb	shade_sphere_pixel(t_scene *scene, t_ray *ray,
 }
 
 void	calc_over_point(t_matrix *over_point, const t_matrix *norm_v,
-			const t_matrix *hit_pt)
+		const t_matrix *hit_pt)
 {
 	t_matrix	tmp;
 

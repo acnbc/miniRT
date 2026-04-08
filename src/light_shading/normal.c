@@ -44,7 +44,7 @@ static void	local_normal_at_plane(t_matrix *normal, t_object *object)
 }
 
 static void	local_normal_at_sphere(t_matrix *local_normal,
-				t_matrix *local_point)
+		t_matrix *local_point)
 {
 	t_matrix	center;
 
@@ -53,7 +53,7 @@ static void	local_normal_at_sphere(t_matrix *local_normal,
 }
 
 static void	local_normal_at_cylinder(t_matrix *normal, t_object *object,
-				t_matrix *local_point)
+		t_matrix *local_point)
 {
 	double	height;
 	double	y_top;

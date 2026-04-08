@@ -47,12 +47,18 @@ void	sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 
 void	pl_intersect(t_intersect inter[1], t_object *ob, t_ray *ray)
 {
+	double	t;
+	
 	inter[0].obj = NULL;
 	inter[0].t = 0;
 	if (fabs(ray->direc.m_4x1[1]) < EPSILON)
 		return ;
-	inter[0].t = (-1 * ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
-	inter[0].obj = ob;
+	t = (-1 * ray->ori.m_4x1[1]) / ray->direc.m_4x1[1];
+	if (t > EPSILON)
+	{
+		inter[0].t = t;
+		inter[0].obj = ob;
+	}
 }
 
 void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)

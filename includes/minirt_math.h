@@ -14,7 +14,7 @@
 # define MINIRT_MATH_H
 # include <math.h>
 # include "types/types.h"
-# define EPSILON 0.0001
+# define EPSILON 0.00001
 # define INF INFINITY
 
 void		add_tuples(t_matrix *matrix, const t_matrix *a, const t_matrix *b);
