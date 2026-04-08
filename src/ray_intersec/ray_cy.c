@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: ldos-sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 02:44:21 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/08 10:39:14 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 16:30:45 by ldos-sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
-
-static double	cy_dot_product(const t_matrix *a, const t_matrix *b)
-{
-	return ((a->m_4x1[0] * b->m_4x1[0]) + (a->m_4x1[2] * b->m_4x1[2]));
-}
 
 static double	check_cap(t_ray *ray, double t)
 {
@@ -29,69 +24,23 @@ static double	check_cap(t_ray *ray, double t)
 
 static void	cy_body_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 {
-	double	t0;
-	double	t1;
-	double	y;
-	double	delta;
-	t_tuple	n;
+	double	t[2];
 
 	inter[0].obj = NULL;
 	inter[1].obj = NULL;
 	inter[0].t = 0;
 	inter[1].t = 0;
-
-	n.x = cy_dot_product(&ray->direc, &ray->direc);
-
-	// evita divisão por zero
-	if (fabs(n.x) < EPSILON)
+	if(!calc_inter(inter, t, ob, ray))
 		return ;
-
-	n.y = 2 * cy_dot_product(&ray->direc, &ray->ori);
-	n.z = cy_dot_product(&ray->ori, &ray->ori) - 1;
-
-	delta = n.y * n.y - 4 * n.x * n.z;
-	if (delta < 0)
-		return ;
-
-	// caso tangente
-	if (fabs(delta) < EPSILON)
+	if (t[0] > t[1])
 	{
-		t0 = -n.y / (2 * n.x);
-		y = ray->ori.m_4x1[1] + t0 * ray->direc.m_4x1[1];
-
-		if (t0 > EPSILON && -0.5 < y && y < 0.5)
-		{
-			inter[0].t = t0;
-			inter[0].obj = ob;
-		}
-		return;
+		double tmp = t[0];
+		t[0] = t[1];
+		t[1] = tmp;
 	}
-
-	t0 = (-n.y - sqrt(delta)) / (2 * n.x);
-	t1 = (-n.y + sqrt(delta)) / (2 * n.x);
-
-	// ordenar
-	if (t0 > t1)
-	{
-		double tmp = t0;
-		t0 = t1;
-		t1 = tmp;
-	}
-
-	y = ray->ori.m_4x1[1] + t0 * ray->direc.m_4x1[1];
-	if (t0 > EPSILON && -0.5 < y && y < 0.5)
-	{
-		inter[0].t = t0;
-		inter[0].obj = ob;
-	}
-
-	y = ray->ori.m_4x1[1] + t1 * ray->direc.m_4x1[1];
-	if (t1 > EPSILON && -0.5 < y && y < 0.5)
-	{
-		inter[1].t = t1;
-		inter[1].obj = ob;
-	}
+	assing_inter(inter, t, ob, ray);
 }
+
 
 static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 {
