@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 16:54:53 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:51:34 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@
 # include "matrix_transformations.h"
 # include "light_shading.h"
 # include "ray_tracing.h"
-
-/*------------- APAGAR ------------------*/
-# include "tests.h"
 
 void			read_image(t_scene **scene, char *file);
 void			init_hooks(t_scene *scene);
