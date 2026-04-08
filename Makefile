@@ -15,51 +15,51 @@ MINILIBX = $(DIR_LIBX)/libmlx.a
 DIR_OBJ = ./obj
 
 DIR = $(DIR_OBJ) \
+	$(DIR_OBJ)/images \
 	$(DIR_OBJ)/src \
-	$(DIR_OBJ)/src/math \
-	$(DIR_OBJ)/src/utils \
 	$(DIR_OBJ)/src/interface \
 	$(DIR_OBJ)/src/light_shading \
+	$(DIR_OBJ)/src/math \
 	$(DIR_OBJ)/src/matrix_transformations \
 	$(DIR_OBJ)/src/parsing \
 	$(DIR_OBJ)/src/parsing/object \
 	$(DIR_OBJ)/src/ray_intersec \
 	$(DIR_OBJ)/src/ray_tracing \
-	$(DIR_OBJ)/images
+	$(DIR_OBJ)/src/utils
 
-SRC = 	src/math/matrix_inversion_operations.c \
-	src/math/matrix_operations.c \
+SRC = 	src/interface/color.c \
+	src/interface/hooks.c \
+	src/interface/window.c \
+	src/light_shading/normal.c \
+	src/light_shading/lighting.c \
+	src/light_shading/utils.c \
+	src/light_shading/shadow.c \
+	src/math/matrix_inversion_operations.c \
 	src/math/operations_part_1.c \
 	src/math/operations_part_2.c \
 	src/math/tuple_operations.c \
-	src/utils/math_utils.c \
-	src/utils/matrix_inversion_utils.c \
-	src/utils/matrix_utils.c \
-	src/utils/transformations_utils.c \
-	src/utils/utils.c \
-	src/interface/color.c \
-	src/interface/hooks.c \
-	src/interface/window.c \
-	src/light_shading/lighting.c \
-	src/light_shading/normal.c \
-	src/light_shading/shadow.c \
-	src/light_shading/utils.c \
-	src/main.c \
+	src/math/matrix_operations.c \
 	src/matrix_transformations/transformations.c \
+	src/parsing/object/sgl_object.c \
 	src/parsing/object/lst_object.c \
 	src/parsing/object/object_type.c \
-	src/parsing/object/sgl_object.c \
 	src/parsing/object/transform_object.c \
 	src/parsing/object/utils_object.c \
 	src/parsing/read_file.c \
+	src/ray_intersec/ray_utils.c \
 	src/ray_intersec/ray.c \
 	src/ray_intersec/ray_cy.c \
-	src/ray_intersec/ray_utils.c \
 	src/ray_tracing/ray_tracing.c \
 	src/ray_tracing/ray_tracing_cam.c \
 	src/ray_tracing/ray_tracing_fills.c \
 	src/ray_tracing/ray_tracing_hit.c \
-	src/ray_tracing/ray_tracing_shade.c
+	src/ray_tracing/ray_tracing_shade.c \
+	src/utils/math_utils.c \
+	src/utils/matrix_inversion_utils.c \
+	src/utils/transformations_utils.c \
+	src/utils/matrix_utils.c \
+	src/utils/utils.c \
+	src/main.c
 
 OBJS := $(addprefix $(DIR_OBJ)/,$(SRC:%.c=%.o))
 
