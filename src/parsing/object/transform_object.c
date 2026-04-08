@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_object.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 21:34:25 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/07 01:28:08 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 07:36:16 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,21 @@ void	transformation_matrix(t_object *object)
 	t_matrix	*normalized_vector;
 	double		ray;
 
+	init_identity_matrix(&rotate, 4);
 	normalized_vector = NULL;
 	translation(&translate, &object->coord);
 	if (object->id == sp)
 	{
-		ray = object->object.sphere->diameter / 2;
+		ray = object->object.sphere.diameter / 2;
 		init_scaling_matrix(&scale, ray, ray, ray);
 	}
 	if (object->id == pl)
-		normalized_vector = &object->object.plane->normalized_vector;
+		normalized_vector = &object->object.plane.normalized_vector;
 	if (object->id == cy)
 	{
-		ray = object->object.cylinder->diameter / 2;
-		init_scaling_matrix(&scale, ray, object->object.cylinder->height, ray);
-		normalized_vector = &object->object.cylinder->normalized_vector;
+		ray = object->object.cylinder.diameter / 2;
+		init_scaling_matrix(&scale, ray, object->object.cylinder.height, ray);
+		normalized_vector = &object->object.cylinder.normalized_vector;
 	}
 	if (normalized_vector)
 		rotate_object(&rotate, normalized_vector);

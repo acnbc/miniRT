@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_object.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 15:52:10 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/06 22:45:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 07:48:11 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ void	lst_clear_object(t_object **lst)
 	while (*lst)
 	{
 		next = (*lst)->next;
-		if ((*lst)->id == pl)
-			free((*lst)->object.plane);
-		if ((*lst)->id == cy)
-			free((*lst)->object.cylinder);
-		if ((*lst)->id == sp)
-			free((*lst)->object.sphere);
 		free((*lst));
 		(*lst) = next;
 	}

@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 16:58:02 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/06 11:01:45 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 08:09:23 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ size_t	fill_hits(t_object *objects, t_ray *ray, t_intersect *buf,
 	while (objects)
 	{
 		i = 0;
-		if (objects->id == sp && objects->object.sphere)
+		if (objects->id == sp)
 			i += fill_sphere_hits(objects, ray, &buf[n], pair);
-		else if (objects->id == pl && objects->object.plane)
+		else if (objects->id == pl)
 			i += fill_pl_hits(objects, ray, &buf[n], pair);
-		else if (objects->id == cy && objects->object.cylinder)
+		else if (objects->id == cy)
 			i += fill_cy_hits(objects, ray, &buf[n], pair);
 		n += i;
 		objects = objects->next;

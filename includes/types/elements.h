@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:35:28 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/08 02:09:17 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 07:33:09 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ typedef struct s_cylinder
 
 typedef union u_object_type
 {
-	t_sphere	*sphere;
-	t_plane		*plane;
-	t_cylinder	*cylinder;
+	t_sphere	sphere;
+	t_plane		plane;
+	t_cylinder	cylinder;
 }	t_object_type;
 
 typedef struct s_object

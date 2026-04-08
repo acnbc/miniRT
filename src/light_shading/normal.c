@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 18:52:41 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/07 01:12:13 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 08:39:38 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	normal_at(t_matrix *normal, t_object *object, t_matrix *point)
 
 static void	local_normal_at_plane(t_matrix *normal, t_object *object)
 {
-	*normal = object->object.plane->normalized_vector;
+	*normal = object->object.plane.normalized_vector;
 }
 
 static void	local_normal_at_sphere(t_matrix *local_normal,
@@ -60,13 +60,13 @@ static void	local_normal_at_cylinder(t_matrix *normal, t_object *object,
 	double	y_bottom;
 	double	distance;
 
-	height = object->object.cylinder->height;
+	height = object->object.cylinder.height;
 	y_top = object->coord.m_4x1[1] - height / 2;
 	y_bottom = object->coord.m_4x1[1] + height / 2;
 	distance = pow(local_point->m_4x1[0], 2) + pow(local_point->m_4x1[2], 2);
-	if (distance < 1 && local_point->m_4x1[1] >= y_top - EPSILON)
+	if (distance < 1.0 && local_point->m_4x1[1] >= y_top - EPSILON)
 		init_vector(normal, 0, 1, 0);
-	if (distance < 1 && local_point->m_4x1[1] <= y_bottom + EPSILON)
+	if (distance < 1.0 && local_point->m_4x1[1] <= y_bottom + EPSILON)
 		init_vector(normal, 0, -1, 0);
 	else
 		init_vector(normal, local_point->m_4x1[0], 0, local_point->m_4x1[2]);
