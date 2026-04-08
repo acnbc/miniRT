@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:58:38 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/08 06:50:46 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 08:55:37 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ void	transform_ray(t_ray *transformed, t_object *ob, t_ray *ray)
 		&ray->ori);
 	matrix_tuple_multiplication(&transformed->direc, &ob->inverse_matrix,
 		&ray->direc);
-
 }

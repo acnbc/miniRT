@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 01:40:17 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/08 07:54:40 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 08:56:07 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_object_type(t_object *object, char ***infos, int index)
 
 static void	object_type_sphere(t_object *object, char ***infos, int index)
 {
-
 	object->object.sphere.diameter = ft_atod((*infos)[index]);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/04/08 08:27:49 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 08:59:20 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	matrix_multiplication(t_matrix *matrix, const t_matrix *a,
 	}
 }
 
-void	matrix_tuple_multiplication(t_matrix *res, const t_matrix *m, const t_matrix *t)
+void	matrix_tuple_multiplication(t_matrix *res, const t_matrix *m,
+	const t_matrix *t)
 {
 	int		r;
 	double	sum;
@@ -69,10 +70,10 @@ void	matrix_tuple_multiplication(t_matrix *res, const t_matrix *m, const t_matri
 	r = -1;
 	while (++r < 4)
 	{
-		sum = m->m_4x4[r * 4 + 0] * t->m_4x1[0] +
-			m->m_4x4[r * 4 + 1] * t->m_4x1[1] +
-			m->m_4x4[r * 4 + 2] * t->m_4x1[2] +
-			m->m_4x4[r * 4 + 3] * t->m_4x1[3];
+		sum = m->m_4x4[r * 4 + 0] * t->m_4x1[0]
+			+ m->m_4x4[r * 4 + 1] * t->m_4x1[1]
+			+ m->m_4x4[r * 4 + 2] * t->m_4x1[2]
+			+ m->m_4x4[r * 4 + 3] * t->m_4x1[3];
 		res->m_4x1[r] = sum;
 	}
 }
