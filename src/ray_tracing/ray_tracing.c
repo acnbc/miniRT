@@ -57,7 +57,9 @@ void	ray_tracer(t_scene *scene)
 
 	if (!scene || !scene->camera || !scene->window)
 		return ;
+	printf("desenhando imagem...\n");
 	ray_gen_init(&context, scene);
 	ray_trace_loop(scene, &context);
 	ray_show_image(scene->window);
+	printf("imagem desenhada!\n");
 }
