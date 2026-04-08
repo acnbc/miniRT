@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:11:15 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/08 08:57:10 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 18:08:11 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-static void	free_gnl(int *fd)
+static void	free_gnl(int fd)
 {
 	char		*line;
 
-	line = get_next_line(*fd);
+	line = get_next_line(fd);
 	while (line)
 	{
 		free(line);
-		line = get_next_line(*fd);
+		line = get_next_line(fd);
 	}
-	close(*fd);
-	*fd = -1;
+	close(fd);
+	fd = -1;
 }
 
 void	free_scene(t_scene **scene)
@@ -55,8 +55,8 @@ void	free_scene(t_scene **scene)
 	free((*scene)->amb_light);
 	if ((*scene)->window)
 		free_window(&(*scene)->window);
-	if ((*scene)->fd != -1)
-		free_gnl(&(*scene)->fd);
+	if ((*scene)->fd > 0)
+		free_gnl((*scene)->fd);
 	free(*scene);
 	*scene = NULL;
 }
