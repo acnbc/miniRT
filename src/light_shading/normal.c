@@ -13,8 +13,7 @@
 #include "../../includes/miniRT.h"
 
 static void	local_normal_at_plane(t_matrix *normal, t_object *object);
-static void	local_normal_at_cylinder(t_matrix *normal, t_object *object,
-				t_matrix *local_point);
+static void	local_normal_at_cylinder(t_matrix *normal, t_matrix *local_point);
 static void	local_normal_at_sphere(t_matrix *local_normal,
 				t_matrix *local_point);
 
@@ -31,7 +30,7 @@ void	normal_at(t_matrix *normal, t_object *object, t_matrix *point)
 	if (object->id == pl)
 		local_normal_at_plane(&local_n, object);
 	if (object->id == cy)
-		local_normal_at_cylinder(&local_n, object, &local_point);
+		local_normal_at_cylinder(&local_n, &local_point);
 	matrix_transposition(&transpose_inverse, &object->inverse_matrix);
 	matrix_tuple_multiplication(&world_n, &transpose_inverse, &local_n);
 	world_n.m_4x1[3] = 0.0;
@@ -52,21 +51,14 @@ static void	local_normal_at_sphere(t_matrix *local_normal,
 	subtract_tuple(local_normal, local_point, &center);
 }
 
-static void	local_normal_at_cylinder(t_matrix *normal, t_object *object,
-		t_matrix *local_point)
+void	local_normal_at_cylinder(t_matrix *normal, t_matrix *local_point)
 {
-	double	height;
-	double	y_top;
-	double	y_bottom;
 	double	distance;
 
-	height = object->object.cylinder.height;
-	y_top = object->coord.m_4x1[1] - height / 2;
-	y_bottom = object->coord.m_4x1[1] + height / 2;
 	distance = pow(local_point->m_4x1[0], 2) + pow(local_point->m_4x1[2], 2);
-	if (distance < 1 && local_point->m_4x1[1] >= y_top - EPSILON)
+	if (distance < 1.0 && local_point->m_4x1[1] >= 0.5 - EPSILON)
 		init_vector(normal, 0, 1, 0);
-	if (distance < 1 && local_point->m_4x1[1] <= y_bottom + EPSILON)
+	if (distance < 1.0 && local_point->m_4x1[1] <= -0.5 + EPSILON)
 		init_vector(normal, 0, -1, 0);
 	else
 		init_vector(normal, local_point->m_4x1[0], 0, local_point->m_4x1[2]);
