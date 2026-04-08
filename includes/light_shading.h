@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_shading.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 01:43:57 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 01:07:55 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 17:51:19 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void			default_material(t_material *material);
 void			calc_over_point(t_matrix *over_point, const t_matrix *norm_v,
 					const t_matrix *hit_pt);
 
-void			tuple_addition(t_tuple *result, const t_tuple *a,
+void			rgb_addition(t_tuple *result, const t_tuple *a,
 					const t_tuple *b);
-void			tuple_multiplication(t_tuple *result, const t_tuple *a,
+void			rgb_multiplication(t_tuple *result, const t_tuple *a,
 					const t_tuple *b);
-void			tuple_scalar_multiplication(t_tuple *result,
+void			rgb_scalar_multiplication(t_tuple *result,
 					const t_tuple *a, double scalar);
 
 #endif

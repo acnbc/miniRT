@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:24:34 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/03/11 23:05:51 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 17:16:43 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static double	fraction(const char *nptr)
 	if (nptr && nptr[i] == '.')
 		i++;
 	nb = 0;
-	f = 10;
+	f = 1;
 	while (nptr && nptr[i] && ft_isdigit(nptr[i]))
 	{
 		nb = (nb * 10) + (nptr[i] - '0');
