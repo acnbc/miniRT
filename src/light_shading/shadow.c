@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:38:40 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/08 07:58:35 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 10:33:22 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_shadowed(const t_hit_shade *in)
 	create_ray(&ray, *in->o_pt, direction);
 	if (closest_hit(in->sc->objects, &ray, &intersect))
 	{
-		if (intersect.t > EPSILON && intersect.t < distance)
+		if (intersect.t < distance)
 			return (true);
 	}
 	return (false);

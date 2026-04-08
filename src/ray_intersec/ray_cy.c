@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 02:44:21 by ldos_sa2          #+#    #+#             */
-/*   Updated: 2026/04/08 07:30:23 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 10:39:14 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,18 @@ static void	cy_body_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)
 		return ;
 	t = ((-1 * numbers.y) - sqrt(delta)) / (2 * numbers.x);
 	y = ray->ori.m_4x1[1] + (t * ray->direc.m_4x1[1]);
-	inter[0].obj = ob;
 	if (-0.5 < y && y < 0.5)
+	{
+		inter[0].obj = ob;
 		inter[0].t = ((-1 * numbers.y) - sqrt(delta)) / (2 * numbers.x);
-	inter[1].obj = ob;
+	}
 	t = ((-1 * numbers.y) + sqrt(delta)) / (2 * numbers.x);
 	y = ray->ori.m_4x1[1] + (t * ray->direc.m_4x1[1]);
 	if (-0.5 < y && y < 0.5)
+	{
 		inter[1].t = ((-1 * numbers.y) + sqrt(delta)) / (2 * numbers.x);
+		inter[1].obj = ob;
+	}
 }
 
 static void	cy_tap_intersect(t_intersect inter[2], t_object *ob, t_ray *ray)

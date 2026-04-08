@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/04/07 00:30:47 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 10:48:40 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_MATH_H
 # include <math.h>
 # include "types/types.h"
-# define EPSILON 0.00001
+# define EPSILON 0.0001
 # define INF INFINITY
 
 void		add_tuples(t_matrix *matrix, const t_matrix *a, const t_matrix *b);
