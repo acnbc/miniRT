@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:20:23 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/06 18:53:18 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 17:52:50 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_light_base	calc_light_base(const t_hit_shade *in)
 	t_light_base	base;
 	t_matrix		tmp;
 
-	tuple_scalar_multiplication(&base.ambient, &in->sc->amb_light->colors,
+	rgb_scalar_multiplication(&base.ambient, &in->sc->amb_light->colors,
 		in->sc->amb_light->light_ratio);
-	tuple_multiplication(&base.effective_color, &in->mt->color,
+	rgb_multiplication(&base.effective_color, &in->mt->color,
 		&in->sc->light->intensity);
 	subtract_tuple(&tmp, &in->sc->light->point, in->o_pt);
 	vector_normalization(&base.light_v, &tmp);

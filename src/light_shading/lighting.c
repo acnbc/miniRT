@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anogueir <anogueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 03:30:22 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/04 11:30:05 by anogueir         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:53:09 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_rgb	lighting(t_light_base *base, t_material *material,
 	double	mult;
 	t_rgb	result;
 
-	tuple_multiplication(&ambient, &material->color, &base->ambient);
+	rgb_multiplication(&ambient, &material->color, &base->ambient);
 	if (base->in_shadow)
 		return (ambient);
 	specular = calc_specular(material, base, eye_v, norm_v);
@@ -32,11 +32,11 @@ t_rgb	lighting(t_light_base *base, t_material *material,
 	if (base->light_dot_normal >= 0)
 	{
 		mult = material->diffuse * base->light_dot_normal;
-		tuple_scalar_multiplication(&diffuse, &base->effective_color,
+		rgb_scalar_multiplication(&diffuse, &base->effective_color,
 			mult);
 	}
-	tuple_addition(&result, &ambient, &diffuse);
-	tuple_addition(&result, &result, &specular);
+	rgb_addition(&result, &ambient, &diffuse);
+	rgb_addition(&result, &result, &specular);
 	return (result);
 }
 
@@ -58,7 +58,7 @@ static t_rgb	calc_specular(t_material *material, t_light_base *base,
 	if (reflect_dot_eye > 0)
 	{
 		factor = pow(reflect_dot_eye, material->shininess);
-		tuple_scalar_multiplication(&specular, &base->intensity,
+		rgb_scalar_multiplication(&specular, &base->intensity,
 			material->specular * factor);
 	}
 	return (specular);
