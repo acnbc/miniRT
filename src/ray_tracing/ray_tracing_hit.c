@@ -12,74 +12,62 @@
 
 #include "../../includes/miniRT.h"
 
-size_t	count_spheres(t_object *objects)
+size_t	count_objects(t_object *objects)
 {
 	size_t	n;
 
 	n = 0;
 	while (objects)
 	{
-		if (objects->id == sp && objects->object.sphere)
-			n++;
+		n++;
 		objects = objects->next;
 	}
 	return (n);
 }
 
-size_t	fill_sphere_hits(t_object *objects, t_ray *ray, t_intersect *buf,
-		t_intersect pair[2])
+t_intersect	*hit(t_intersect *buf, size_t n)
 {
-	size_t	n;
+	int	min;
+	int	i;
 
-	n = 0;
-	while (objects)
+	i = 0;
+	min = -1;
+	while ((size_t)i < n)
 	{
-		if (objects->id == sp && objects->object.sphere)
+		if (buf[i].t > EPSILON)
 		{
-			sp_intersect(pair, objects, ray);
-			if (pair[0].obj && pair[1].obj)
-			{
-				buf[n] = pair[0];
-				buf[n + 1] = pair[1];
-				n += 2;
-			}
+			if ((min == -1 || buf[i].t < buf[min].t) && buf[i].obj != NULL)
+				min = i;
 		}
-		objects = objects->next;
+		i++;
 	}
-	return (n);
+	if (min == -1)
+		return (NULL);
+	return (&buf[min]);
 }
 
 bool	resolve_closest_hit(t_intersect *buf, size_t n, t_intersect *out_hit)
 {
-	t_intersections	inters;
 	t_intersect		*winner;
 
 	if (n == 0)
-	{
-		free(buf);
 		return (false);
-	}
-	inters.inter = buf;
-	inters.n_inter = (int)n;
-	winner = hit(&inters);
+	winner = hit(buf, n);
 	if (winner)
 		*out_hit = *winner;
-	free(buf);
 	return (winner != NULL);
 }
 
-bool	closest_hit_spheres(t_object *objects, t_ray *ray,
+bool	closest_hit(t_object *objects, t_ray *ray,
 		t_intersect *out_hit)
 {
-	t_intersect	pair[2];
-	t_intersect	*buf;
-	size_t		cap;
+	t_intersect	pair[4];
+	t_intersect	buf[248];
 	size_t		n;
 
-	cap = count_spheres(objects);
-	if (cap == 0)
+	n = 0;
+	if (!objects)
 		return (false);
-	buf = (t_intersect *)safe_malloc(2 * cap * sizeof(t_intersect));
-	n = fill_sphere_hits(objects, ray, buf, pair);
+	n += fill_hits(objects, ray, buf, pair);
 	return (resolve_closest_hit(buf, n, out_hit));
 }

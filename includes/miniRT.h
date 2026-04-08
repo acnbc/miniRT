@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 23:50:52 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/03 00:22:45 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/04 16:54:53 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,5 @@ void			free_matrix(t_matrix *matrix);
 
 void			create_ray(t_ray *ray, t_matrix origin, t_matrix direction);
 void			position(t_matrix *point, t_ray *ray, double t);
-
-void			sp_intersect(t_intersect inter[2], t_object *ob, t_ray *ray);
-t_intersect		*hit(t_intersections *inters);
 
 #endif

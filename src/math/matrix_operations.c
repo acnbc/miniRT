@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 16:17:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/21 15:54:54 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 08:59:20 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,22 @@ void	matrix_multiplication(t_matrix *matrix, const t_matrix *a,
 	}
 }
 
-void	matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a,
-	const t_matrix *b)
+void	matrix_tuple_multiplication(t_matrix *res, const t_matrix *m,
+	const t_matrix *t)
 {
-	int		row;
-	int		k;
-	double	*ptr_a;
-	double	*ptr_b;
+	int		r;
+	double	sum;
 
-	if (!matrix || b->cols != 1 || a->cols != b->rows)
-		return ;
-	init_matrix(matrix, a->rows, b->cols);
-	ptr_a = get_matrix(a);
-	ptr_b = get_matrix(b);
-	row = -1;
-	while (++row < a->rows)
+	res->rows = 4;
+	res->cols = 1;
+	r = -1;
+	while (++r < 4)
 	{
-		k = -1;
-		while (++k < a->cols)
-			matrix->m_4x1[row] += ptr_a[row * a->cols + k] * ptr_b[k];
+		sum = m->m_4x4[r * 4 + 0] * t->m_4x1[0]
+			+ m->m_4x4[r * 4 + 1] * t->m_4x1[1]
+			+ m->m_4x4[r * 4 + 2] * t->m_4x1[2]
+			+ m->m_4x4[r * 4 + 3] * t->m_4x1[3];
+		res->m_4x1[r] = sum;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:46:42 by anogueir          #+#    #+#             */
-/*   Updated: 2026/03/23 11:53:12 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 08:36:59 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_matrix(t_matrix *matrix, int rows, int cols)
 {
 	int	i;
 
-	if (!matrix)
+	if (!matrix || rows <= 0 || cols <= 0 || rows > 4 || cols > 4)
 		return ;
 	matrix->rows = rows;
 	matrix->cols = cols;
@@ -71,16 +71,10 @@ double	*get_matrix(const t_matrix *m)
 
 double	mat_get(const t_matrix *m, int row, int col)
 {
-	double	*ptr;
-
-	ptr = get_matrix(m);
-	return (ptr[row * m->cols + col]);
+	return (m->m_4x4[row * m->cols + col]);
 }
 
 void	mat_set(t_matrix *m, int row, int col, double value)
 {
-	double	*ptr;
-
-	ptr = get_matrix(m);
-	ptr[row * m->cols + col] = value;
+	m->m_4x4[row * m->cols + col] = value;
 }

@@ -12,7 +12,7 @@
 
 #include "../../includes/miniRT.h"
 
-# define CAM_UP_DOT_EPS 1e-6
+#define CAM_UP_DOT_EPS 1e-6
 
 void	compute_camera_axes(t_cam_basis *basis, const t_camera *camera)
 {
