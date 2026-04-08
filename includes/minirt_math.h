@@ -6,7 +6,7 @@
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:08:22 by anogueir          #+#    #+#             */
-/*   Updated: 2026/04/03 00:59:36 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/07 00:30:47 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		init_point(t_matrix *matrix, double x, double y, double z);
 void		init_vector(t_matrix *matrix, double x, double y, double z);
 void		init_matrix(t_matrix *matrix, int rows, int cols);
 void		init_identity_matrix(t_matrix *matrix, int dim);
+void		init_scaling_matrix(t_matrix *scale_mat, double x, double y,
+				double z);
 bool		is_equal(double a, double b);
 
 double		mat_get(const t_matrix *m, int row, int col);

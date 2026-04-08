@@ -6,7 +6,7 @@
 /*   By: ldos_sa2 <ldos-sa2@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:35:28 by jessica           #+#    #+#             */
-/*   Updated: 2026/04/05 07:19:44 by ldos_sa2         ###   ########.fr       */
+/*   Updated: 2026/04/08 02:09:17 by ldos_sa2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_object
 {
 	t_id			id;
 	t_matrix		coord;
+	t_matrix		inverse_matrix;
 	t_object_type	object;
 	t_material		material;
 	struct s_object	*next;
