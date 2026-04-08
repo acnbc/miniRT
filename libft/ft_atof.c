@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jesda-si <jesda-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:24:34 by jesda-si          #+#    #+#             */
-/*   Updated: 2026/03/11 23:05:59 by jessica          ###   ########.fr       */
+/*   Updated: 2026/04/08 17:17:24 by jesda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static float	fraction(const char *nptr)
 	int		f;
 
 	i = 0;
-	f = 0;
+	f = 1;
 	if (nptr && nptr[i] == '.')
 		i++;
 	nb = 0;
