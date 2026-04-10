@@ -12,27 +12,6 @@
 
 #include "../../includes/miniRT.h"
 
-bool	matrix_comparison(const t_matrix *a, const t_matrix *b)
-{
-	int		i;
-	int		dimension;
-	double	*ptr_a;
-	double	*ptr_b;
-
-	i = -1;
-	if ((a->rows != b->rows) || (a->cols != b->cols))
-		return (false);
-	dimension = a->rows * a->cols;
-	ptr_a = get_matrix(a);
-	ptr_b = get_matrix(b);
-	while (++i < dimension)
-	{
-		if (!is_equal(ptr_a[i], ptr_b[i]))
-			return (false);
-	}
-	return (true);
-}
-
 void	matrix_multiplication(t_matrix *matrix, const t_matrix *a,
 	const t_matrix *b)
 {

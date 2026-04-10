@@ -29,15 +29,12 @@ bool			closest_hit(t_object *objects, t_ray *ray,
 
 void			shade_orient_normal(t_matrix *norm, t_ray *ray);
 t_rgb			shade_lit_color(t_hit_shade *in);
-t_rgb			shade_sphere_pixel(t_scene *scene, t_ray *ray,
+t_rgb			shade_pixel(t_scene *scene, t_ray *ray,
 					t_intersect *hit);
 
 void			ray_show_image(t_window *win);
 void			ray_trace_scanline(t_scene *scene, t_ray_gen *context, int y);
 void			ray_trace_loop(t_scene *scene, t_ray_gen *context);
-
-void			print_put_row(t_window *win, int y, double den_x,
-					double den_y);
 
 void			ray_tracer(t_scene *scene);
 

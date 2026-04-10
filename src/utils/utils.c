@@ -21,16 +21,6 @@ void	free_matrix(t_matrix *matrix)
 	free(matrix);
 }
 
-void	*safe_malloc(size_t size)
-{
-	void	*ptr;
-
-	ptr = ft_calloc(1, size);
-	if (ptr == NULL)
-		exit_error(ERR_MALLOC, NULL);
-	return (ptr);
-}
-
 void	exit_error(t_msg_error error, t_scene **_scene)
 {
 	static t_scene	**scene = NULL;

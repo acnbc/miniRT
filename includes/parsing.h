@@ -28,6 +28,7 @@ void			lst_add_back_object(t_object **lst, t_object *new);
 t_object		*lst_back_object(t_object *lst);
 void			lst_clear_object(t_object **lst);
 
+void			translation(t_matrix *matrix, const t_matrix *offset);
 void			transformation_matrix(t_object *object);
 
 #endif

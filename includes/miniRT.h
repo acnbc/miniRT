@@ -31,7 +31,6 @@
 # include "minirt_math.h"
 # include "interface.h"
 # include "parsing.h"
-# include "matrix_transformations.h"
 # include "light_shading.h"
 # include "ray_tracing.h"
 
@@ -41,7 +40,6 @@ void			init_hooks(t_scene *scene);
 void			exit_error(t_msg_error error, t_scene **_scene);
 void			free_scene(t_scene **scene);
 
-void			*safe_malloc(size_t size);
 void			free_matrix(t_matrix *matrix);
 
 void			create_ray(t_ray *ray, t_matrix origin, t_matrix direction);

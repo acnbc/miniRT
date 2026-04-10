@@ -18,6 +18,20 @@ static t_matrix	inverse_matrix_multiplication(t_object *object,
 static void		copy_values(t_matrix *rotate, t_matrix *right,
 					t_matrix *forward, t_matrix *up);
 
+
+void	translation(t_matrix *matrix, const t_matrix *offset)
+{
+	if (!matrix || !offset)
+	{
+		init_identity_matrix(matrix, 4);
+		return ;
+	}
+	init_identity_matrix(matrix, 4);
+	mat_set(matrix, 0, 3, offset->m_4x1[0]);
+	mat_set(matrix, 1, 3, offset->m_4x1[1]);
+	mat_set(matrix, 2, 3, offset->m_4x1[2]);
+}
+
 void	transformation_matrix(t_object *object)
 {
 	t_matrix	scale;
@@ -112,3 +126,4 @@ static void	copy_values(t_matrix *rotate, t_matrix *right, t_matrix *forward,
 	}
 	rotate->m_4x4[15] = 1.0;
 }
+

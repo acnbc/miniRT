@@ -12,7 +12,6 @@
 
 #include "../../includes/miniRT.h"
 
-/* Forward declarations for recursive functions */
 double	get_minor(const t_matrix *m, int row, int col);
 double	get_cofactor(const t_matrix *m, int row, int col);
 

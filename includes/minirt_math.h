@@ -23,8 +23,6 @@ void		subtract_tuple(t_matrix *matrix, const t_matrix *a,
 void		negate_tuple(t_matrix *matrix, const t_matrix *tuple);
 void		scalar_multiplication(t_matrix *matrix, const t_matrix *tuple,
 				double scalar);
-void		scalar_division(t_matrix *matrix, const t_matrix *tuple,
-				double scalar);
 double		vector_magnitude(const t_matrix *tuple);
 void		vector_normalization(t_matrix *matrix, const t_matrix *vector);
 double		dot_product(const t_matrix *a, const t_matrix *b);
@@ -45,7 +43,6 @@ void		matrix_multiplication(t_matrix *matrix, const t_matrix *a,
 				const t_matrix *b);
 void		matrix_tuple_multiplication(t_matrix *matrix, const t_matrix *a,
 				const t_matrix *b);
-bool		matrix_comparison(const t_matrix *a, const t_matrix *b);
 void		matrix_transposition(t_matrix *matrix, const t_matrix *m);
 double		get_2x2_determinant(const t_matrix *a);
 double		*get_matrix(const t_matrix *m);

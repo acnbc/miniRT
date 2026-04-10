@@ -37,7 +37,7 @@ t_rgb	shade_lit_color(t_hit_shade *in)
 	return (lit);
 }
 
-t_rgb	shade_sphere_pixel(t_scene *scene, t_ray *ray, t_intersect *hit)
+t_rgb	shade_pixel(t_scene *scene, t_ray *ray, t_intersect *hit)
 {
 	t_matrix	hit_pt;
 	t_matrix	norm_v;

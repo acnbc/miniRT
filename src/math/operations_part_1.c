@@ -56,17 +56,3 @@ void	scalar_multiplication(t_matrix *matrix, const t_matrix *tuple,
 	matrix->m_4x1[2] = tuple->m_4x1[2] * scalar;
 	matrix->m_4x1[3] = tuple->m_4x1[3];
 }
-
-void	scalar_division(t_matrix *matrix, const t_matrix *tuple,
-	const double scalar)
-{
-	if (!matrix)
-		return ;
-	init_matrix(matrix, 4, 1);
-	if (scalar < EPSILON)
-		return ;
-	matrix->m_4x1[0] = tuple->m_4x1[0] / scalar;
-	matrix->m_4x1[1] = tuple->m_4x1[1] / scalar;
-	matrix->m_4x1[2] = tuple->m_4x1[2] / scalar;
-	matrix->m_4x1[3] = tuple->m_4x1[3];
-}
