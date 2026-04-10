@@ -18,7 +18,6 @@ static t_matrix	inverse_matrix_multiplication(t_object *object,
 static void		copy_values(t_matrix *rotate, t_matrix *right,
 					t_matrix *forward, t_matrix *up);
 
-
 void	translation(t_matrix *matrix, const t_matrix *offset)
 {
 	if (!matrix || !offset)
@@ -126,4 +125,3 @@ static void	copy_values(t_matrix *rotate, t_matrix *right, t_matrix *forward,
 	}
 	rotate->m_4x4[15] = 1.0;
 }
-
