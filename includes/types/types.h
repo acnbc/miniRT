@@ -72,7 +72,6 @@ typedef struct s_hit_shade
 {
 	t_scene		*sc;
 	t_ray		*ray;
-	t_matrix	*pt;
 	t_matrix	*nm;
 	t_material	*mt;
 	t_matrix	*o_pt;

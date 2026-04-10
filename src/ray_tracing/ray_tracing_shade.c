@@ -52,7 +52,6 @@ t_rgb	shade_pixel(t_scene *scene, t_ray *ray, t_intersect *hit)
 	mat = hit->obj->material;
 	sh.sc = scene;
 	sh.ray = ray;
-	sh.pt = &hit_pt;
 	sh.nm = &norm_v;
 	sh.mt = &mat;
 	sh.o_pt = &over_point;
